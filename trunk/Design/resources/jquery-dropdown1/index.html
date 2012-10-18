@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="Demo de un menu desplegable(DropDown)" usando jquery />
+<meta name="keywords" content="jquery, ajax, menu, desplegable, dropdown" />
+<title>DropDown Menu desplegable</title>
+<script language="javascript" src="jquery-1.3.min.js"></script>
+<script type="text/javascript">
+function mainmenu(){
+$(" #nav ul ").css({display: "none"});
+$(" #nav li").hover(function(){
+	$(this).find('ul:first:hidden').css({visibility: "visible",display: "none"}).slideDown(400);
+	},function(){
+		$(this).find('ul:first').slideUp(400);
+	});
+}
+$(document).ready(function(){
+	mainmenu();
+});
+</script>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="menu">
+<ul id="nav">
+	<li><a href="#">Inicio</a></li>
+    <li><a href="#">Servicios</a>
+    	<ul class="submenu">
+        	<li><a href="#">Marketing</a>
+            	<ul class="subsubmenu">
+                	<li><a href="#">Precios</a></li>
+                    <li><a href="#">Consultas</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Mercadotecnia</a></li>
+            <li><a href="#">Encuestas</a></li>
+        </ul>
+    </li>
+    <li><a href="#">Nosotros</a>
+    	<ul class="submenu">
+        	<li><a href="#">Vision</a></li>
+            <li><a href="#">Mision</a></li>
+        </ul>
+    </li>
+    <li><a href="#">Otros</a></li>
+    <li><a href="#">Contactanos</a></li>
+</ul>
+</div>
+<br />
+<p align="center"><a href="http://www.miguelmanchego.com/2009/dropdown-menu-desplegable-ajax-jquery/" title="blog miguel manchego">Regresar al blog</a></p>
+</body>
+</html>

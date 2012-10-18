@@ -1,0 +1,96 @@
+*{
+	padding:0px;
+	margin:0 auto;
+}
+
+body {
+    background-color: #FFFFFF;
+    width: 910;
+}
+
+h1{
+	color: #000;
+	text-align: center;
+}
+
+#container{
+	width: 910px;
+	border:2px solid #C0C0C0;
+	-moz-border-radius:5px; 
+	-webkit-border-radius:5px;
+	background-color: #A0A0A0;
+	margin-top: 5px;
+}
+
+#top_container{
+    position: relative;
+    /*width: 910px;*/
+}
+
+#header{
+	background-color: #B0B0B0;
+}
+
+#menu{
+	height: 35px;
+}
+
+#middle_general_container{
+	height:200px;
+	margin-top:34px;
+}
+
+#middle_left_container{
+	/*height:200px;*/
+	width: 20%;
+	background-color: #A0A0A0;
+	float: left;
+	height:399px;
+	text-align:center;
+	border-top: 1px solid #FFFFFF;
+}
+
+#middle_center_container{
+	/*height:200px;*/
+	width: 60%;
+	background-color: #FFFFFF;
+	float: left;
+	text-align: center;
+	height:400px;
+}
+
+#middle_right_container{
+	/*height:200px;*/
+	width: 20%;
+	background-color: #A0A0A0;
+	float: right;
+	text-align: center;
+	height:399px;
+	border-top: 1px solid #FFFFFF;
+}
+
+#botttom_container{
+	background-color: #333333;
+	text-align: center;
+	color:#FFFFFF;
+	font-size: 12px;
+}
+div#botttom_container a{
+	text-decoration: none;
+	color: #c0c0c0;
+}
+
+/*MENU*/
+* { padding:0px; margin:0px; }
+body { font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; color:#333333; }
+#menu { background-image:url(nav_bg.png); background-repeat:repeat-x; height:30px; width:500px; margin:auto; padding-left:70px; }
+#nav { list-style:none; }
+#nav li { float:left; background-image:url(nav_li_bg.png); background-repeat:no-repeat; background-position:right; }
+#nav li a { display:block; padding:7px 10px; text-decoration:none; color:#CCCCCC; font-weight:bold; }
+#nav li a:hover { color:#FFFFFF; }
+/* Submenu */
+#nav ul.submenu { border:1px solid #000000; padding:5px; position:absolute; list-style:none; background-color:#333333;}
+#nav ul.submenu li { float:none; background-image:none; border-bottom:1px solid #999999; width:200px;}
+/* Subsubmenu */
+#nav ul.subsubmenu { border:1px solid #000000; padding:5px; position:absolute; list-style:none; background-color:#333333; margin-left:150px; margin-top:-30px;}
+#nav ul.subsubmenu li { float:none; background-image:none; border-bottom:1px solid #999999; min-width:200px;}
