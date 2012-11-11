@@ -13,7 +13,7 @@ body {
 }
 		
 a:link, a:visited { color: #DB550C; text-decoration: none; font-weight: normal; } 
-a:active, a:hover { color: #FFCC00; text-decoration: underline; }
+a:active, a:hover { color: #DB550C; text-decoration: underline; }
 
 p { margin: 0px; padding: 0px; }
 
