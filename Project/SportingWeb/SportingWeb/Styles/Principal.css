@@ -1,4 +1,4 @@
-body {
+﻿body {
 	margin: 0;
 	padding: 0;
 	line-height: 1.5em;
@@ -34,7 +34,7 @@ img { margin: 0px; padding: 0px; border: none; }
 	width: 90px;
 	height: 24px;
 	padding: 6px 0 0 30px;
-    background: url(images/templatemo_button_01.jpg) no-repeat;
+    background: url(../Images/templatemo_button_01.jpg) no-repeat;
 	
 	color: #000000;
 	font-size: 14px;
@@ -110,7 +110,6 @@ h4 {
 .list_01 li {
 	margin: 0px;
 	padding: 0 0 10px 0;
-	list-style-image: url(images/templatemo_list_icon_01.jpg);
 }
 
 .list_01 li a {
@@ -120,14 +119,14 @@ h4 {
 #templatemo_container_wrapper {
 	width:100%;
 	margin: 0 auto;
-	background: url(images/templatemo_body_bg.jpg) center top no-repeat;
+	background: url(../Images/templatemo_body_bg.jpg) center top no-repeat;
 }
 
 #templatemo_container {
 	width: 960px;
 	padding: 0 5px;
 	margin: 0 auto;
-	background: url(images/templatemo_container_bg.png) center repeat-y;
+	background: url(../Images/templatemo_container_bg.png) center repeat-y;
 }
 
 /* bannner */
@@ -136,7 +135,7 @@ h4 {
 	width: 950px;
 	height: 200px;
 	padding: 0 30px 0 20px;
-	background: url(images/templatemo_banner2.jpg) no-repeat;
+	background: url(../Images/templatemo_banner2.jpg) no-repeat;
 }
 
 #templatemo_banner #site_title {
@@ -144,7 +143,7 @@ h4 {
 	width: 200px;
 	height: 200px;
 	margin: 0 25px;
-	background: url("images/escudoSporting.png") no-repeat scroll center top transparent;
+	background: url("../Images/escudoSporting.png") no-repeat scroll center top transparent;
 }
 
 #site_title h1 a {
@@ -178,8 +177,7 @@ h4 {
 	float: right;
 	width: 600px;
 	height: 50px;
-	padding: 39px 5px;
-	background: url(images/templatemo_menu_bg.jpg) no-repeat;
+	padding: 39px 33px;
 }
 
 #templatemo_menu ul {
@@ -204,8 +202,7 @@ h4 {
 	text-align: center;
 	font-weight: bold;
 	text-decoration: none;
-	color: #f9f6f6;	
-	background: url(images/templatemo_menu_right.jpg) right top no-repeat;
+	color: #f9f6f6;		
 	outline: none;
 }
 
@@ -221,7 +218,7 @@ h4 {
 	clear: both;
 	width: 910px;
 	padding: 30px 30px 0 20px;
-	background: url(images/templatemo_content_top.jpg) top center no-repeat;
+	background: url(../Images/templatemo_content_top.jpg) top center no-repeat;
 }
 
 #side_column {
@@ -246,15 +243,15 @@ h4 {
 	left: 0px;
 	width: 250px;
 	height: 10px;
-	background: url(images/templatemo_side_column_box_bottom.jpg);
+	background: url(../Images/templatemo_side_column_box_bottom.jpg);
 }
 
 .side_column_box h2 {
-	background: url(images/templatemo_h2_right.jpg) right top no-repeat;
+	background: url(../Images/templatemo_h2_right.jpg) right top no-repeat;
 }
 
 .side_column_box h2 span {
-	background: url(images/templatemo_h2_left.jpg) no-repeat;
+	background: url(../Images/templatemo_h2_left.jpg) no-repeat;
 }
 
 .side_column_box .side_column_box_content {
@@ -304,15 +301,15 @@ h4 {
 	left: 0px;
 	width: 600px;
 	height: 10px;
-	background: url(images/templatemo_main_column_section_bottom.jpg);
+	background: url(../Images/templatemo_main_column_section_bottom.jpg);
 }
 
 .main_column_section h2 {
-	background: url(images/templatemo_h2_right_02.jpg) right top no-repeat;
+	background: url(../Images/templatemo_h2_right_02.jpg) right top no-repeat;
 }
 
 .main_column_section h2 span {
-	background: url(images/templatemo_h2_left_02.jpg) no-repeat;
+	background: url(../Images/templatemo_h2_left_02.jpg) no-repeat;
 }
 
 .main_column_section .main_column_section_content {
@@ -334,7 +331,7 @@ h4 {
 	padding: 30px 90px 0 90px;
 	text-align: center;
 	color: #3b3838;
-	background: url(images/templatemo_footer.jpg) no-repeat;
+	background: url(../Images/templatemo_footer.jpg) no-repeat;
 }
 
 #templatemo_footer a {
