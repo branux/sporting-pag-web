@@ -1,5 +1,0 @@
-D:\Proyectos COVA\Sporting Web\Project\SportingProject\SportingWeb\SportingWeb\obj\Debug\ResolveAssemblyReference.cache
-D:\Proyectos COVA\Sporting Web\Project\SportingProject\SportingWeb\SportingWeb\bin\SportingWeb.dll
-D:\Proyectos COVA\Sporting Web\Project\SportingProject\SportingWeb\SportingWeb\bin\SportingWeb.pdb
-D:\Proyectos COVA\Sporting Web\Project\SportingProject\SportingWeb\SportingWeb\obj\Debug\SportingWeb.dll
-D:\Proyectos COVA\Sporting Web\Project\SportingProject\SportingWeb\SportingWeb\obj\Debug\SportingWeb.pdb
