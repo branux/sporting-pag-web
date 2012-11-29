@@ -1,0 +1,55 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Principal.master.cs" Inherits="SportingWeb.Principal" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>Sporting - Sampacho</title>
+    <meta name="keywords" content="Sampacho, Sporting" />
+    <meta name="description" content="Sporting Club Deportivo y Cultural - Sampacho" />
+    <link href="Styles/Principal.css" rel="stylesheet" type="text/css" />
+    <script language="javascript" type="text/javascript">
+        function clearText(field)
+        {
+            if (field.defaultValue == field.value) field.value = '';
+            else if (field.value == '') field.value = field.defaultValue;
+        }
+    </script>
+</head>
+<body>
+    <div id="templatemo_container_wrapper">
+        <div id="templatemo_container">
+	        <div id="templatemo_banner">
+                <div id="site_title">
+                        <h1><a href="http://www.templatemo.com" target="_parent"><span></span></a></h1>
+                  </div>                   
+                    <div id="templatemo_menu">
+                        <ul>
+                            <li><a href="#" class="current">Inicio</a></li>
+                            <li><a href="#">Equipo</a></li>
+                            <li><a href="#">Noticias</a></li>
+                            <li><a href="#">Campeonato</a></li>
+                            <li><a href="#">Multimedia</a></li>
+                            <li><a href="#">Contacto</a></li>
+                        </ul>
+		            </div> <!-- end of menu -->               
+               </div> <!-- end of banner -->              
+               <asp:ContentPlaceHolder ID="CPHBody" runat="server">
+                </asp:ContentPlaceHolder>                
+                <div id="templatemo_footer">              
+                    <div id="templatemo_footer_bar">                  
+                        <ul class="footer_menu">
+                            <li><a href="#">Inicio</a></li>
+                            <li><a href="#">Equipo</a></li>
+                          <li><a href="#">Noticias</a></li>
+                            <li><a href="#">Campeonato</a></li>
+                            <li><a href="#">Multimedia</a></li>
+                            <li class="last_menu"><a href="#">Contacto</a></li>
+                        </ul>
+                        Copyright © 2012 <a href="#">COVA Web</a> | <a href="" target="_parent">Diseño Web</a>                        
+                    </div>
+                </div> <!-- end of footer -->
+        </div> <!-- end of container -->
+    </div> <!-- end of container wrapper -->
+</body>
+</html>

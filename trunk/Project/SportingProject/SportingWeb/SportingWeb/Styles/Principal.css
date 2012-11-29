@@ -320,6 +320,11 @@ h4 {
 	margin-bottom: 10px;
 }
 
+.tituloNoticia 
+{
+	background:transparent !important;
+	position: relative;
+}
 /* end of content */
 
 /* footer */
