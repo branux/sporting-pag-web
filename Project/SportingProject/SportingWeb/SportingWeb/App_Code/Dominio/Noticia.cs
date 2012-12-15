@@ -8,8 +8,6 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Collections.Generic;
-using System.Data.Odbc;
-
 
 public class Noticia
 {
@@ -46,38 +44,21 @@ public class Noticia
         set { imagenes = value; }
     }
 
-    //Obtengo una noticia de base de datos por su id
-    public static Noticia getNoticiaById(int id)
+    public Imagen getPortada()
     {
-        OdbcCommand cmd = null;
-        Noticia noticia = null;
-        try
+        Imagen portada = null;
+        if (this.Imagenes != null)
         {
-            cmd = new OdbcCommand("SELECT n.id, n.titulo, n.descripcion" +
-                                              " FROM noticia n" +
-                                              " WHERE n.id=" + id.ToString(), ConexionBD.ObtenerConexion());
-
-            cmd.CommandType = CommandType.Text;
-            OdbcDataReader dr = cmd.ExecuteReader();
-
-            if (dr.HasRows)
+            foreach (Imagen imagen in this.Imagenes)
             {
-                noticia = new Noticia();
-                noticia.IdNoticia = dr.GetInt32(0);
-                noticia.Titulo = dr.GetString(1);
-                noticia.Descripcion = dr.GetString(2);
+                if (imagen.Portada)
+                {
+                    portada = imagen;
+                }
             }
         }
-        catch (Exception e)
-        {
-            // throw new SportingException("Ocurrio un error al intentar obtener la noticia "+id+" de la base de datos. "+e.Message);
-        }
-        finally
-        {
-            cmd.Connection.Close();
-        }
-        return noticia;
-    }
+        return portada;
+    } 
 }
 
 

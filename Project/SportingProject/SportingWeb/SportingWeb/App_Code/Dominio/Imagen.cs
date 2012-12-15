@@ -17,6 +17,7 @@ public class Imagen //: ConexionBD
     private String pathBig;
     private String pathSmall;
     private int idImagen;
+    private Boolean portada;
 
     public int IdImagen
     {
@@ -40,6 +41,11 @@ public class Imagen //: ConexionBD
         set { pathBig = value; }
     }
 
+    public Boolean Portada
+    {
+        get { return portada; }
+        set { portada = value; }
+    }
    /* public static void deleteImagen(int idImg)
     {
         try
