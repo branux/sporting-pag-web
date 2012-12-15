@@ -21,7 +21,7 @@
                       <p>Sed pharetra neque vel mauris auctor ornare. Maecenas urna lorem, consectetur eget consectetur id.</p>
                   </div>
 					
-					<div class="button_01"><a href="#">Ver mas</a></div>
+					<div class="botonVerMas"><a href="#">Ver mas</a></div>
                 </div>
                 
                 <div class="bottom"></div>
@@ -43,11 +43,8 @@
                 </div>
                 
                 <div class="bottom"></div>
-            </div>
-            
-        
+            </div> 
         </div> <!-- end of side column -->
-        
         <div id="main_column">
 			<form id="frmNoticiaPrincipal1" runat="server">
 				<div>
@@ -57,20 +54,13 @@
 						    <span></span>
 						    <asp:Label ID="lblTituloNoticia1" runat="server" class="tituloNoticia"></asp:Label>
 						</h2>
-						
 						<div class="main_column_section_content">
-						
 							<!--Imagen Noticia 1-->
-							<a href="#"><img class="image_wrapper fl_image" src="images/templatemo_image_01.jpg" alt="image two" /></a> 
-						  
-							<!--Descripcion Noticia 1-->
-							<p>This <a href="http://www.templatemo.com/page/2" target="_parent">website template</a> is provided by <a href="http://www.templatemo.com" target="_parent">templatemo.com</a> for free of charge. Validate <a href="http://validator.w3.org/check?uri=referer">XHTML</a> &amp; <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a>. Feel free to download, modify and apply this template for your personal or commercial websites.</p>
-							<div> 
-								<p>Mauris in sapien in massa pellentesque viverra. Quisque venenatis fringilla eros. Etiam in lorem ac nulla imperdiet sodales. Phasellus in justo at lectus pulvinar ultrices. Mauris ultrices sollicitudin turpis.</p>
-								<p>Nunc eget urna. Mauris vestibulum felis eget tortor. Praesent mattis varius quam. Vestibulum ullamcorper ipsum nec augue. Vestibulum auctor odio eget ante. Nunc commodo, magna pharetra semper vehicula, dui ligula feugiat elit, et euismod nunc orci ut libero. Etiam sodales massa vel metus.</p>
-							</div>
-						  <div class="button_01"><a href="#">Ver Mas</a></div>
-						  </div>
+							<a href="#"><asp:Image ID="imgNoticia1" class="image_wrapper fl_image" runat="server" ImageUrl=""/></a>						  
+							<!--Descripcion Noticia 1-->					
+							<asp:Label ID="lblDescripcionNoticia1" runat="server"></asp:Label>
+							<div class="botonVerMas"><a href="#">Ver Mas</a></div>
+					    </div>   
 					  <div class="cleaner"></div>
 					  <div class="bottom"></div>
 					</div>
@@ -79,21 +69,18 @@
 			<form id="frmNoticiaPrincipal2">
 				<div>
 					<div class="main_column_section">       				
-						<!--Titulo Noticia 1-->
-						<h2><span></span>Sporting Club Deportivo y Cultural</h2>
-						<div class="main_column_section_content">
-						
-						  <!--Imagen Noticia 1-->
-							<a href="#"><img class="image_wrapper fl_image" src="images/templatemo_image_02.jpg" alt="image two" /></a>  
-						  
-						  <!--Descripcion Noticia 1-->
-							<p>This <a href="http://www.templatemo.com/page/2" target="_parent">website template</a> is provided by <a href="http://www.templatemo.com" target="_parent">templatemo.com</a> for free of charge. Validate <a href="http://validator.w3.org/check?uri=referer">XHTML</a> &amp; <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a>. Feel free to download, modify and apply this template for your personal or commercial websites.</p>
-							<div> 
-								<p>Mauris in sapien in massa pellentesque viverra. Quisque venenatis fringilla eros. Etiam in lorem ac nulla imperdiet sodales. Phasellus in justo at lectus pulvinar ultrices. Mauris ultrices sollicitudin turpis.</p>
-								<p>Nunc eget urna. Mauris vestibulum felis eget tortor. Praesent mattis varius quam. Vestibulum ullamcorper ipsum nec augue. Vestibulum auctor odio eget ante. Nunc commodo, magna pharetra semper vehicula, dui ligula feugiat elit, et euismod nunc orci ut libero. Etiam sodales massa vel metus.</p>
-							</div>
-						  <div class="button_01"><a href="#">Ver Mas</a></div>
-						  </div>
+						<!--Titulo Noticia 2-->
+						<h2>
+						    <span></span>
+						    <asp:Label ID="lblTituloNoticia2" runat="server" class="tituloNoticia"></asp:Label>
+						</h2>					
+						<div class="main_column_section_content">	
+							<!--Imagen Noticia 2-->
+							<a href="#"><asp:Image ID="imgNoticia2" class="image_wrapper fl_image" runat="server" ImageUrl=""/></a>						  
+							<!--Descripcion Noticia 2-->					
+							<asp:Label ID="lblDescripcionNoticia2" runat="server"></asp:Label>
+							<div class="botonVerMas"><a href="#">Ver Mas</a></div>
+					    </div>
 					  <div class="cleaner"></div>
 					  <div class="bottom"></div>
 					</div>

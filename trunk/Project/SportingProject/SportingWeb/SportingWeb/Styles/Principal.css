@@ -29,7 +29,7 @@ img { margin: 0px; padding: 0px; border: none; }
 
 .m_right { margin-right: 30px; }
 
-.button_01 a {
+.botonVerMas a{
 	display: block;
 	width: 90px;
 	height: 24px;
@@ -41,6 +41,11 @@ img { margin: 0px; padding: 0px; border: none; }
 	font-weight: bold;
 	text-align: center;
 	text-decoration: none;
+}
+
+.botonVerMas{
+	clear: left;
+	padding: 0 425px;
 }
 
 h1 {

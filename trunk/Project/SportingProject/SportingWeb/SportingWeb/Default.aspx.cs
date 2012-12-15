@@ -23,8 +23,17 @@ public partial class Default : System.Web.UI.Page
 
     public void cargarNoticias()
     {
-        Noticia not = Noticia.getNoticiaById(1);
-        lblTituloNoticia1.Text = not.Titulo;
+        // Noticia 1
+        Noticia not1 = NoticiaDAL.getNoticiaById(1);
+        lblTituloNoticia1.Text = not1.Titulo;
+        lblDescripcionNoticia1.Text = not1.Descripcion;
+        imgNoticia1.ImageUrl = not1.getPortada().PathSmall;
+
+        // Noticia 2
+        Noticia not2 = NoticiaDAL.getNoticiaById(2);
+        lblTituloNoticia2.Text = not2.Titulo;
+        lblDescripcionNoticia2.Text = not2.Descripcion;
+        imgNoticia2.ImageUrl = not2.getPortada().PathSmall;
     }
 }
 

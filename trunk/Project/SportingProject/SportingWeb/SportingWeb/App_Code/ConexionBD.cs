@@ -53,77 +53,9 @@ public class ConexionBD
         }
     }
 
-    /// <summary>
-    /// Retorna la lista de todos las noticias
-    /// </summary>
-    /// <returns></returns>
-    public List<Noticia> getNoticias()
-    {
-        con = ObtenerConexion();
-        DataSet ds = new DataSet();
-        List<Noticia> listaNoticias = new List<Noticia>();
-        try
-        {
-            OdbcCommand cmd = new OdbcCommand("SELECT n.id, n.titulo, n.descripcion FROM noticia n", con);
-            cmd.CommandType = CommandType.Text;
-            OdbcDataReader dr = cmd.ExecuteReader();
+    
 
-            while (dr.Read())
-            {
-                Noticia noticia = new Noticia();
-                noticia.IdNoticia = dr.GetInt32(0);
-                noticia.Titulo = dr.GetString(1);
-                noticia.Descripcion = dr.GetString(2);
-
-                listaNoticias.Add(noticia);
-            }
-        }
-        catch (Exception e)
-        {
-            throw new SportingException("Ocurrio un problema al intentar obtener todos los zapatos de la base de datos. " + e.Message);
-        }
-        finally
-        {
-            con.Close();
-        }
-        return listaNoticias;
-    }
-
-    /// <summary>
-    /// Setea la lista de imagenes de una noticia
-    /// </summary>
-    /// <returns></returns>
-    public void setImagenes(Noticia noticia)
-    {
-        con = ObtenerConexion();
-        DataSet ds = new DataSet();
-        List<Imagen> listaImagenes = new List<Imagen>();
-        try
-        {
-            OdbcCommand cmd = new OdbcCommand("SELECT i.id, i.pathBig, i.pathSmall FROM imagen i, imagen_x_noticia n WHERE i.id=n.idImagen AND n.idNoticia=" + noticia.IdNoticia, con);
-            cmd.CommandType = CommandType.Text;
-            OdbcDataReader dr = cmd.ExecuteReader();
-
-            while (dr.Read())
-            {
-                Imagen imagen = new Imagen();
-                imagen.IdImagen = dr.GetInt32(0);
-                imagen.PathBig = dr.GetString(1);
-                imagen.PathSmall = dr.GetString(2);
-
-                listaImagenes.Add(imagen);
-            }
-        }
-        catch (Exception e)
-        {
-            throw new SportingException("Ocurrio un problema al intentar obtener las imagenes de las noticias. " + e.Message);
-        }
-        finally
-        {
-            con.Close();
-        }
-        noticia.Imagenes = listaImagenes;
-    }
+    
 
     /*public DataSet getDatasetCalzados()
     {
