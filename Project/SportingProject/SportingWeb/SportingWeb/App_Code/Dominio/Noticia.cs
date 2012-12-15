@@ -9,12 +9,14 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Collections.Generic;
 
-public class Noticia
+public class Noticia:IComparable
 {
     private int idNoticia;
     private String titulo;
     private String descripcion;
     private List<Imagen> imagenes;
+    private Boolean principal1;
+    private Boolean principal2;
 
     public Noticia()
     {
@@ -44,6 +46,18 @@ public class Noticia
         set { imagenes = value; }
     }
 
+    public Boolean Principal1
+    {
+        get { return principal1; }
+        set { principal1 = value; }
+    }
+
+    public Boolean Principal2
+    {
+        get { return principal2; }
+        set { principal2 = value; }
+    }
+
     public Imagen getPortada()
     {
         Imagen portada = null;
@@ -58,7 +72,20 @@ public class Noticia
             }
         }
         return portada;
-    } 
+    }
+
+    public int CompareTo(object obj)
+    {
+        if (obj != null)
+        {
+            Noticia not = (Noticia)obj;
+            return not.idNoticia - this.idNoticia;
+        }
+        else
+        {
+            return -1;
+        }      
+    }
 }
 
 
