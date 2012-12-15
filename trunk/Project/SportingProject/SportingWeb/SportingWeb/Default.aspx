@@ -8,18 +8,18 @@
 				
             	<h2><span></span>Noticias</h2>
                 
-                <div class="side_column_box_content">
+                 <div class="side_column_box_content">
                 	<div class="news_section">
-                        <h3><a href="#">Etiam tempus tellus eget</a></h3>
-                        <a href="#"><img class="image_wrapper" src="images/templatemo_image_04.jpg" alt="flower" /></a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et ipsum sem, ut lobortis dui.</p>
-                  </div>
+                        <h3><a href="#"> <asp:Label ID="lblTituloLateral1" runat="server"></asp:Label></a></h3>
+                        <a href="#"><asp:Image ID="imgLateral1" class="image_wrapper" runat="server" ImageUrl=""/></a>
+                        <p><asp:Label ID="lblDescripcionLateral1" runat="server"></asp:Label></p>
+                   </div>
                         
                     <div class="news_section">
-                        <h3><a href="#">Nam quis aliquet quam</a></h3>
-                        <a href="#"><img class="image_wrapper" src="images/templatemo_image_03.jpg" alt="tiger" /></a>                        
-                      <p>Sed pharetra neque vel mauris auctor ornare. Maecenas urna lorem, consectetur eget consectetur id.</p>
-                  </div>
+                        <h3><a href="#"> <asp:Label ID="lblTituloLateral2" runat="server"></asp:Label></a></h3>
+                        <a href="#"><asp:Image ID="imgLateral2" class="image_wrapper" runat="server" ImageUrl=""/></a>
+                        <p><asp:Label ID="lblDescripcionLateral2" runat="server"></asp:Label></p>
+                   </div>
 					
 					<div class="botonVerMas"><a href="#">Ver mas</a></div>
                 </div>

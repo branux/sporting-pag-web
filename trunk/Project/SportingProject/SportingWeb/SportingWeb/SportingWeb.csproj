@@ -65,6 +65,7 @@
     <Compile Include="App_Code\Dominio\Imagen.cs" />
     <Compile Include="App_Code\Dominio\Noticia.cs" />
     <Compile Include="App_Code\Dominio\SportingException.cs" />
+    <Compile Include="App_Code\Gestores\GestorNoticias.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

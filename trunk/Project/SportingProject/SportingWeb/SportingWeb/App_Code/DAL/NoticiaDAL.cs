@@ -8,13 +8,12 @@ public class NoticiaDAL
     //Obtengo una noticia de base de datos por su id
     public static Noticia getNoticiaById(int id)
     {
+        OdbcConnection con = ConexionBD.ObtenerConexion();
         OdbcCommand cmd = null;
         Noticia noticia = null;
         try
         {
-            cmd = new OdbcCommand("SELECT n.id, n.titulo, n.descripcion" +
-                                              " FROM noticia n" +
-                                              " WHERE n.id=" + id.ToString(), ConexionBD.ObtenerConexion());
+            cmd = new OdbcCommand(selectNoticia + "WHERE n.id=" + id.ToString(), con);
 
             cmd.CommandType = CommandType.Text;
             OdbcDataReader dr = cmd.ExecuteReader();
@@ -25,12 +24,12 @@ public class NoticiaDAL
                 noticia.IdNoticia = dr.GetInt32(0);
                 noticia.Titulo = dr.GetString(1);
                 noticia.Descripcion = dr.GetString(2);
-                setImagenes(noticia);
+                setImagenes(con,noticia);
             }
         }
         catch (Exception e)
         {
-            // throw new SportingException("Ocurrio un error al intentar obtener la noticia "+id+" de la base de datos. "+e.Message);
+            throw new SportingException("Ocurrio un error al intentar obtener la noticia "+id+" de la base de datos. "+e.Message);
         }
         finally
         {
@@ -50,7 +49,7 @@ public class NoticiaDAL
         List<Noticia> listaNoticias = new List<Noticia>();
         try
         {
-            OdbcCommand cmd = new OdbcCommand("SELECT n.id, n.titulo, n.descripcion FROM noticia n", con);
+            OdbcCommand cmd = new OdbcCommand(selectNoticia, con);
             cmd.CommandType = CommandType.Text;
             OdbcDataReader dr = cmd.ExecuteReader();
 
@@ -60,13 +59,49 @@ public class NoticiaDAL
                 noticia.IdNoticia = dr.GetInt32(0);
                 noticia.Titulo = dr.GetString(1);
                 noticia.Descripcion = dr.GetString(2);
-                setImagenes(noticia);
+                noticia.Principal1 = dr.GetBoolean(3);
+                noticia.Principal2 = dr.GetBoolean(4);
+                setImagenes(con,noticia);
                 listaNoticias.Add(noticia);
             }
         }
         catch (Exception e)
         {
-            throw new SportingException("Ocurrio un problema al intentar obtener todos los zapatos de la base de datos. " + e.Message);
+            throw new SportingException("Ocurrio un problema al intentar obtener todas las noticias. " + e.Message);
+        }
+        finally
+        {
+            con.Close();
+        }
+        return listaNoticias;
+    }
+
+    public static List<Noticia> getNoticiasPrincipales()
+    {
+        OdbcConnection con = ConexionBD.ObtenerConexion();
+        DataSet ds = new DataSet();
+        List<Noticia> listaNoticias = new List<Noticia>();
+        try
+        {
+            OdbcCommand cmd = new OdbcCommand(selectNoticia + "WHERE principal1 = 1 or principal2 = 1", con);
+            cmd.CommandType = CommandType.Text;
+            OdbcDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                Noticia noticia = new Noticia();
+                noticia.IdNoticia = dr.GetInt32(0);
+                noticia.Titulo = dr.GetString(1);
+                noticia.Descripcion = dr.GetString(2);
+                noticia.Principal1 = dr.GetBoolean(3);
+                noticia.Principal2 = dr.GetBoolean(4);
+                setImagenes(con,noticia);
+                listaNoticias.Add(noticia);
+            }
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Ocurrio un problema al intentar obtener las noticias principales. " + e.Message);
         }
         finally
         {
@@ -79,9 +114,8 @@ public class NoticiaDAL
     /// Setea la lista de imagenes de una noticia
     /// </summary>
     /// <returns></returns>
-    public static void setImagenes(Noticia noticia)
+    public static void setImagenes(OdbcConnection con,Noticia noticia)
     {
-        OdbcConnection con = ConexionBD.ObtenerConexion();
         DataSet ds = new DataSet();
         List<Imagen> listaImagenes = new List<Imagen>();
         try
@@ -104,10 +138,8 @@ public class NoticiaDAL
         {
             throw new SportingException("Ocurrio un problema al intentar obtener las imagenes de las noticias. " + e.Message);
         }
-        finally
-        {
-            con.Close();
-        }
         noticia.Imagenes = listaImagenes;
     }
+
+    private static String selectNoticia = "SELECT n.id, n.titulo, n.descripcion, n.principal1, n.principal2 FROM noticia n ";
 }
