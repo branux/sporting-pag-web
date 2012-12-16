@@ -34,4 +34,29 @@ public class GestorNoticias
         }
         return noticiasLaterales;
     }
+
+    public static Noticia getNoticia(int id)
+    {
+        return NoticiaDAL.getNoticiaById(id);
+    }
+
+    /// <summary>
+    /// Retorna un datatable con las imagenes de una noticia.
+    /// El id de la noticia es recibido por parametro.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public static DataTable getTableImagenes(int id)
+    {
+        return NoticiaDAL.getDataTableImagenes(id);
+    }
+
+    /// <summary>
+    /// retorna un datatable con todas las noticias
+    /// </summary>
+    /// <returns></returns>
+    public static DataTable getTableNoticias()
+    {
+        return NoticiaDAL.getDataTableNoticias();
+    }
 }

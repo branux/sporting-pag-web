@@ -67,65 +67,20 @@ public partial class Default {
     protected global::System.Web.UI.WebControls.Label lblDescripcionLateral2;
     
     /// <summary>
-    /// Control frmNoticiaPrincipal1.
+    /// Control frmListaNoticias.
     /// </summary>
     /// <remarks>
     /// Campo generado automáticamente.
     /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     /// </remarks>
-    protected global::System.Web.UI.HtmlControls.HtmlForm frmNoticiaPrincipal1;
+    protected global::System.Web.UI.HtmlControls.HtmlForm frmListaNoticias;
     
     /// <summary>
-    /// Control lblTituloNoticia1.
+    /// Control gridNoticias.
     /// </summary>
     /// <remarks>
     /// Campo generado automáticamente.
     /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.Label lblTituloNoticia1;
-    
-    /// <summary>
-    /// Control imgNoticia1.
-    /// </summary>
-    /// <remarks>
-    /// Campo generado automáticamente.
-    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.Image imgNoticia1;
-    
-    /// <summary>
-    /// Control lblDescripcionNoticia1.
-    /// </summary>
-    /// <remarks>
-    /// Campo generado automáticamente.
-    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.Label lblDescripcionNoticia1;
-    
-    /// <summary>
-    /// Control lblTituloNoticia2.
-    /// </summary>
-    /// <remarks>
-    /// Campo generado automáticamente.
-    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.Label lblTituloNoticia2;
-    
-    /// <summary>
-    /// Control imgNoticia2.
-    /// </summary>
-    /// <remarks>
-    /// Campo generado automáticamente.
-    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.Image imgNoticia2;
-    
-    /// <summary>
-    /// Control lblDescripcionNoticia2.
-    /// </summary>
-    /// <remarks>
-    /// Campo generado automáticamente.
-    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.Label lblDescripcionNoticia2;
+    protected global::System.Web.UI.WebControls.GridView gridNoticias;
 }
