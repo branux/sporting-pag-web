@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System;
+using System.Data.SqlClient;
 
 public class NoticiaDAL
 {
@@ -76,6 +77,37 @@ public class NoticiaDAL
         return listaNoticias;
     }
 
+    /// <summary>
+    /// Retorna un datatable con todas las noticias.
+    /// Cada noticia con el pathmedium de su imagen de portada.
+    /// </summary>
+    /// <returns></returns>
+    public static DataTable getDataTableNoticias()
+    {
+        OdbcConnection con = ConexionBD.ObtenerConexion();
+        DataTable dataTable = new DataTable();
+        try
+        {
+            OdbcCommand cmd = new OdbcCommand("SELECT n.id, n.titulo, n.descripcion, n.principal1, n.principal2, i.pathMedium "+
+                "FROM noticia n, imagen_X_noticia ixn, imagen i "+
+                "WHERE ixn.idImagen = i.id AND ixn.idNoticia = n.id AND i.portada = 1", con);
+            cmd.CommandType = CommandType.Text;
+            dataTable = new DataTable();
+            OdbcDataAdapter adapter = new OdbcDataAdapter();
+            adapter.SelectCommand = cmd;
+            adapter.Fill(dataTable);
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Ocurrio un problema al intentar obtener todas las noticias. " + e.Message);
+        }
+        finally
+        {
+            con.Close();
+        }
+        return dataTable;
+    }
+
     public static List<Noticia> getNoticiasPrincipales()
     {
         OdbcConnection con = ConexionBD.ObtenerConexion();
@@ -139,6 +171,34 @@ public class NoticiaDAL
             throw new SportingException("Ocurrio un problema al intentar obtener las imagenes de las noticias. " + e.Message);
         }
         noticia.Imagenes = listaImagenes;
+    }
+
+    public static DataTable getDataTableImagenes(int id)
+    {
+        OdbcConnection con = ConexionBD.ObtenerConexion();
+        DataSet ds = new DataSet();
+        List<Noticia> listaNoticias = new List<Noticia>();
+        DataTable dataTable = null;
+        try
+        {
+            OdbcCommand cmd = new OdbcCommand("SELECT i.pathBig, i.pathSmall FROM imagen_x_noticia ixn, imagen i" +
+            " WHERE ixn.idNoticia = "+id+" AND i.id = ixn.idImagen", con);
+            cmd.CommandType = CommandType.Text;
+
+            dataTable = new DataTable();
+            OdbcDataAdapter adapter = new OdbcDataAdapter();
+            adapter.SelectCommand = cmd;
+            adapter.Fill(dataTable);
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Ocurrio un problema al intentar obtener las noticias principales. " + e.Message);
+        }
+        finally
+        {
+            con.Close();
+        }
+        return dataTable;
     }
 
     private static String selectNoticia = "SELECT n.id, n.titulo, n.descripcion, n.principal1, n.principal2 FROM noticia n ";
