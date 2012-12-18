@@ -8,9 +8,9 @@
                     <div id="gallery">
                         <asp:DataList ID="GaleriaNoticia" runat="server" RepeatLayout="Table">
                           <ItemTemplate>
-                            <a href='<%#getHREF(Container.DataItem)%>'>
-                                <img src='<%# getSRC(Container.DataItem) %>' class="imagenNoticia"/>
-                            </a>
+                                <a href='<%#getHREF(Container.DataItem)%>' rel=''>
+                                    <img src='<%# getSRC(Container.DataItem) %>' class="imagenNoticia"/>
+                                </a>
                           </ItemTemplate>
                         </asp:DataList>
                     </div>

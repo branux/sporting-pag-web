@@ -7,8 +7,6 @@
     <title>Sporting - Sampacho</title>
     <meta name="keywords" content="Sampacho, Sporting" />
     <meta name="description" content="Sporting Club Deportivo y Cultural - Sampacho" />
-    <link href="Styles/Principal.css" rel="stylesheet" type="text/css" />
-    <link href="Styles/S3Slider.css" rel="stylesheet" type="text/css" />
     <script language="javascript" type="text/javascript">
         function clearText(field)
         {
@@ -16,36 +14,17 @@
             else if (field.value == '') field.value = field.defaultValue;
         }
     </script>
-    
-    <!-- jQuery lightBox plugin -->
+
     <script type="text/javascript" src="../Scripts/jquery.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.lightbox-0.5.min.js"></script>
     <script type="text/javascript" src="../Scripts/s3Slider.js"></script>
     <script type="text/javascript" src="../Scripts/noticia.js"></script>
+    
     <link rel="stylesheet" type="text/css" href="../Styles/jquery.lightbox-0.5.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="../Styles/GaleriaImagenes.css"/>
-    <!-- /fin jQuery lightBox plugin -->
-    
-    <!-- Activando  jQuery lightBox plugin -->
-    <script type="text/javascript">
-    $(function() {
-        $('#gallery a').lightBox({
-	        overlayBgColor: '#FFF',
-	        overlayOpacity: 0.6,
-	        imageLoading: '../Images/lightBox/lightbox-ico-loading.gif',
-	        imageBtnClose: '../Images/lightBox/lightbox-btn-close.gif',
-	        imageBtnPrev: '../Images/lightBox/lightbox-btn-prev.gif',
-	        imageBtnNext: '../Images/lightBox/lightbox-btn-next.gif',
-	        imageBlank: '../Images/lightBox/lightbox-blank.gif',
-	        containerResizeSpeed: 350
-        });
-    });
-    $(document).ready(function() {
-    $('#s3slider').s3Slider({
-        timeOut: 4000
-    });
-});
-    </script>
+    <link href="Styles/Principal.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/S3Slider.css" rel="stylesheet" type="text/css" />
+  
 </head>
 <body>
     <div id="templatemo_container_wrapper">
