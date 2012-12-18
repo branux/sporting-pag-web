@@ -18,6 +18,8 @@ public partial class Default : System.Web.UI.Page
     protected String idNoticia2;
     protected String idNoticiaLateral1;
     protected String idNoticiaLateral2;
+    protected String pathBigLateral1;
+    protected String pathBigLateral2;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -85,6 +87,7 @@ public partial class Default : System.Web.UI.Page
         lblDescripcionLateral1.Text = not.Descripcion;
         imgLateral1.ImageUrl = not.getPortada().PathSmall;
         idNoticiaLateral1 = not.IdNoticia.ToString();
+        pathBigLateral1 = not.getPortada().PathBig;
     }
 
     private void cargarNoticiaLateral2(Noticia not)
@@ -93,6 +96,7 @@ public partial class Default : System.Web.UI.Page
         lblDescripcionLateral2.Text = not.Descripcion;
         imgLateral2.ImageUrl = not.getPortada().PathSmall;
         idNoticiaLateral2 = not.IdNoticia.ToString();
+        pathBigLateral2 = not.getPortada().PathBig;
     }
 }
 

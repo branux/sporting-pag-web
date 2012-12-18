@@ -232,7 +232,7 @@ h4 {
 }
 
 #main_column {
-	/*float: right;*/
+	float: right;
 	width: 600px;
 }
 
