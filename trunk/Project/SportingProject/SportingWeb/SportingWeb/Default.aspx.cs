@@ -49,38 +49,6 @@ public partial class Default : System.Web.UI.Page
         }
     }
 
-   /* private void cargarNoticiasPrincipales()
-    {
-        List<Noticia> noticias = GestorNoticias.getNoticiasPrincipales();
-        foreach (Noticia not in noticias)
-        {
-            if (not.Principal1)
-            {
-                cargarNoticiaPrincipal1(not);
-            }
-            else if (not.Principal2)
-            {
-                cargarNoticiaPrincipal2(not);
-            }
-        }
-    }*/
-
-   /* private void cargarNoticiaPrincipal1(Noticia not)
-    {
-        lblTituloNoticia1.Text = not.Titulo;
-        lblDescripcionNoticia1.Text = not.Descripcion;
-        imgNoticia1.ImageUrl = not.getPortada().PathSmall;
-        idNoticia1 = not.IdNoticia.ToString();
-    }
-
-    private void cargarNoticiaPrincipal2(Noticia not)
-    {
-        lblTituloNoticia2.Text = not.Titulo;
-        lblDescripcionNoticia2.Text = not.Descripcion;
-        imgNoticia2.ImageUrl = not.getPortada().PathSmall;
-        idNoticia2 = not.IdNoticia.ToString();
-    }*/
-
     private void cargarNoticiaLateral1(Noticia not)
     {
         lblTituloLateral1.Text = not.Titulo;

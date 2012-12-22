@@ -26,7 +26,7 @@ public class GestorNoticias
             {
                 break;
             }
-            if (!noticias[i].Principal1 && !noticias[i].Principal2)
+            if (!noticias[i].Principal)
             {
                 //si no es una noticia principal la agrego
                 noticiasLaterales.Add(noticias[i]);

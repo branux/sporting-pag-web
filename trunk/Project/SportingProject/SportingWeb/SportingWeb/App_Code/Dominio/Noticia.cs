@@ -15,8 +15,7 @@ public class Noticia:IComparable
     private String titulo;
     private String descripcion;
     private List<Imagen> imagenes;
-    private Boolean principal1;
-    private Boolean principal2;
+    private Boolean principal;
 
     public Noticia()
     {
@@ -46,16 +45,10 @@ public class Noticia:IComparable
         set { imagenes = value; }
     }
 
-    public Boolean Principal1
+    public Boolean Principal
     {
-        get { return principal1; }
-        set { principal1 = value; }
-    }
-
-    public Boolean Principal2
-    {
-        get { return principal2; }
-        set { principal2 = value; }
+        get { return principal; }
+        set { principal = value; }
     }
 
     public Imagen getPortada()
