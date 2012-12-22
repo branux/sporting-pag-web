@@ -60,8 +60,7 @@ public class NoticiaDAL
                 noticia.IdNoticia = dr.GetInt32(0);
                 noticia.Titulo = dr.GetString(1);
                 noticia.Descripcion = dr.GetString(2);
-                noticia.Principal1 = dr.GetBoolean(3);
-                noticia.Principal2 = dr.GetBoolean(4);
+                noticia.Principal = dr.GetBoolean(3);
                 setImagenes(con,noticia);
                 listaNoticias.Add(noticia);
             }
@@ -88,7 +87,7 @@ public class NoticiaDAL
         DataTable dataTable = new DataTable();
         try
         {
-            OdbcCommand cmd = new OdbcCommand("SELECT n.id, n.titulo, n.descripcion, n.principal1, n.principal2, i.pathMedium "+
+            OdbcCommand cmd = new OdbcCommand("SELECT n.id, n.titulo, n.descripcion, n.principal, i.pathMedium "+
                 "FROM noticia n, imagen_X_noticia ixn, imagen i "+
                 "WHERE ixn.idImagen = i.id AND ixn.idNoticia = n.id AND i.portada = 1", con);
             cmd.CommandType = CommandType.Text;
@@ -115,7 +114,7 @@ public class NoticiaDAL
         List<Noticia> listaNoticias = new List<Noticia>();
         try
         {
-            OdbcCommand cmd = new OdbcCommand(selectNoticia + "WHERE principal1 = 1 or principal2 = 1", con);
+            OdbcCommand cmd = new OdbcCommand(selectNoticia + "WHERE principal = 1", con);
             cmd.CommandType = CommandType.Text;
             OdbcDataReader dr = cmd.ExecuteReader();
 
@@ -125,8 +124,7 @@ public class NoticiaDAL
                 noticia.IdNoticia = dr.GetInt32(0);
                 noticia.Titulo = dr.GetString(1);
                 noticia.Descripcion = dr.GetString(2);
-                noticia.Principal1 = dr.GetBoolean(3);
-                noticia.Principal2 = dr.GetBoolean(4);
+                noticia.Principal = dr.GetBoolean(3);
                 setImagenes(con,noticia);
                 listaNoticias.Add(noticia);
             }
@@ -201,5 +199,5 @@ public class NoticiaDAL
         return dataTable;
     }
 
-    private static String selectNoticia = "SELECT n.id, n.titulo, n.descripcion, n.principal1, n.principal2 FROM noticia n ";
+    private static String selectNoticia = "SELECT n.id, n.titulo, n.descripcion, n.principal FROM noticia n ";
 }
