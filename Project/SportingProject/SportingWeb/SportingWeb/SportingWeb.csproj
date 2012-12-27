@@ -93,12 +93,17 @@
       <DependentUpon>Principal.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebServiceNoticias.asmx.cs">
+      <DependentUpon>WebServiceNoticias.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="ListaNoticias.aspx" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\jquery.lightbox-0.5.min.js" />
+    <Content Include="Scripts\listaNoticias.js" />
     <Content Include="Scripts\noticia.js" />
     <Content Include="Scripts\s3Slider.js" />
     <Content Include="Styles\S3Slider.css" />
@@ -106,8 +111,10 @@
     <Content Include="Principal.Master" />
     <Content Include="Styles\GaleriaImagenes.css" />
     <Content Include="Styles\jquery.lightbox-0.5.css" />
+    <Content Include="WebServiceNoticias.asmx" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Code\Servicios\" />
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
   </ItemGroup>
