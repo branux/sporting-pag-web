@@ -51,7 +51,7 @@ public class Noticia:IComparable
         set { principal = value; }
     }
 
-    public Imagen getPortada()
+    public Imagen GetPortada()
     {
         Imagen portada = null;
         if (this.Imagenes != null)

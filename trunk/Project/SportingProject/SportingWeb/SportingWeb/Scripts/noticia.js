@@ -10,9 +10,12 @@
 	        containerResizeSpeed: 350
         });
         
-        $('#slider').s3Slider({
-            timeOut: 4000
-        });      
+        if ($('#slider').length ) {
+            $('#slider').s3Slider({
+                timeOut: 4000
+            });   
+        }
+         
 });
     
     

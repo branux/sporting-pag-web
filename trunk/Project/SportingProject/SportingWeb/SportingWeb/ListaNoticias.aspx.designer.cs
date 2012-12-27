@@ -13,20 +13,20 @@
 public partial class ListaNoticias {
     
     /// <summary>
-    /// Control frmListaNoticias.
+    /// Control listaNoticias.
     /// </summary>
     /// <remarks>
     /// Campo generado automáticamente.
     /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     /// </remarks>
-    protected global::System.Web.UI.HtmlControls.HtmlForm frmListaNoticias;
+    protected global::System.Web.UI.HtmlControls.HtmlInputHidden listaNoticias;
     
     /// <summary>
-    /// Control gridNoticias.
+    /// Control form1.
     /// </summary>
     /// <remarks>
     /// Campo generado automáticamente.
     /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.GridView gridNoticias;
+    protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 }

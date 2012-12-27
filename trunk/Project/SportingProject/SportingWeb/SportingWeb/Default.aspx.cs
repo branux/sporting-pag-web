@@ -53,18 +53,18 @@ public partial class Default : System.Web.UI.Page
     {
         lblTituloLateral1.Text = not.Titulo;
         lblDescripcionLateral1.Text = not.Descripcion;
-        imgLateral1.ImageUrl = not.getPortada().PathSmall;
+        imgLateral1.ImageUrl = not.GetPortada().PathSmall;
         idNoticiaLateral1 = not.IdNoticia.ToString();
-        pathBigLateral1 = not.getPortada().PathBig;
+        pathBigLateral1 = not.GetPortada().PathBig;
     }
 
     private void cargarNoticiaLateral2(Noticia not)
     {
         lblTituloLateral2.Text = not.Titulo;
         lblDescripcionLateral2.Text = not.Descripcion;
-        imgLateral2.ImageUrl = not.getPortada().PathSmall;
+        imgLateral2.ImageUrl = not.GetPortada().PathSmall;
         idNoticiaLateral2 = not.IdNoticia.ToString();
-        pathBigLateral2 = not.getPortada().PathBig;
+        pathBigLateral2 = not.GetPortada().PathBig;
     }
 }
 
