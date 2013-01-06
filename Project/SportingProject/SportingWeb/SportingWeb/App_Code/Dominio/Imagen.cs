@@ -16,6 +16,7 @@ public class Imagen //: ConexionBD
 {
     private String pathBig;
     private String pathSmall;
+    private String pathMedium;
     private int idImagen;
     private Boolean portada;
 
@@ -39,6 +40,12 @@ public class Imagen //: ConexionBD
     {
         get { return pathBig; }
         set { pathBig = value; }
+    }
+
+    public String PathMedium
+    {
+        get { return pathMedium; }
+        set { pathMedium = value; }
     }
 
     public Boolean Portada

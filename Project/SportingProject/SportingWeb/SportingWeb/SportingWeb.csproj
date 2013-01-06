@@ -58,12 +58,31 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\ConexionBD.cs" />
+    <Compile Include="App_Code\DAL\PlantelDAL.cs" />
+    <Compile Include="App_Code\DAL\ImagenDAL.cs" />
     <Compile Include="App_Code\DAL\NoticiaDAL.cs" />
     <Compile Include="App_Code\Dominio\Imagen.cs" />
+    <Compile Include="App_Code\Dominio\Jugador.cs" />
     <Compile Include="App_Code\Dominio\Noticia.cs">
     </Compile>
+    <Compile Include="App_Code\Dominio\Plantel.cs" />
     <Compile Include="App_Code\Dominio\SportingException.cs" />
     <Compile Include="App_Code\Gestores\GestorNoticias.cs" />
+    <Compile Include="App_Code\Gestores\GestorPlantel.cs" />
+    <Compile Include="Campeonato.aspx.cs">
+      <DependentUpon>Campeonato.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Campeonato.aspx.designer.cs">
+      <DependentUpon>Campeonato.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Contacto.aspx.cs">
+      <DependentUpon>Contacto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contacto.aspx.designer.cs">
+      <DependentUpon>Contacto.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -71,12 +90,26 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Equipo.aspx.cs">
+      <DependentUpon>Equipo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Equipo.aspx.designer.cs">
+      <DependentUpon>Equipo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ListaNoticias.aspx.cs">
       <DependentUpon>ListaNoticias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ListaNoticias.aspx.designer.cs">
       <DependentUpon>ListaNoticias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Multimedia.aspx.cs">
+      <DependentUpon>Multimedia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Multimedia.aspx.designer.cs">
+      <DependentUpon>Multimedia.aspx</DependentUpon>
     </Compile>
     <Compile Include="TemplateNoticia.aspx.cs">
       <DependentUpon>TemplateNoticia.aspx</DependentUpon>
@@ -99,14 +132,23 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Campeonato.aspx" />
+    <Content Include="Contacto.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="Equipo.aspx" />
     <Content Include="ListaNoticias.aspx" />
+    <Content Include="Multimedia.aspx" />
+    <Content Include="Scripts\jquery-1.8.3.min.js" />
+    <Content Include="Scripts\jquery.ias.min.js" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\jquery.lightbox-0.5.min.js" />
+    <Content Include="Scripts\jquery.tinyscrollbar.min.js" />
     <Content Include="Scripts\listaNoticias.js" />
     <Content Include="Scripts\noticia.js" />
+    <Content Include="Scripts\plantel.js" />
     <Content Include="Scripts\s3Slider.js" />
     <Content Include="Styles\S3Slider.css" />
+    <Content Include="Styles\scroll.css" />
     <Content Include="TemplateNoticia.aspx" />
     <Content Include="Principal.Master" />
     <Content Include="Styles\GaleriaImagenes.css" />
@@ -114,9 +156,9 @@
     <Content Include="WebServiceNoticias.asmx" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Code\Servicios\" />
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
+    <Folder Include="Recursos\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

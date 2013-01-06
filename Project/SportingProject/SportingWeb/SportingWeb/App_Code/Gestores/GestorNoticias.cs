@@ -48,7 +48,7 @@ public class GestorNoticias
     /// <returns></returns>
     public static DataTable getTableImagenes(int id)
     {
-        return NoticiaDAL.getDataTableImagenes(id);
+        return ImagenDAL.getDataTableImagenes(id);
     }
 
     /// <summary>

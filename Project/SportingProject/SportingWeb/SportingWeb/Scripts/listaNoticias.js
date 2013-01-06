@@ -1,5 +1,6 @@
 ﻿$(document).ready(function() {
-        getNoticias();
+        getNoticias();	
+        showScroll();
 });
 
 function getNoticias() {
@@ -13,15 +14,15 @@ function getNoticias() {
                     var noticias = response.d;
                     $('#grillaNoticias').empty();
                     $.each(noticias, function(index, not) {
-                        $('#grillaNoticias').append('<div class="itemNoticia">' +
+                        $('#grillaNoticias').append('<p><div class="itemNoticia">' +
                                                         '<img src="'+getPortada(not.Imagenes)+'"/>' +
                                                         '<h3>' + not.Titulo + '</h3>' +
                                                         '<p>' + not.Descripcion + '</p>' +
-                                                    '</div>');
+                                                    '</div></p>');
                     });
               },
               failure: function(msg) {
-                $('#output').text(msg);
+                $('#grillaNoticias').text(msg);
               }
         });
   };
@@ -39,5 +40,9 @@ function getNoticias() {
             }
         }
         return portada.PathSmall;
+  };
+  
+  function showScroll() {
+        //$('#scrollbar1').tinyscrollbar();	
   };
 
