@@ -8,9 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SportingWeb {
-    
-    
-    public partial class Contacto {
-    }
+
+
+public partial class Contacto {
 }

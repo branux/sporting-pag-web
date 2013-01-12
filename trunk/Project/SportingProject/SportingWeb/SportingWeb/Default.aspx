@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" Inherits="Default" Title="Página sin título" Codebehind="Default.aspx.cs" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" Inherits="Default" Title="Sporting Club" Codebehind="Default.aspx.cs" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="CPHBody" runat="server">
  <div id="templatemo_content">
     	
