@@ -49,11 +49,10 @@ img { margin: 0px; padding: 0px; border: none; }
 }
 
 h1 {
-	margin: 0px;
+	/*margin: 0px;*/
 	padding: 2px 0;
-	font-size: 30px;
-	font-weight: bold;
-	text-align: right;
+	color:#F9F6F6;
+	text-align: center;
 }
 
 h2 {
@@ -442,6 +441,18 @@ p.caption span big {
 
 .jugador
 {
-	clear:left;
+	float:left;
 }
 /* end of equipo */
+
+/** multimedia */
+.multimedia
+{
+	border-bottom: 1px dotted #CCCCCC;
+	overflow: hidden;
+	padding-bottom: 10px;
+	text-align: left !important; 
+}
+
+
+/* end of multimedia */ 

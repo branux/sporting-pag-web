@@ -58,15 +58,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\ConexionBD.cs" />
+    <Compile Include="App_Code\DAL\MultimediaDAL.cs" />
     <Compile Include="App_Code\DAL\PlantelDAL.cs" />
     <Compile Include="App_Code\DAL\ImagenDAL.cs" />
     <Compile Include="App_Code\DAL\NoticiaDAL.cs" />
     <Compile Include="App_Code\Dominio\Imagen.cs" />
     <Compile Include="App_Code\Dominio\Jugador.cs" />
+    <Compile Include="App_Code\Dominio\MultimediaVideo.cs">
+    </Compile>
     <Compile Include="App_Code\Dominio\Noticia.cs">
     </Compile>
     <Compile Include="App_Code\Dominio\Plantel.cs" />
     <Compile Include="App_Code\Dominio\SportingException.cs" />
+    <Compile Include="App_Code\Gestores\GestorMultimedia.cs" />
     <Compile Include="App_Code\Gestores\GestorNoticias.cs" />
     <Compile Include="App_Code\Gestores\GestorPlantel.cs" />
     <Compile Include="Campeonato.aspx.cs">
@@ -144,6 +148,7 @@
     <Content Include="Scripts\jquery.lightbox-0.5.min.js" />
     <Content Include="Scripts\jquery.tinyscrollbar.min.js" />
     <Content Include="Scripts\listaNoticias.js" />
+    <Content Include="Scripts\multimedia.js" />
     <Content Include="Scripts\noticia.js" />
     <Content Include="Scripts\plantel.js" />
     <Content Include="Scripts\s3Slider.js" />
