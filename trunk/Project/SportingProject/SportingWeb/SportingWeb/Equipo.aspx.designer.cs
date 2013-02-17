@@ -10,7 +10,8 @@
 
 
 
-public partial class Equipo {
+public partial class Equipo
+{
     
     /// <summary>
     /// Control jugadoresPlantel.
