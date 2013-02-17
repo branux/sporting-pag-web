@@ -58,10 +58,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\ConexionBD.cs" />
+    <Compile Include="App_Code\DAL\CampeonatoDAL.cs" />
     <Compile Include="App_Code\DAL\MultimediaDAL.cs" />
     <Compile Include="App_Code\DAL\PlantelDAL.cs" />
     <Compile Include="App_Code\DAL\ImagenDAL.cs" />
     <Compile Include="App_Code\DAL\NoticiaDAL.cs" />
+    <Compile Include="App_Code\Dominio\CampeonatoLiga.cs">
+    </Compile>
+    <Compile Include="App_Code\Dominio\EquipoCampeonato.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Code\Dominio\FechaCampeonato.cs" />
     <Compile Include="App_Code\Dominio\Imagen.cs" />
     <Compile Include="App_Code\Dominio\Jugador.cs" />
     <Compile Include="App_Code\Dominio\MultimediaVideo.cs">
@@ -69,6 +76,8 @@
     <Compile Include="App_Code\Dominio\Noticia.cs">
     </Compile>
     <Compile Include="App_Code\Dominio\Plantel.cs" />
+    <Compile Include="App_Code\Dominio\Resultado.cs">
+    </Compile>
     <Compile Include="App_Code\Dominio\SportingException.cs" />
     <Compile Include="App_Code\Gestores\GestorMultimedia.cs" />
     <Compile Include="App_Code\Gestores\GestorNoticias.cs" />

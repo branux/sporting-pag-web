@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" CodeBehind="Equipo.aspx.cs" Inherits="Equipo" Title="Página sin título" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" CodeBehind="Equipo.aspx.cs" Inherits="Equipo" Title="Equipo" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="CPHBody" runat="server">
      <script type="text/javascript" src="../Scripts/plantel.js"></script>
      <input id="jugadoresPlantel" type="hidden" runat="Server"/>
