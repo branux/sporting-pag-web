@@ -456,3 +456,10 @@ p.caption span big {
 
 
 /* end of multimedia */ 
+
+/** campeonato **/ 
+#ctl00_CPHBody_gridTablaPosiciones
+{
+	font-size:14px;
+}
+/* end campeonato*/

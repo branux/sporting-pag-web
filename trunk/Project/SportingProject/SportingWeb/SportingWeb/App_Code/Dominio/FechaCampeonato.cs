@@ -14,7 +14,6 @@ public class FechaCampeonato
     private int idFecha;
     private int numero;
     private DateTime fecha;
-    private CampeonatoLiga campeonato;
     private List<Resultado> resultados;
 
     public FechaCampeonato()
@@ -37,12 +36,6 @@ public class FechaCampeonato
     {
         get { return fecha; }
         set { fecha = value; }
-    }
-
-    public CampeonatoLiga Campeonato
-    {
-        get { return campeonato; }
-        set { campeonato = value; }
     }
 
     public List<Resultado> Resultados

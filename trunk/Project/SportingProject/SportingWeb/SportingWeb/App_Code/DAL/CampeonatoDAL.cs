@@ -11,8 +11,9 @@ public class CampeonatoDAL
     /// Se resuelve obteniendo el ultimo registro de la tabla campeonato.
     /// </summary>
     /// <returns></returns>
-    public static CampeonatoLiga getCampeonatoActual(OdbcConnection con)
+    public static CampeonatoLiga getCampeonatoActual()
     {
+        OdbcConnection con = ConexionBD.ObtenerConexion();
         DataSet ds = new DataSet();
         CampeonatoLiga camp = new CampeonatoLiga();
         try
@@ -24,9 +25,9 @@ public class CampeonatoDAL
 
             if (dr.HasRows)
             {
-                camp.IdCampeonato = dr.GetInt32(0);
-                camp.Nombre = dr.GetString(1);
-                camp.Anio = dr.GetInt32(2);
+                camp.IdCampeonato = dr.GetInt32(dr.GetOrdinal("id"));
+                camp.Nombre = dr.GetString(dr.GetOrdinal("nombre"));
+                camp.Anio = dr.GetInt32(dr.GetOrdinal("anio"));
                 camp.ListaFechas = getFechasDeCampeonato(camp, con);
             }
         }
@@ -49,7 +50,7 @@ public class CampeonatoDAL
         try
         {
             OdbcCommand cmd = new OdbcCommand("SELECT f.id, f.numero, f.fecha FROM fecha_campeonato f" +
-                "WHERE f.idCampeonato = "+camp.IdCampeonato, con);
+                " WHERE f.idCampeonato = " + camp.IdCampeonato, con);
             cmd.CommandType = CommandType.Text;
             OdbcDataReader dr = cmd.ExecuteReader();
 
@@ -59,7 +60,7 @@ public class CampeonatoDAL
                 f.IdFecha = dr.GetInt32(0);
                 f.Numero = dr.GetInt32(1);
                 f.Fecha = dr.GetDateTime(2);
-                f.Resultados = getResultados(f, con);
+                f.Resultados = getResultadosFecha(f, con);
                 fechas.Add(f);                
             }
         }
@@ -75,14 +76,14 @@ public class CampeonatoDAL
     /// </summary>
     /// <param name="fecha"></param>
     /// <returns></returns>
-    public static List<Resultado> getResultados(FechaCampeonato fecha, OdbcConnection con)
+    public static List<Resultado> getResultadosFecha(FechaCampeonato fecha, OdbcConnection con)
     {
         DataSet ds = new DataSet();
         List<Resultado> resultados = new List<Resultado>();
         try
         {
             OdbcCommand cmd = new OdbcCommand("SELECT r.id, r.idEquipoLocal, r.localPuntos, r.idEquipoVisitante, r.visitantePuntos "+
-                "FROM resultado_partido r" +
+                "FROM resultado_partido r " +
                 "WHERE r.idFecha = " + fecha.IdFecha, con);
             cmd.CommandType = CommandType.Text;
             OdbcDataReader dr = cmd.ExecuteReader();
@@ -137,5 +138,49 @@ public class CampeonatoDAL
             throw new SportingException("El equipo con id '" + id + "' no existe en la base de datos. ");
         }
         return equipo;
+    }
+
+    /// <summary>
+    /// Devuelve la lista con todos los resultados (de lo partidos ya jugados)
+    /// del campeonato actual
+    /// </summary>
+    /// <param name="camp"></param>
+    /// <returns></returns>
+    public static List<Resultado> getResultadosCampeonato(CampeonatoLiga camp)
+    {
+        OdbcConnection con = ConexionBD.ObtenerConexion();
+        DataSet ds = new DataSet();
+        List<Resultado> resultados = null;
+        try
+        {
+            OdbcCommand cmd = new OdbcCommand("SELECT r.id, r.idEquipoLocal, r.localPuntos, r.idEquipoVisitante, r.visitantePuntos " +
+                "FROM resultado_partido r WHERE r.jugado <> 0" , con);
+            cmd.CommandType = CommandType.Text;
+            OdbcDataReader dr = cmd.ExecuteReader();
+            resultados = new List<Resultado>();
+            while (dr.Read())
+            {       
+                Resultado resultado = new Resultado();
+
+                int idEquipoLocal = dr.GetInt32(dr.GetOrdinal("idEquipoLocal"));
+                EquipoCampeonato equipoLocal = getEquipoById(idEquipoLocal, con);
+                resultado.EquipoLocal = equipoLocal;
+                resultado.EquipoLocalPuntos = dr.GetInt32(dr.GetOrdinal("localPuntos"));
+
+                int idEquipoVisitante = dr.GetInt32(dr.GetOrdinal("idEquipoVisitante"));
+                EquipoCampeonato equipoVisitante = getEquipoById(idEquipoVisitante, con);
+                resultado.EquipoVisitante = equipoVisitante;
+                resultado.EquipoVisitantePuntos = dr.GetInt32(dr.GetOrdinal("visitantePuntos"));
+
+                resultado.Jugado = true; //porque la query trae solo los partidos jugados
+                
+                resultados.Add(resultado);
+            }
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Ocurrio un problema al intentar obtener la tabla de posiciones. " + e.Message);
+        }
+        return resultados;
     }
 }

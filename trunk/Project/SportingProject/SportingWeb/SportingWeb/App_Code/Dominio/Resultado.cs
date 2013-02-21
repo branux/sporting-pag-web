@@ -12,11 +12,11 @@ using System.Collections.Generic;
 public class Resultado
 {
     private int idResultado;
-    private FechaCampeonato fechaCampeonato;
     private EquipoCampeonato equipoLocal;
     private EquipoCampeonato equipoVisitante;
     private int equipoLocalPuntos;
     private int equipoVisitantePuntos;
+    private Boolean jugado;
 
     public Resultado()
     {
@@ -26,12 +26,6 @@ public class Resultado
     {
         get { return idResultado; }
         set { idResultado = value; }
-    }
-
-    public FechaCampeonato FechaCampeonato
-    {
-        get { return fechaCampeonato; }
-        set { fechaCampeonato = value; }
     }
 
     public EquipoCampeonato EquipoLocal
@@ -56,5 +50,11 @@ public class Resultado
     {
         get { return equipoVisitantePuntos; }
         set { equipoVisitantePuntos = value; }
+    }
+
+    public Boolean Jugado
+    {
+        get { return jugado; }
+        set { jugado = value; }
     }
 }
