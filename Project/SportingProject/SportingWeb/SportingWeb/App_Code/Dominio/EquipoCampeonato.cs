@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Collections.Generic;
 
-public class EquipoCampeonato
+public class EquipoCampeonato : IComparable
 {
     private int idEquipo;
     private String nombre;
@@ -35,5 +35,18 @@ public class EquipoCampeonato
     {
         get { return localidad; }
         set { localidad = value; }
+    }
+
+    public int CompareTo(object obj)
+    {
+        if (obj != null)
+        {
+            EquipoCampeonato equipo = (EquipoCampeonato)obj;
+            return equipo.IdEquipo - this.IdEquipo;
+        }
+        else
+        {
+            return -1;
+        }
     }
 }

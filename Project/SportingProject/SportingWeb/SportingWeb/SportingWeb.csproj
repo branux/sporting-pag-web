@@ -75,9 +75,12 @@
     <Compile Include="App_Code\Dominio\Noticia.cs">
     </Compile>
     <Compile Include="App_Code\Dominio\Plantel.cs" />
+    <Compile Include="App_Code\Dominio\PosicionTabla.cs" />
     <Compile Include="App_Code\Dominio\Resultado.cs">
     </Compile>
     <Compile Include="App_Code\Dominio\SportingException.cs" />
+    <Compile Include="App_Code\Dominio\TablaPosiciones.cs" />
+    <Compile Include="App_Code\Gestores\GestorCampeonato.cs" />
     <Compile Include="App_Code\Gestores\GestorMultimedia.cs" />
     <Compile Include="App_Code\Gestores\GestorNoticias.cs" />
     <Compile Include="App_Code\Gestores\GestorPlantel.cs" />
