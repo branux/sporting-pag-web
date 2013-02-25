@@ -11,15 +11,24 @@
 namespace SportingWeb {
     
     
-    public partial class Principal {
+    public partial class Consola {
         
         /// <summary>
-        /// Control CPHBody.
+        /// Control CPHHead_consola.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder CPHBody;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder CPHHead_consola;
+        
+        /// <summary>
+        /// Control CPHBody_consola.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder CPHBody_consola;
     }
 }

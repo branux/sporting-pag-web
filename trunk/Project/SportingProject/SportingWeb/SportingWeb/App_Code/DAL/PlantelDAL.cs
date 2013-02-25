@@ -72,4 +72,46 @@ public class PlantelDAL
         }
         return jugadores ;
     }
+
+    public static void insertarJugador_plantelActual(Jugador jugador)
+    {
+        OdbcConnection conexion = null;
+        try
+        {
+            if (jugador == null)
+            {
+                throw new SportingException("Error al registrar nuevo jugador. Jugador sin información.");
+            }
+            if (jugador.Foto == null || jugador.Foto.PathSmall == "")
+            {
+                throw new PathImgEmptyException("Error al registrar nuevo jugador. El jugador no posee foto.");
+            }
+            conexion = ConexionBD.ObtenerConexion();
+            //Guardo los datos de la foto del jugador
+            String insertarImagen = " insert into imagen (pathBig, pathSmall, pathMedium, portada)" +
+                           " values ('" + jugador.Foto.PathBig + "', '" + jugador.Foto.PathSmall + "','" + 
+                            jugador.Foto.PathMedium + "'," + jugador.Foto.Portada + ")";
+            OdbcCommand cmd = new OdbcCommand(insertarImagen, conexion);
+
+            cmd.ExecuteNonQuery();
+
+            //Obtengo el id de la foto que acabo de insertar
+            String lastImagenId = "Select  LAST_INSERT_ID()";
+            cmd = new OdbcCommand(lastImagenId, conexion);
+            int lastIdFoto = Convert.ToInt32(cmd.ExecuteScalar());
+
+            //Guardo los datos del jugador
+            String insertarJugador;
+            insertarJugador = " insert into jugador (nombreApellido, posicion, idPlantel, idFoto)" +
+                              " values ('" + jugador.NombreApellido + "', '" + jugador.Posicion + "', " +
+                              1 + ", " + lastIdFoto.ToString() + ")";
+            cmd = new OdbcCommand(insertarJugador, conexion);
+            cmd.ExecuteNonQuery();
+            conexion.Close();
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+    }
 }

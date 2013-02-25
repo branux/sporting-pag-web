@@ -1,11 +1,10 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Principal.master.cs" Inherits="SportingWeb.Principal" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Consola.Master.cs" Inherits="SportingWeb.Consola" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
     <title>Sporting - Sampacho</title>
-    <meta name="keywords" content="Sampacho, Sporting, Basquet, Rio Cuarto, Liga Basquet" />
     <meta name="description" content="Sporting Club Deportivo y Cultural - Sampacho" />
     <script language="javascript" type="text/javascript">
         function clearText(field)
@@ -23,9 +22,9 @@
     
     <link rel="stylesheet" type="text/css" href="../Styles/jquery.lightbox-0.5.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="../Styles/GaleriaImagenes.css"/>
-    <link href="Styles/Principal.css" rel="stylesheet" type="text/css" />
+    <link href="../Styles/Consola.css" rel="stylesheet" type="text/css" />
     <link href="Styles/S3Slider.css" rel="stylesheet" type="text/css" />
-  
+    <asp:ContentPlaceHolder ID="CPHHead_consola" runat="server"></asp:ContentPlaceHolder> 
 </head>
 <body>
     <div id="templatemo_container_wrapper">
@@ -45,7 +44,7 @@
                         </ul>
 		            </div> <!-- end of menu -->               
                </div> <!-- end of banner -->              
-               <asp:ContentPlaceHolder ID="CPHBody" runat="server">
+               <asp:ContentPlaceHolder ID="CPHBody_consola" runat="server">
                 </asp:ContentPlaceHolder>                
                 <div id="templatemo_footer">              
                     <div id="templatemo_footer_bar">                  
@@ -57,7 +56,7 @@
                             <li><a href="Multimedia.aspx">Multimedia</a></li>
                             <li class="last_menu"><a href="Contacto.aspx">Contacto</a></li>
                         </ul>
-                        Copyright © 2013 <a> COVA Diseño Web</a>                        
+                        Copyright © 2012 <a href="#">COVA Web</a> | <a href="" target="_parent">Diseño Web</a>                        
                     </div>
                 </div> <!-- end of footer -->
         </div> <!-- end of container -->
