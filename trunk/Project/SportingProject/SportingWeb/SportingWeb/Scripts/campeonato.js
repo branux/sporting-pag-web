@@ -1,6 +1,7 @@
 ﻿$(document).ready(function() {
         cargarCampeonato();	
         $("#ctl00_CPHBody_gridTablaPosiciones").addClass("tablaPosiciones");
+        $("#tituloCampeonato").append('<span></span> Campeonato: '+$("#ctl00_CPHBody_nombreCampeonato").val());
 });
 
 function cargarCampeonato() {

@@ -68,7 +68,7 @@ h2 {
 
 h2 span {
 	position: absolute;
-	width: 15px;
+	width:100%;
 	height: 35px;
 	left: 0px;
 	top: 0px;
@@ -361,6 +361,13 @@ main_column_lista_noticias
 	overflow: hidden;
 	padding-right: 1%;
 }
+
+#tituloNoticiaPortada
+{
+	font-weight:bold;
+	font-size:18px;
+}
+
 /*#publicidad
 {
 	float:left;
@@ -433,7 +440,6 @@ p.caption span {
 	text-align: center; 
 	position: absolute !important;
 	bottom: 0 !important; 
-	left: 0 !important; 
 }
 p.caption span big {
 	font-weight: bold; 
@@ -442,7 +448,19 @@ p.caption span big {
 .jugador
 {
 	float:left;
+	padding:5px;
 }
+
+#plantelActual
+{
+	text-align:center;
+}
+
+#tituloJugadores
+{
+	margin-top:25px;
+}
+
 /* end of equipo */
 
 /** multimedia */
@@ -463,7 +481,6 @@ p.caption span big {
 	font-size:14px;
 	width: 100%;
 	border-collapse:collapse;
-	rules:none;
 }
 
 .tablaPosiciones 

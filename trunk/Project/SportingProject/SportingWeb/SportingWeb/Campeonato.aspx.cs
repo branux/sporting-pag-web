@@ -46,6 +46,7 @@ public partial class Campeonato : System.Web.UI.Page
             dtTablaPosicion.Columns[4].ColumnName = "PTS";
 
             CampeonatoLiga campeonatoactual = GestorCampeonato.getCampeonatoActual();
+            nombreCampeonato.Value = campeonatoactual.Nombre;
             TablaPosiciones tablaActual = GestorCampeonato.getTablaPosiciones(campeonatoactual);
             foreach (PosicionTabla pos in tablaActual.Posiciones)
             {

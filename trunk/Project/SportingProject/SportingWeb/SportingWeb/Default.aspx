@@ -39,7 +39,7 @@
                                                   <ItemTemplate>
                                                         <li class="sliderImage">
                                                             <a href="TemplateNoticia.aspx?id=<%# DataBinder.Eval(Container.DataItem, "id")%>"><img src="<%# DataBinder.Eval(Container.DataItem, "pathmedium")%>" alt="1" /></a>
-                                                            <span class="top"><strong><%# DataBinder.Eval(Container.DataItem, "titulo")%></strong><br /><%# DataBinder.Eval(Container.DataItem, "descripcion")%></span>
+                                                            <span class="top"><h3 id="tituloNoticiaPortada"><%# DataBinder.Eval(Container.DataItem, "titulo")%></h3><%# DataBinder.Eval(Container.DataItem, "descripcion")%></span>
                                                         </li>
                                                   </ItemTemplate>
                                         </asp:TemplateField>
