@@ -18,6 +18,7 @@ public class FechaCampeonato
 
     public FechaCampeonato()
     {
+
     }
 
     public int IdFecha

@@ -13,13 +13,13 @@
 public partial class Campeonato {
     
     /// <summary>
-    /// Control myform.
+    /// Control formCampeonato.
     /// </summary>
     /// <remarks>
     /// Campo generado automáticamente.
     /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     /// </remarks>
-    protected global::System.Web.UI.HtmlControls.HtmlForm myform;
+    protected global::System.Web.UI.HtmlControls.HtmlForm formCampeonato;
     
     /// <summary>
     /// Control gridTablaPosiciones.

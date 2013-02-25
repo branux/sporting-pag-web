@@ -57,12 +57,23 @@ public class PosicionTabla : IComparable
     {
         if (obj != null)
         {
-            EquipoCampeonato equipo = (EquipoCampeonato)obj;
-            return equipo.IdEquipo - this.Equipo.IdEquipo;
+            PosicionTabla posicion = (PosicionTabla)obj;
+            return posicion.Equipo.IdEquipo - this.Equipo.IdEquipo;
         }
         else
         {
             return -1;
         }
+    }
+
+    public override bool Equals(Object obj)
+    {
+        if (obj == null)
+        {
+            return false;
+        }
+
+        PosicionTabla pos = (PosicionTabla)obj;
+        return this.Equipo.IdEquipo == pos.Equipo.IdEquipo;
     }
 }

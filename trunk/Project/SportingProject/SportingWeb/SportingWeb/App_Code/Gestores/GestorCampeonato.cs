@@ -6,7 +6,7 @@ public class GestorCampeonato
 {
     public static TablaPosiciones getTablaPosiciones(CampeonatoLiga camp)
     {
-        List<Resultado> resultados = CampeonatoDAL.getResultadosCampeonato(camp);
+        List<Resultado> resultados = CampeonatoDAL.getResultadosCampeonato(camp,true);
         TablaPosiciones tabla = new TablaPosiciones();
         tabla.Posiciones = new List<PosicionTabla>();
         foreach (Resultado res in resultados)
@@ -70,5 +70,12 @@ public class GestorCampeonato
     public static CampeonatoLiga getCampeonatoActual()
     {
         return CampeonatoDAL.getCampeonatoActual();
+    }
+
+    public static List<Resultado> getFixture(CampeonatoLiga camp)
+    {
+        List<Resultado> resultados = CampeonatoDAL.getResultadosCampeonato(camp, false);
+
+        return resultados;
     }
 }
