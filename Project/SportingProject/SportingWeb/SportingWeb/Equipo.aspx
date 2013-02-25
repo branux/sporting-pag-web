@@ -13,11 +13,12 @@
         
         <div id="main_column">
             <div class="main_column_section"> 
-                <h1 class="tituloPlantel"><%= this.temporada%></h1>
+                <h2 class="tituloPlantel"><span></span><%= this.temporada%></h2>
                 <p class="caption">
                    <img id="fotoPlantel" src = "<%= this.fotoPlantel%>" alt="" /> 
                     <span><%= this.infoPlantel%></span>
                 </p>
+                <h3 id="tituloJugadores">Jugadores</h3>
                 <div id="plantelActual">
                 </div>
             </div>
