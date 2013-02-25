@@ -57,6 +57,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Consola.Master.cs">
+      <DependentUpon>Consola.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Consola.Master.designer.cs">
+      <DependentUpon>Consola.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Equipo_consola.aspx.cs">
+      <DependentUpon>Equipo_consola.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Equipo_consola.aspx.designer.cs">
+      <DependentUpon>Equipo_consola.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Code\ConexionBD.cs" />
     <Compile Include="App_Code\DAL\CampeonatoDAL.cs" />
     <Compile Include="App_Code\DAL\MultimediaDAL.cs" />
@@ -74,6 +88,7 @@
     </Compile>
     <Compile Include="App_Code\Dominio\Noticia.cs">
     </Compile>
+    <Compile Include="App_Code\Dominio\PathImgEmptyException.cs" />
     <Compile Include="App_Code\Dominio\Plantel.cs" />
     <Compile Include="App_Code\Dominio\PosicionTabla.cs" />
     <Compile Include="App_Code\Dominio\Resultado.cs">
@@ -170,6 +185,11 @@
     <Content Include="Styles\GaleriaImagenes.css" />
     <Content Include="Styles\jquery.lightbox-0.5.css" />
     <Content Include="WebServiceNoticias.asmx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\Consola.Master" />
+    <Content Include="Admin\Equipo_consola.aspx" />
+    <Content Include="Styles\Consola.css" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
