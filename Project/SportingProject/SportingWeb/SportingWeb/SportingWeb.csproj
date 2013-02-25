@@ -168,6 +168,7 @@
     <Content Include="Equipo.aspx" />
     <Content Include="ListaNoticias.aspx" />
     <Content Include="Multimedia.aspx" />
+    <Content Include="Scripts\campeonato.js" />
     <Content Include="Scripts\jquery-1.8.3.min.js" />
     <Content Include="Scripts\jquery.ias.min.js" />
     <Content Include="Scripts\jquery.js" />

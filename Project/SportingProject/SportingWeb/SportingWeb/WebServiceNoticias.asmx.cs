@@ -31,5 +31,11 @@ public class WebServiceNoticias : System.Web.Services.WebService
         cargarNoticias();
         return listaNoticias;
     }
+
+    [WebMethod]
+    public List<FechaCampeonato> GetFixtureCampeonato()
+    {
+        return GestorCampeonato.getCampeonatoActual().ListaFechas;
+    }
 }
 

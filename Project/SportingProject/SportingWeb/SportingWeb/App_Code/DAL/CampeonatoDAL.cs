@@ -141,20 +141,26 @@ public class CampeonatoDAL
     }
 
     /// <summary>
-    /// Devuelve la lista con todos los resultados (de lo partidos ya jugados)
-    /// del campeonato actual
+    /// Devuelve la lista con todos los resultados del campeonato actual
+    /// Con el boolean 'soloJugados' se decide si solo traer los ya jugados (true) o traer todos (false)
     /// </summary>
     /// <param name="camp"></param>
     /// <returns></returns>
-    public static List<Resultado> getResultadosCampeonato(CampeonatoLiga camp)
+    public static List<Resultado> getResultadosCampeonato(CampeonatoLiga camp, Boolean soloJugados)
     {
         OdbcConnection con = ConexionBD.ObtenerConexion();
         DataSet ds = new DataSet();
         List<Resultado> resultados = null;
         try
         {
-            OdbcCommand cmd = new OdbcCommand("SELECT r.id, r.idEquipoLocal, r.localPuntos, r.idEquipoVisitante, r.visitantePuntos " +
-                "FROM resultado_partido r WHERE r.jugado <> 0" , con);
+            String query = "SELECT r.id, r.idEquipoLocal, r.localPuntos, r.idEquipoVisitante, r.visitantePuntos " +
+                "FROM resultado_partido r";
+            if (soloJugados)
+            {
+                query += " WHERE r.jugado <> 0";
+            }
+
+            OdbcCommand cmd = new OdbcCommand(query, con);
             cmd.CommandType = CommandType.Text;
             OdbcDataReader dr = cmd.ExecuteReader();
             resultados = new List<Resultado>();
