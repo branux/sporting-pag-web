@@ -28,7 +28,19 @@ public partial class Equipo : System.Web.UI.Page
 
     private void cargarPlantel()
     {
-        Plantel plantel = GestorPlantel.getPlantelActual();
+        Plantel plantel = new Plantel();
+        try
+        {
+            plantel = GestorPlantel.getPlantelActual();
+        }
+        catch (SportingException spEx)
+        {
+            //TODO: poner un lblOutput y mostrar mensaje de error
+        }
+        catch (Exception e)
+        {
+            //TODO: poner un lblOutput y mostrar mensaje de error
+        }
         temporada = "Plantel temporada "+plantel.Temporada;
         fotoPlantel = plantel.Foto.PathMedium;
         infoPlantel = plantel.Info;

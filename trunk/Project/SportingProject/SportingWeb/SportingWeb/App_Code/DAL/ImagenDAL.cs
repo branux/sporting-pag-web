@@ -95,4 +95,30 @@ public class ImagenDAL
         }
         return imagen;
     }
+
+    public static Imagen getImagenJugador(OdbcConnection con, int idJugador)
+    {
+        DataSet ds = new DataSet();
+        Imagen imagen = new Imagen();
+        try
+        {
+            OdbcCommand cmd = new OdbcCommand("SELECT i.id, i.pathBig, i.pathSmall, i.portada, i.pathMedium FROM imagen i WHERE i.idJugador=" + idJugador, con);
+            cmd.CommandType = CommandType.Text;
+            OdbcDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                imagen.IdImagen = dr.GetInt32(0);
+                imagen.PathBig = dr.GetString(1);
+                imagen.PathSmall = dr.GetString(2);
+                imagen.Portada = dr.GetBoolean(3);
+                imagen.PathMedium = dr.GetString(4);
+            }
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Ocurrio un problema al intentar obtener la imagen. " + e.Message);
+        }
+        return imagen;
+    }
 }

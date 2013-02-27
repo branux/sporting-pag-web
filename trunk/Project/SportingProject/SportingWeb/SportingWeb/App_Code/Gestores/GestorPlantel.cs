@@ -6,7 +6,20 @@ public class GestorPlantel
 {
     public static Plantel getPlantelActual()
     {
-        return PlantelDAL.getPlantelActual();
+        Plantel plantel = new Plantel();
+        try
+        {
+            plantel = PlantelDAL.getPlantelActual();
+        }
+        catch (SportingException spEx)
+        {
+            throw spEx;
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Error al obtener plantel actual." + e.Message);
+        }
+        return plantel;
     }
 
     public static List<Jugador> getJugadoresPlantelActual()
@@ -33,6 +46,40 @@ public class GestorPlantel
         catch (Exception e)
         {
             throw new SportingException("Error al registrar un nuevo jugador."+ e.Message);
+        }
+    }
+
+    public static Jugador getJugador_plantelActual(int id)
+    {
+        Jugador jugador = null;
+        try
+        {
+            jugador = PlantelDAL.getJugador_plantelActual(id);
+        }
+        catch (SportingException spEx)
+        {
+            throw spEx;
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Error al buscar los datos de un jugador." + e.Message);
+        }
+        return jugador;
+    }
+
+    internal static void deleteJugador_plantelActual(int id)
+    {
+        try
+        {
+            PlantelDAL.deleteJugador_plantelActual(id);
+        }
+        catch (SportingException spEx)
+        {
+            throw spEx;
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Error al buscar los datos de un jugador." + e.Message);
         }
     }
 }

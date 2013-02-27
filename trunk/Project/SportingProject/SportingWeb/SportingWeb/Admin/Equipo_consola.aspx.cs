@@ -193,8 +193,6 @@ namespace SportingWeb.Admin
                         // Destroy objects
                         myThumbnail.Dispose();
                         myBitmap.Dispose();
-                        //habilito el cancelar por si el usr se arrepiente de guardar
-                        btnCancelar.Enabled = true;
                     }
                     catch (ArgumentException errArgument)
                     {
@@ -268,7 +266,6 @@ namespace SportingWeb.Admin
                     cargarJugadores();
                     limpiarCampos();
                     grillaJugadores.SelectedIndex = -1;
-                    btnCancelar.Enabled = false;
                 }
                 catch (PathImgEmptyException imgEx)
                 {
@@ -293,9 +290,8 @@ namespace SportingWeb.Admin
         {
             limpiarCampos();
             txtNomApe.Focus();
-            btnCancelar.Enabled = false;
             lblOutput.Text = "";
-            Session["sessionVar_imageToSaveInDB"] = new Imagen();
+            Session[sessionVar_imageToSaveInDB] = new Imagen();
             grillaJugadores.SelectedIndex = -1;
             disableEditableElements(false);
         }
@@ -317,6 +313,62 @@ namespace SportingWeb.Admin
                 txtPosicion.Enabled = true;
                 btnCargarImagen.Enabled = true;
                 btnGuardar.Enabled = true;
+            }
+        }
+
+        protected void GrillaJugadores_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                //obtengo solo el id del jugador de la grilla para borrarlo de la BD
+                int id = Convert.ToInt32(e.CommandArgument.ToString());
+                //Obtengo la foto del jugador antes de borrarlo de la BD
+                Imagen fotoJugador = GestorPlantel.getJugador_plantelActual(id).Foto;
+                GestorPlantel.deleteJugador_plantelActual(id);
+                //luego que borre el accesorio de la BD tengo que borrar las imagenes que estan en el server
+                eliminarImagenesDelServer(fotoJugador);
+                
+                setSuccessColorOutput(true);
+                lblOutput.Text = "El jugador fue eliminado con exito";
+                
+                cargarJugadores();
+                limpiarCampos();
+                Session[sessionVar_imageToSaveInDB] = new Imagen();
+                grillaJugadores.SelectedIndex = -1;
+                /* habilito todos los elementos editables */
+                disableEditableElements(false);
+                txtNomApe.Focus();
+            }
+            catch (SportingException spEx)
+            {
+                lblOutput.Text = spEx.Message;
+            }
+            catch (Exception ex)
+            {
+                lblOutput.Text = ex.Message;
+            }
+        }
+
+        private void eliminarImagenesDelServer(Imagen imagen)
+        {
+            try
+            {
+                if (imagen.PathBig.Equals("") == false && imagen.PathBig.Length > 0)
+                {
+                    System.IO.File.Delete(Server.MapPath(imagen.PathBig));
+                }
+                if (imagen.PathMedium.Equals("") == false && imagen.PathMedium.Length > 0)
+                {
+                    System.IO.File.Delete(Server.MapPath(imagen.PathMedium));
+                }
+                if (imagen.PathSmall.Equals("") == false && imagen.PathSmall.Length > 0)
+                {
+                    System.IO.File.Delete(Server.MapPath(imagen.PathSmall));
+                }
+            }
+            catch (Exception e)
+            {
+                lblOutput.Text = "Error al borrar las imagenes del jugador en el servidor. " + e.Message;
             }
         }
     }
