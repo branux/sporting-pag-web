@@ -29,7 +29,7 @@ public class GestorPlantel
         return jugadores;
     }
 
-    public static void registrarJugador(Jugador jugador)
+    public static void registrarJugador_plantelActual(Jugador jugador)
     {
         try
         {
@@ -67,7 +67,7 @@ public class GestorPlantel
         return jugador;
     }
 
-    internal static void deleteJugador_plantelActual(int id)
+    public static void deleteJugador_plantelActual(int id)
     {
         try
         {
@@ -80,6 +80,26 @@ public class GestorPlantel
         catch (Exception e)
         {
             throw new SportingException("Error al buscar los datos de un jugador." + e.Message);
+        }
+    }
+
+    public static void updateJugador_plantelActual(Jugador jugador)
+    {
+        try
+        {
+            PlantelDAL.updateJugador_plantelActual(jugador);
+        }
+        catch (SportingException spEx)
+        {
+            throw spEx;
+        }
+        catch (PathImgEmptyException imgEx)
+        {
+            throw imgEx;
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Error al modificar un jugador." + e.Message);
         }
     }
 }

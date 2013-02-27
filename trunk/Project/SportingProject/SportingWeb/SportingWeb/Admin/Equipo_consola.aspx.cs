@@ -251,14 +251,14 @@ namespace SportingWeb.Admin
                     {
                         //Modifico un jugador existente
                         jugador.IdJugador = Convert.ToInt32(txtId.Text);
-                        //GestorPlantel.updateAccesorio(Convert.ToInt32(txtId.Text), cod, desc, idCol, pathImgsToSaveInBD);
+                        GestorPlantel.updateJugador_plantelActual(jugador);
                         setSuccessColorOutput(true);
                         lblOutput.Text = "Jugador actualizado con éxito!";
                     }
                     else
                     {
                         //Guardo el nuevo jugador
-                        GestorPlantel.registrarJugador(jugador);
+                        GestorPlantel.registrarJugador_plantelActual(jugador);
                         setSuccessColorOutput(true);
                         lblOutput.Text = "Jugador registrado con éxito!";
                     }
@@ -325,10 +325,10 @@ namespace SportingWeb.Admin
         {
             try
             {
+                //obtengo el id del jugador a ser Modificado o Eliminado
+                int id = Convert.ToInt32(e.CommandArgument.ToString());
                 if (e.CommandName == "Eliminar")
                 {
-                    //obtengo solo el id del jugador de la grilla para borrarlo de la BD
-                    int id = Convert.ToInt32(e.CommandArgument.ToString());
                     //Obtengo la foto del jugador antes de borrarlo de la BD
                     Imagen fotoJugador = GestorPlantel.getJugador_plantelActual(id).Foto;
                     GestorPlantel.deleteJugador_plantelActual(id);
@@ -348,7 +348,29 @@ namespace SportingWeb.Admin
                 }
                 if (e.CommandName == "Editar")
                 {
-                    lblOutput.Text = "Editar!";
+                    limpiarCampos();
+                    lblOutput.Text = "";
+                    //traigo los datos del jugador de la bd
+                    Jugador jugador = GestorPlantel.getJugador_plantelActual(id);
+                    //cargo los datos del jugador
+                    txtId.Text = jugador.IdJugador.ToString();
+                    txtNomApe.Text = jugador.NombreApellido;
+                    txtPosicion.Text = jugador.Posicion;
+                    
+                    //pongo la foto del jugador en la variable session
+                    Imagen fotoJugador = jugador.Foto;
+
+                    if (fotoJugador != null)
+                    {
+                        Session[sessionVar_imageToSaveInDB] = fotoJugador;
+                    }
+                    else
+                    {
+                        lblOutput.Text = "Error al intentar obtener la foto del jugador";
+                        return;
+                    }
+                    //cargo la foto del jugador
+                    imgJugador.ImageUrl = fotoJugador.PathSmall;
                 }
             }
             catch (SportingException spEx)
