@@ -177,4 +177,47 @@ public class PlantelDAL
             cmd.Connection.Close();
         }
     }
+
+    public static void updateJugador_plantelActual(Jugador jugador)
+    {
+        OdbcConnection conexion = null;
+        OdbcCommand cmd = null;
+        try
+        {
+            if (jugador == null)
+            {
+                throw new SportingException("Error al modificar jugador. Jugador sin información.");
+            }
+            if (jugador.Foto == null || jugador.Foto.PathSmall == "")
+            {
+                throw new PathImgEmptyException("Error al modificar jugador. El jugador no posee foto.");
+            }
+            conexion = ConexionBD.ObtenerConexion();
+
+            //Actualizo los datos del jugador
+            String updateJugador = "UPDATE jugador set nombreApellido='" + jugador.NombreApellido + 
+                                    "', posicion = '" + jugador.Posicion + "' WHERE id = " + 
+                                    jugador.IdJugador.ToString();
+            cmd = new OdbcCommand(updateJugador, conexion);
+            cmd.ExecuteNonQuery();
+
+            //Actualizo los datos de la foto del jugador
+            Imagen foto = jugador.Foto;
+            String updateFoto = "UPDATE imagen set pathBig='" + foto.PathBig +
+                                "', pathSmall='" + foto.PathSmall + "' WHERE idJugador = " +
+                                jugador.IdJugador.ToString();
+            cmd = new OdbcCommand(updateFoto, conexion);
+            cmd.ExecuteNonQuery();
+
+            conexion.Close();
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
 }
