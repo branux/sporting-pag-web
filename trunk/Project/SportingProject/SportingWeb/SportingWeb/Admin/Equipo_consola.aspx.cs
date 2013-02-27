@@ -59,6 +59,7 @@ namespace SportingWeb.Admin
             }
             catch (Exception er)
             {
+                setSuccessColorOutput(false);
                 lblOutput.Text = er.Message;
             }
         }
@@ -204,6 +205,7 @@ namespace SportingWeb.Admin
                 }
                 catch (Exception ex)
                 {
+                    setSuccessColorOutput(false);
                     lblOutput.Text = "Error del sistema: " + ex.Message;
                 }
             }
@@ -269,14 +271,17 @@ namespace SportingWeb.Admin
                 }
                 catch (PathImgEmptyException imgEx)
                 {
+                    setSuccessColorOutput(false);
                     lblOutput.Text = imgEx.Message;
                 }
                 catch (SportingException spEx)
                 {
+                    setSuccessColorOutput(false);
                     lblOutput.Text = spEx.Message;
                 }
                 catch (Exception ex)
                 {
+                    setSuccessColorOutput(false);
                     lblOutput.Text = ex.Message;
                 }
             }
@@ -320,31 +325,40 @@ namespace SportingWeb.Admin
         {
             try
             {
-                //obtengo solo el id del jugador de la grilla para borrarlo de la BD
-                int id = Convert.ToInt32(e.CommandArgument.ToString());
-                //Obtengo la foto del jugador antes de borrarlo de la BD
-                Imagen fotoJugador = GestorPlantel.getJugador_plantelActual(id).Foto;
-                GestorPlantel.deleteJugador_plantelActual(id);
-                //luego que borre el accesorio de la BD tengo que borrar las imagenes que estan en el server
-                eliminarImagenesDelServer(fotoJugador);
-                
-                setSuccessColorOutput(true);
-                lblOutput.Text = "El jugador fue eliminado con exito";
-                
-                cargarJugadores();
-                limpiarCampos();
-                Session[sessionVar_imageToSaveInDB] = new Imagen();
-                grillaJugadores.SelectedIndex = -1;
-                /* habilito todos los elementos editables */
-                disableEditableElements(false);
-                txtNomApe.Focus();
+                if (e.CommandName == "Eliminar")
+                {
+                    //obtengo solo el id del jugador de la grilla para borrarlo de la BD
+                    int id = Convert.ToInt32(e.CommandArgument.ToString());
+                    //Obtengo la foto del jugador antes de borrarlo de la BD
+                    Imagen fotoJugador = GestorPlantel.getJugador_plantelActual(id).Foto;
+                    GestorPlantel.deleteJugador_plantelActual(id);
+                    //luego que borre el accesorio de la BD tengo que borrar las imagenes que estan en el server
+                    eliminarImagenesDelServer(fotoJugador);
+
+                    setSuccessColorOutput(true);
+                    lblOutput.Text = "El jugador fue eliminado con exito";
+
+                    cargarJugadores();
+                    limpiarCampos();
+                    Session[sessionVar_imageToSaveInDB] = new Imagen();
+                    grillaJugadores.SelectedIndex = -1;
+                    /* habilito todos los elementos editables */
+                    disableEditableElements(false);
+                    txtNomApe.Focus();
+                }
+                if (e.CommandName == "Editar")
+                {
+                    lblOutput.Text = "Editar!";
+                }
             }
             catch (SportingException spEx)
             {
+                setSuccessColorOutput(false);
                 lblOutput.Text = spEx.Message;
             }
             catch (Exception ex)
             {
+                setSuccessColorOutput(false);
                 lblOutput.Text = ex.Message;
             }
         }
@@ -368,6 +382,7 @@ namespace SportingWeb.Admin
             }
             catch (Exception e)
             {
+                setSuccessColorOutput(false);
                 lblOutput.Text = "Error al borrar las imagenes del jugador en el servidor. " + e.Message;
             }
         }
