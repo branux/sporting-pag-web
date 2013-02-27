@@ -70,13 +70,26 @@
         <asp:GridView ID="grillaJugadores" runat="server" 
                 AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" 
                 BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" 
-                GridLines="Horizontal">
+                GridLines="Horizontal" DataKeyNames="idJugador" OnRowCommand="GrillaJugadores_RowCommand">
             <Columns>
                 <asp:BoundField DataField="idJugador" HeaderText="Id Jugador" Visible="False" />
                 <asp:BoundField DataField="nombreApellido" HeaderText="Nombre y Apellido" />
                 <asp:BoundField DataField="posicion" HeaderText="Posición" />
-                <asp:ImageField DataImageUrlField="imagen" HeaderText="Imagen">
-                </asp:ImageField>
+                <asp:ImageField DataImageUrlField="imagen" HeaderText="Imagen"></asp:ImageField>
+                
+                <asp:TemplateField ShowHeader="true" HeaderText="Opciones">
+                    <ItemStyle HorizontalAlign="Center" />
+                    <ItemTemplate>
+                        <asp:ImageButton ID="imgEditar" runat="server" CommandArgument='<%# Eval("idJugador") %>'
+                            CausesValidation="False" CommandName="Editar"
+                            ImageUrl="../../Images/icono_edit1.png" ToolTip="Editar" />
+                        <asp:ImageButton ID="imgEliminar" runat="server" CommandArgument='<%# Eval("idJugador") %>'
+                            CausesValidation="False" CommandName="Eliminar"
+                            ImageUrl="../../Images/icono_delete1.png" ToolTip="Eliminar"
+                            OnClientClick="javascript:return confirm('Esta seguro que desea borrar el jugador?');" />
+                    </ItemTemplate>
+                </asp:TemplateField>
+                
             </Columns>
             <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
             <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
