@@ -31,17 +31,18 @@
     <div id="templatemo_container_wrapper">
         <div id="templatemo_container">
 	        <div id="templatemo_banner">
+	            <div id="pageTitle">Sporting Club Deportivo y Cultural</div>
                 <div id="site_title">
                         <h1><a href="http://www.templatemo.com" target="_parent"><span></span></a></h1>
                   </div>                   
                     <div id="templatemo_menu">
                         <ul>
-                            <li><a href="#" class="current">Inicio</a></li>
-                            <li><a href="#">Equipo</a></li>
-                            <li><a href="#">Noticias</a></li>
-                            <li><a href="#">Campeonato</a></li>
-                            <li><a href="#">Multimedia</a></li>
-                            <li><a href="#">Contacto</a></li>
+                            <li class="btnInicio"><a href="Default.aspx" class="current">Inicio</a></li>
+                            <li class="btnEquipo"><a href="Equipo.aspx">Equipo</a></li>
+                            <li class="btnNoticias"><a href="ListaNoticias.aspx">Noticias</a></li>
+                            <li class="btnCampeonato"><a href="Campeonato.aspx">Campeonato</a></li>
+                            <li class="btnMultimedia"><a href="Multimedia.aspx">Multimedia</a></li>
+                            <li class="btnContacto"><a href="Contacto.aspx">Contacto</a></li>
                         </ul>
 		            </div> <!-- end of menu -->               
                </div> <!-- end of banner -->              
