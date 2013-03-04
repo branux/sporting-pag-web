@@ -14,7 +14,7 @@
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="CPHBody_consola" runat="server">
     <form id="form1" runat="server">
-    <div style="padding-left:10px">
+    <div style="padding:10px">
         <h2>Equipo de Primera División</h2>
         <br/>
         <h3>Agregar nuevo jugador</h3>
@@ -65,17 +65,19 @@
             </tr>
         </table>
     </div>
-    <div style="padding-left:10px; margin-top:10px;">
+    <div style="padding:10px; margin-top:10px;">
         <h3>Jugadores</h3>
         <asp:GridView ID="grillaJugadores" runat="server" 
-                AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" 
-                BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" 
-                GridLines="Horizontal" DataKeyNames="idJugador" OnRowCommand="GrillaJugadores_RowCommand">
+                AutoGenerateColumns="False" DataKeyNames="idJugador" 
+            OnRowCommand="GrillaJugadores_RowCommand" CssClass="mGrid">
+            <RowStyle/>
             <Columns>
                 <asp:BoundField DataField="idJugador" HeaderText="Id Jugador" Visible="False" />
+                <asp:ImageField DataImageUrlField="imagen" HeaderText="Imagen" 
+                ItemStyle-HorizontalAlign="Center"></asp:ImageField>
+                
                 <asp:BoundField DataField="nombreApellido" HeaderText="Nombre y Apellido" />
                 <asp:BoundField DataField="posicion" HeaderText="Posición" />
-                <asp:ImageField DataImageUrlField="imagen" HeaderText="Imagen"></asp:ImageField>
                 
                 <asp:TemplateField ShowHeader="true" HeaderText="Opciones">
                     <ItemStyle HorizontalAlign="Center" />
@@ -91,10 +93,7 @@
                 </asp:TemplateField>
                 
             </Columns>
-            <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
-            <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
-            <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
-            <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle/>
         </asp:GridView>
     </div>
     </form>

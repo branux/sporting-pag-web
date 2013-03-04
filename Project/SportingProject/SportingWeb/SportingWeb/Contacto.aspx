@@ -12,7 +12,7 @@
                 <table style="width: 100%">
             	    <tr>
             	        <td>
-                            <p>Escriba su duda/consulta/queja/sugerencia. Complete el formulario con sus datos.</p>
+                            <p>Escriba su duda, consulta, queja o sugerencia. Complete el formulario con sus datos.</p>
                             <p>(*) campos obligatorios.</p>
                         </td>
                     </tr>
