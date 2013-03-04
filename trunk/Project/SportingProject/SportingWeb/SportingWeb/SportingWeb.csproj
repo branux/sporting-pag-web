@@ -71,6 +71,13 @@
     <Compile Include="Admin\Equipo_consola.aspx.designer.cs">
       <DependentUpon>Equipo_consola.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Campeonato_consola.aspx.cs">
+      <DependentUpon>Campeonato_consola.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Campeonato_consola.aspx.designer.cs">
+      <DependentUpon>Campeonato_consola.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Code\ConexionBD.cs" />
     <Compile Include="App_Code\DAL\CampeonatoDAL.cs" />
     <Compile Include="App_Code\DAL\MultimediaDAL.cs" />
@@ -190,6 +197,7 @@
   <ItemGroup>
     <Content Include="Admin\Consola.Master" />
     <Content Include="Admin\Equipo_consola.aspx" />
+    <Content Include="Admin\Campeonato_consola.aspx" />
     <Content Include="Styles\Consola.css" />
   </ItemGroup>
   <ItemGroup>

@@ -45,11 +45,9 @@ img { margin: 0px; padding: 0px; border: none; }
 
 .botonVerMas{
 	clear: left;
-	/*padding: 0 425px;*/
 }
 
 h1 {
-	/*margin: 0px;*/
 	padding: 2px 0;
 	color:#F9F6F6;
 	text-align: center;
@@ -57,7 +55,6 @@ h1 {
 
 h2 {
 	position: relative;
-	/*height: 25px;*/
 	margin: 0px;
 	padding: 10px 0 0 0;
 	font-size: 18px;
@@ -124,14 +121,15 @@ h4 {
 #templatemo_container_wrapper {
 	width:100%;
 	margin: 0 auto;
-	background: url(../Images/templatemo_body_bg.jpg) center top no-repeat;
+	/*background: url(../Images/templatemo_body_bg.jpg) center top no-repeat;*/
+	background: url(../Images/fondoPelotas.png) no-repeat scroll center top transparent;
 }
 
 #templatemo_container {
 	width: 960px;
 	padding: 0 5px;
 	margin: 0 auto;
-	background: url(../Images/templatemo_container_consola_bg.png) center repeat-y;
+	/*background: url(../Images/templatemo_container_consola_bg.png) center repeat-y;*/
 }
 
 /* bannner */
@@ -140,7 +138,8 @@ h4 {
 	width: 950px;
 	height: 200px;
 	padding: 0 30px 0 20px;
-	background: url(../Images/templatemo_banner2.jpg) no-repeat;
+	/*background: url(../Images/templatemo_banner2.jpg) no-repeat;*/
+	background: url(../Images/cabecera_menu_01.png) center top no-repeat;
 }
 
 #templatemo_banner #site_title {
@@ -148,7 +147,7 @@ h4 {
 	width: 200px;
 	height: 200px;
 	margin: 0 25px;
-	background: url("../Images/escudoSporting.png") no-repeat scroll center top transparent;
+	background: url("../Images/escudo.png") no-repeat scroll center top transparent;
 }
 
 #site_title h1 a {
@@ -223,7 +222,8 @@ h4 {
 	clear: both;
 	width: 910px;
 	padding: 10px 30px 0 20px;
-	background: url(../Images/templatemo_content_top.jpg) top center no-repeat;
+	/*background: url(../Images/templatemo_content_top.jpg) top center no-repeat;*/
+	background: url(../Images/fondoContent.png) center repeat-y;
 }
 
 #side_column {
@@ -378,7 +378,7 @@ main_column_lista_noticias
 	padding: 30px 90px 0 90px;
 	text-align: center;
 	color: #3b3838;
-	background: url(../Images/templatemo_footer_consola.jpg) no-repeat;
+	background: url(../Images/templatemo_footer2.png) no-repeat;
 }
 
 #templatemo_footer a {
@@ -454,6 +454,76 @@ p.caption span big {
 	padding-bottom: 10px;
 	text-align: left !important; 
 }
-
-
 /* end of multimedia */ 
+
+/* Grillas */
+.mGrid 
+{
+	width: 100%; 
+	background-color: #fff; 
+	margin: 5px 0 10px 0; 
+	border: solid 1px #525252; 
+	border-collapse:collapse;
+	font-family:Verdana; 
+	font-size:12px;
+}
+
+.mGrid td 
+{
+	padding: 2px; 
+	border: solid 1px #c1c1c1; 
+	color: #000000;
+}
+
+.mGrid th
+{
+	padding: 4px 2px;
+	color: #000000;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#C0C0C0'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#C0C0C0)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #FFF,  #C0C0C0); /* for firefox 3.6+ */
+}
+
+.mGrid .alt 
+{
+	background: #fcfcfc;
+}
+
+.mGrid .pgr
+{
+	background: #FFFFFF;
+}
+
+.mGrid .pgr table 
+{
+	margin: 5px 0;
+}
+
+.mGrid .pgr td 
+{ 
+	border-width: 0px; 
+	padding: 10px; 
+	border-left: solid 1px #666; 
+	font-weight: bold; 
+	color: #fff; 
+	line-height: 12px; 
+}  
+
+.mGrid .pgr a 
+{ 
+	color: #666; 
+	text-decoration: none; 
+}
+
+.mGrid .pgr a:hover 
+{
+	color: #000; 
+	text-decoration: none; 
+}
+
+.mGrid tr:hover
+{
+	background-color:#FFFFCC;
+	color:white;
+}
+/* end Grillas */
