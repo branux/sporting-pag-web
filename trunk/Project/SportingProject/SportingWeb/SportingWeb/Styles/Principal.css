@@ -2,7 +2,7 @@
 	margin: 0;
 	padding: 0;
 	line-height: 1.5em;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family:Arial,Helvetica,sans-serif;
 	font-size: 12px;
 	color: #AAAAAA;
 	background: #080808;
@@ -45,11 +45,9 @@ img { margin: 0px; padding: 0px; border: none; }
 
 .botonVerMas{
 	clear: left;
-	/*padding: 0 425px;*/
 }
 
 h1 {
-	/*margin: 0px;*/
 	padding: 2px 0;
 	color:#F9F6F6;
 	text-align: center;
@@ -123,31 +121,50 @@ h4 {
 #templatemo_container_wrapper {
 	width:100%;
 	margin: 0 auto;
-	background: url(../Images/templatemo_body_bg.jpg) center top no-repeat;
+	background: url(../Images/fondoPelotas.png) no-repeat scroll center top transparent;
 }
 
 #templatemo_container {
 	width: 960px;
 	padding: 0 5px;
 	margin: 0 auto;
-	background: url(../Images/templatemo_container_bg.png) center repeat-y;
 }
 
+#lateralIzq
+{
+	width: 399px;
+	height:392px;
+	padding: 0 5px;
+	margin: 0 auto;
+	float:left;
+	background: url(../Images/cabecera_01.jpg) center repeat-y;
+	position:absolute;
+}
+
+#lateralDer
+{
+	width: 402px;
+	height:392px;
+	padding: 0 5px;
+	float:right;
+	margin: 0 auto;
+	background: url(../Images/cabecera_03.jpg) center repeat-y;
+	position:absolute;
+}
+	
 /* bannner */
 
 #templatemo_banner {
 	width: 950px;
 	height: 200px;
-	padding: 0 30px 0 20px;
-	background: url(../Images/templatemo_banner2.jpg) no-repeat;
+	background: url(../Images/cabecera_menu_01.png) center top no-repeat;
 }
 
 #templatemo_banner #site_title {
 	float: left;
 	width: 200px;
 	height: 200px;
-	margin: 0 25px;
-	background: url("../Images/escudoSporting.png") no-repeat scroll center top transparent;
+	background: url("../Images/escudo.png") no-repeat scroll center top transparent;
 }
 
 #site_title h1 a {
@@ -173,35 +190,43 @@ h4 {
 	color: #C0C0C0;
 }
 
+#pageTitle
+{
+	color:White;
+	font-size:40px;
+	font-weight:bold;
+	position:absolute;
+	padding-left:250px;
+	padding-top:70px;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
 /* end of bannner */
 
 /* menu */
 
 #templatemo_menu {
-	float: right;
-	width: 600px;
+	float: left;
+	width: 750px;
 	height: 50px;
-	padding: 39px 33px;
+	padding-top: 10px;
 }
 
 #templatemo_menu ul {
 	overflow: hidden;
 	padding: 35px 0 0 0;
-	margin: 50px auto;
+	margin: 133px 0;
 	list-style: none;
 }
 
 #templatemo_menu ul li {
-	padding: 0px;
-	margin: 0px;
-	display: inline;
+	/*padding: 0px;*/
+	/*margin: 0px;*/
+	/*display: inline;*/
 }
 
 #templatemo_menu ul li a {
 	float: left;
 	display: block;
-	margin: 0px 5px;
-	padding: 10px;
 	font-size: 16px;
 	text-align: center;
 	font-weight: bold;
@@ -209,6 +234,43 @@ h4 {
 	color: #f9f6f6;		
 	outline: none;
 }
+
+.btnInicio
+{
+	padding-left:34px;
+	padding-right:1px;
+}
+
+.btnEquipo
+{
+	padding-left:151px;
+	padding-right:1px;
+}
+
+.btnNoticias
+{
+	padding-left:275px;
+	padding-right:1px;
+}
+
+.btnCampeonato
+{
+	padding-left:380px;
+	padding-right:1px;
+}
+
+.btnMultimedia
+{
+	padding-left:513px;
+	padding-right:1px;
+}
+
+.btnContacto
+{
+	padding-left:645px;
+	padding-right:1px;
+}
+
 
 #templatemo_menu li a:hover, #templatemo_menu li .current {
 	color: #DB550C;
@@ -220,9 +282,9 @@ h4 {
 
 #templatemo_content {
 	clear: both;
-	width: 910px;
-	padding: 10px 30px 0 20px;
-	/*background: url(../Images/templatemo_content_top.jpg) top center no-repeat;*/
+	width: 950px;
+	padding-top: 20px;
+	background: url(../Images/fondoContent.png) center repeat-y;
 }
 
 #side_column {
@@ -379,12 +441,12 @@ main_column_lista_noticias
 
 #templatemo_footer {
 	clear: both;
-	width: 780px;
+	width: 950px;
 	height: 75px;
-	padding: 30px 90px 0 90px;
+	padding: 30px 0 0 ;
 	text-align: center;
 	color: #3b3838;
-	background: url(../Images/templatemo_footer.jpg) no-repeat;
+	background: url(../Images/templatemo_footer2.png) no-repeat;
 }
 
 #templatemo_footer a {
