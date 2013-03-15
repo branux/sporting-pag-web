@@ -21,7 +21,8 @@ namespace SportingWeb.Admin
             if (!Page.IsPostBack)
             {
                 cargarCampeonatos();
-                limpiarCampos();
+                cargarFechas();
+                cargarComboCampeonatosEnFechas();
             }
             else
             {
@@ -33,92 +34,384 @@ namespace SportingWeb.Admin
         {
             try
             {
-                //TODO: cargar Campeonatos en el this.ddlCampeonato
+                DataTable dtCampeonatos = new DataTable();
+                dtCampeonatos.Columns.Add("idCamp");
+                dtCampeonatos.Columns.Add("nombre");
+                dtCampeonatos.Columns.Add("anio");
+
+                foreach (CampeonatoLiga camp in GestorCampeonato.getCampeonatos())
+                {
+                    DataRow row = dtCampeonatos.NewRow();
+                    row["idCamp"] = camp.IdCampeonato;
+                    row["nombre"] = camp.Nombre;
+                    row["anio"] = camp.Anio.ToString();
+                    dtCampeonatos.Rows.Add(row);
+                }
+
+                grillaCampeonatos.DataSource = dtCampeonatos;
+                grillaCampeonatos.DataBind();
             }
             catch (Exception er)
             {
                 setSuccessColorOutput(false);
-                lblOutput.Text = er.Message;
+                lblOutputCamp.Text = er.Message;
             }
         }
 
-        private void limpiarCampos()
+        private void cargarFechas()
         {
-            //TODO: seleccionar los combos a sus valores iniciales (index "Todas" para cmb fechas).
+            try
+            {
+                DataTable dtFechas = new DataTable();
+                dtFechas.Columns.Add("idFecha");
+                dtFechas.Columns.Add("campeonato");
+                dtFechas.Columns.Add("numeroFecha");
+                dtFechas.Columns.Add("descripcion");
+
+                foreach (CampeonatoLiga camp in GestorCampeonato.getCampeonatos())
+                {
+                    foreach (FechaCampeonato fecha in camp.ListaFechas)
+                    {
+                        DataRow row = dtFechas.NewRow();
+                        row["campeonato"] = camp.Anio.ToString() + " - " + camp.Nombre;
+                        row["idFecha"] = fecha.IdFecha.ToString();
+                        row["numeroFecha"] = fecha.Numero.ToString();
+                        row["descripcion"] = fecha.Descripcion;
+                        dtFechas.Rows.Add(row);
+                    }
+                }
+
+                grillaFechas.DataSource = dtFechas;
+                grillaFechas.DataBind();
+            }
+            catch (Exception er)
+            {
+                setSuccessColorOutput(false);
+                lblOutputFecha.Text = er.Message;
+            }
+        }
+
+        private void cargarComboCampeonatosEnFechas()
+        {
+            try
+            {
+                DataTable dtCampeonatos = new DataTable();
+                dtCampeonatos.Columns.Add("id");
+                dtCampeonatos.Columns.Add("nombre");
+
+                foreach (CampeonatoLiga camp in GestorCampeonato.getCampeonatos())
+                {
+                    DataRow row = dtCampeonatos.NewRow();
+                    row["id"] = camp.IdCampeonato;
+                    row["nombre"] = camp.Anio.ToString() + " - " + camp.Nombre;
+                    dtCampeonatos.Rows.Add(row);
+                }
+
+                DropDownList ddlCampeonato = ((DropDownList)grillaFechas.FooterRow.FindControl("ddlCampeonato"));
+                ddlCampeonato.DataSource = dtCampeonatos;
+                ddlCampeonato.DataTextField = dtCampeonatos.Columns["nombre"].ToString();
+                ddlCampeonato.DataValueField = dtCampeonatos.Columns["id"].ToString();
+                ddlCampeonato.DataBind();
+            }
+            catch (Exception er)
+            {
+                setSuccessColorOutput(false);
+                lblOutputFecha.Text = er.Message;
+            }
         }
 
         private void setSuccessColorOutput(bool isSuccess)
         {
             if (isSuccess)
             {
-                lblOutput.ForeColor = Color.Green;
+                lblOutputCamp.ForeColor = Color.Green;
             }
             else
             {
-                lblOutput.ForeColor = Color.Red;
+                lblOutputCamp.ForeColor = Color.Red;
             }
         }
 
-        protected void AgregarNuevoPartido(object sender, EventArgs e)
+        protected void AddCampeonato(object sender, EventArgs e)
         {
-            //Obtengo los valores del nuevo partido
-            //string CustomerID = ((TextBox)GridView1.FooterRow.FindControl("txtCustomerID")).Text;
-            //string Name = ((TextBox)GridView1.FooterRow.FindControl("txtContactName")).Text;
-            //string Company = ((TextBox)GridView1.FooterRow.FindControl("txtCompany")).Text;
+            CampeonatoLiga campeonato = new CampeonatoLiga();
 
-            //Guardo el nuevo partido en BD
-            //TODO
+            try
+            {
+                //Obtengo los valores del nuevo campeoanto
+                if (((TextBox)grillaCampeonatos.FooterRow.FindControl("txtNombre")).Text == "")
+                {
+                    throw new SportingException("Campeonato requerido.");
+                }
+                campeonato.Nombre = ((TextBox)grillaCampeonatos.FooterRow.FindControl("txtNombre")).Text;
+                if (((TextBox)grillaCampeonatos.FooterRow.FindControl("txtAnio")).Text == "")
+                {
+                    throw new SportingException("Anio requerido.");
+                }
+                try
+                {
+                    campeonato.Anio = Convert.ToInt32(((TextBox)grillaCampeonatos.FooterRow.FindControl("txtAnio")).Text);
+                }
+                catch (Exception ex)
+                {
+                    throw new SportingException("Año incorrecto. Ingrese solo números.");
+                }
 
-            //Recargo la grilla
-            //TODO
+                //Guardo el nuevo campeonato
+                GestorCampeonato.registrarCampeonato(campeonato);
+                setSuccessColorOutput(true);
+                lblOutputCamp.Text = "Campeonato registrado con éxito!";
+
+                //Recargo la grilla
+                cargarCampeonatos();
+                grillaCampeonatos.SelectedIndex = -1;
+            }
+            catch (SportingException spEx)
+            {
+                setSuccessColorOutput(false);
+                lblOutputCamp.Text = spEx.Message;
+            }
+            catch (Exception ex)
+            {
+                setSuccessColorOutput(false);
+                lblOutputCamp.Text = ex.Message;
+            }
         }
 
-        protected void EditPartido(object sender, GridViewEditEventArgs e)
+        protected void EditCampeonato(object sender, GridViewEditEventArgs e)
         {
-            //GridView1.EditIndex = e.NewEditIndex;
-            //BindData();
+            grillaCampeonatos.EditIndex = e.NewEditIndex;
+            cargarCampeonatos();
+            
+            //Pongo foco en el nombre del Campeonato
+            ((TextBox)grillaCampeonatos.Rows[e.NewEditIndex].FindControl("txtNombre")).Focus();
+            
+            //Limpio el mensaje de salida para asegurarme que no quede uno viejo.
+            lblOutputCamp.Text = "";
         }
 
-        protected void CancelarModificacion(object sender, GridViewCancelEditEventArgs e)
+        protected void CancelarCampeonato(object sender, GridViewCancelEditEventArgs e)
         {
-            //GridView1.EditIndex = -1;
-            //BindData();
+            grillaCampeonatos.EditIndex = -1;
+            cargarCampeonatos();
         }
 
-        protected void UpdatePartido(object sender, GridViewUpdateEventArgs e)
+        protected void UpdateCampeonato(object sender, GridViewUpdateEventArgs e)
         {
-            //Obtengo los valores del partido a modificar
-            //string CustomerID = ((Label)GridView1.Rows[e.RowIndex].FindControl("lblCustomerID")).Text;
-            //string Name = ((TextBox)GridView1.Rows[e.RowIndex].FindControl("txtContactName")).Text;
-            //string Company = ((TextBox)GridView1.Rows[e.RowIndex].FindControl("txtCompany")).Text;
+            CampeonatoLiga campeonato = new CampeonatoLiga();
 
-            //Guardo el partido en BD
-            //TODO
+            try
+            {
+                //Obtengo los valores del nuevo campeoanto
+                if (((TextBox)grillaCampeonatos.Rows[e.RowIndex].FindControl("txtNombre")).Text == "")
+                {
+                    throw new SportingException("Campeonato requerido.");
+                }
+                campeonato.Nombre = ((TextBox)grillaCampeonatos.Rows[e.RowIndex].FindControl("txtNombre")).Text;
+                if (((TextBox)grillaCampeonatos.Rows[e.RowIndex].FindControl("txtAnio")).Text == "")
+                {
+                    throw new SportingException("Anio requerido.");
+                }
+                try
+                {
+                    campeonato.Anio = Convert.ToInt32(((TextBox)grillaCampeonatos.Rows[e.RowIndex].FindControl("txtAnio")).Text);
+                }
+                catch (Exception ex)
+                {
+                    throw new SportingException("Año incorrecto. Ingrese solo números.");
+                }
+                campeonato.IdCampeonato = Convert.ToInt32(((Label)grillaCampeonatos.Rows[e.RowIndex].FindControl("lblIdCampeonato")).Text);
 
-            //Recargo la grilla
-            //TODO
+                //Modifico un campeonato existente
+                GestorCampeonato.updateCampeonato(campeonato);
+                setSuccessColorOutput(true);
+                lblOutputCamp.Text = "Campeonato actualizado con éxito!";
+
+                //Recargo la grilla
+                grillaCampeonatos.EditIndex = -1;
+                cargarCampeonatos();
+            }
+            catch (SportingException spEx)
+            {
+                setSuccessColorOutput(false);
+                lblOutputCamp.Text = spEx.Message;
+            }
+            catch (Exception ex)
+            {
+                setSuccessColorOutput(false);
+                lblOutputCamp.Text = ex.Message;
+            }
         }
 
-        protected void BorrarPartido(object sender, EventArgs e)
+        protected void BorrarCampeonato(object sender, EventArgs e)
         {
-            //Obtengo el id del partido a borrar
-            LinkButton lnkRemove = (LinkButton)sender;
-            String idPartido = lnkRemove.CommandArgument;
+            //Limpio el mensaje de salida para asegurarme que no quede uno viejo.
+            lblOutputCamp.Text = "";
 
-            //Borro el partido en BD
-            //TODO
+            try
+            {
+                //Obtengo el id del campeonato a borrar
+                LinkButton lnkRemove = (LinkButton)sender;
+                String idCamp = lnkRemove.CommandArgument;
 
-            //Recargo la grilla
-            //TODO
+                //Borro el campeonato en BD
+                GestorCampeonato.deleteCampeonato(idCamp);
+                
+                setSuccessColorOutput(true);
+                lblOutputCamp.Text = "El campeonato fue eliminado con exito";
+
+                //Recargo la grilla
+                cargarCampeonatos();
+                grillaCampeonatos.SelectedIndex = -1;
+            }
+            catch (SportingException spEx)
+            {
+                setSuccessColorOutput(false);
+                lblOutputCamp.Text = spEx.Message;
+            }
+            catch (Exception ex)
+            {
+                setSuccessColorOutput(false);
+                lblOutputCamp.Text = ex.Message;
+            }
         }
 
-        protected void OnPaging(object sender, GridViewPageEventArgs e)
+        protected void OnPagingCampeonato(object sender, GridViewPageEventArgs e)
         {
             //Pagination
-            ////BindData();
-            ////GridView1.PageIndex = e.NewPageIndex;
-            ////GridView1.DataBind();
+            cargarCampeonatos();
+            grillaCampeonatos.PageIndex = e.NewPageIndex;
+            grillaCampeonatos.DataBind();
+
+            //Limpio el mensaje de salida para asegurarme que no quede uno viejo.
+            lblOutputCamp.Text = "";
         }
 
+        protected void ddlCampeonato_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        protected void AddFecha(object sender, EventArgs e)
+        {
+            FechaCampeonato fechaCamp = new FechaCampeonato();
+
+            try
+            {
+                //Obtengo los valores de la nueva fecha de campeoanto
+                
+
+                //Guardo la nueva fecha de campeonato
+                //GestorCampeonato.registrarFechaCampeonato(campeonato);
+                setSuccessColorOutput(true);
+                lblOutputCamp.Text = "Fecha registrada con éxito!";
+
+                //Recargo la grilla
+                //cargarFechas();
+                grillaFechas.SelectedIndex = -1;
+            }
+            catch (SportingException spEx)
+            {
+                setSuccessColorOutput(false);
+                lblOutputCamp.Text = spEx.Message;
+            }
+            catch (Exception ex)
+            {
+                setSuccessColorOutput(false);
+                lblOutputCamp.Text = ex.Message;
+            }
+        }
+
+        protected void EditFecha(object sender, GridViewEditEventArgs e)
+        {
+            grillaFechas.EditIndex = e.NewEditIndex;
+            //cargarFechas();
+
+            //Pongo foco en el nombre del Campeonato
+            //((TextBox)grillaCampeonatos.Rows[e.NewEditIndex].FindControl("txtNombre")).Focus();
+
+            //Limpio el mensaje de salida para asegurarme que no quede uno viejo.
+            lblOutputFecha.Text = "";
+        }
+
+        protected void CancelarFecha(object sender, GridViewCancelEditEventArgs e)
+        {
+            grillaFechas.EditIndex = -1;
+            //cargarFechas();
+        }
+
+        protected void UpdateFecha(object sender, GridViewUpdateEventArgs e)
+        {
+            CampeonatoLiga campeonato = new CampeonatoLiga();
+
+            try
+            {
+                //Obtengo los valores del nuevo campeoanto
+                
+
+                //Modifico un campeonato existente
+                //GestorCampeonato.updateCampeonato(campeonato);
+                setSuccessColorOutput(true);
+                lblOutputFecha.Text = "Fecha actualizada con éxito!";
+
+                //Recargo la grilla
+                grillaFechas.EditIndex = -1;
+                //cargarFechas();
+            }
+            catch (SportingException spEx)
+            {
+                setSuccessColorOutput(false);
+                lblOutputCamp.Text = spEx.Message;
+            }
+            catch (Exception ex)
+            {
+                setSuccessColorOutput(false);
+                lblOutputCamp.Text = ex.Message;
+            }
+        }
+
+        protected void BorrarFecha(object sender, EventArgs e)
+        {
+            //Limpio el mensaje de salida para asegurarme que no quede uno viejo.
+            lblOutputFecha.Text = "";
+
+            try
+            {
+                //Obtengo el id del campeonato a borrar
+                LinkButton lnkRemove = (LinkButton)sender;
+                String idFecha = lnkRemove.CommandArgument;
+
+                //Borro la fecha del campeonato en BD
+                //GestorCampeonato.deleteCampeonato(idCamp);
+
+                setSuccessColorOutput(true);
+                lblOutputFecha.Text = "La fecha fue eliminada con exito";
+
+                //Recargo la grilla
+                //cargarFechas();
+                grillaFechas.SelectedIndex = -1;
+            }
+            catch (SportingException spEx)
+            {
+                setSuccessColorOutput(false);
+                lblOutputCamp.Text = spEx.Message;
+            }
+            catch (Exception ex)
+            {
+                setSuccessColorOutput(false);
+                lblOutputCamp.Text = ex.Message;
+            }
+        }
+
+        protected void OnPagingFechas(object sender, GridViewPageEventArgs e)
+        {
+            //Pagination
+            //cargarFechas();
+            grillaFechas.PageIndex = e.NewPageIndex;
+            grillaFechas.DataBind();
+
+            //Limpio el mensaje de salida para asegurarme que no quede uno viejo.
+            lblOutputFecha.Text = "";
+        }
     }
 }

@@ -20,6 +20,11 @@ public class CampeonatoLiga
     {
     }
 
+    public CampeonatoLiga(int idCamp)
+    {
+        this.idCampeonato = idCamp;
+    }
+
     public int IdCampeonato
     {
         get { return idCampeonato; }

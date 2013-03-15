@@ -2,102 +2,171 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="CPHHead_consola" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPHBody_consola" runat="server">
+<form id="form1" runat="server">
 
-    <form id="form1" runat="server">
-
-    <div style="padding:10px">
-        <h2>Equipo de Primera División</h2>
-        <br/>
-        <h3>Seleccionar campeonato y/o la fecha</h3>
-        <table style="border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; padding: 1px 4px; width: 350px; border-left-style: solid; border-left-width: 1px; border-top-style: solid; border-top-width: 1px;">
-            <tr>
-                <td>
-                    <p><asp:Label ID="lblCampeonato" runat="server" ForeColor="#C0C0C0" Text="Campeonato" Width="100px"></asp:Label></p>
-                        <asp:DropDownList ID="ddlCampeonato" runat="server" Width="222px"></asp:DropDownList>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p><asp:Label ID="lblFecha" runat="server" ForeColor="#C0C0C0" Text="Fecha" Width="100px"></asp:Label></p>
-                    <asp:DropDownList ID="ddlFecha" runat="server" Width="222px"></asp:DropDownList>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:Label ID="lblOutput" runat="server" ForeColor="Red"></asp:Label>
-                </td>
-            </tr>
-        </table>
-    </div>
-
-<div id="dvGrid" style="padding:10px;width:100%">
+    <h2>Campeonato - Fechas - Equipos</h2>
     <asp:ScriptManager ID="ScriptManager" runat="server" />
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
-            <asp:GridView ID="grillaCampeonato" runat="server"  Width="100%"
-            AutoGenerateColumns="false" Font-Names="Arial" Font-Size="11pt" 
-            AlternatingRowStyle-BackColor="#C2D69B" HeaderStyle-BackColor="green" 
-            AllowPaging="true"  ShowFooter="true" OnPageIndexChanging = "OnPaging" 
-            onrowediting="EditPartido" onrowupdating="UpdatePartido" onrowcancelingedit="CancelarModificacion"
-            PageSize = "10" >
-                <Columns>
-                    <asp:TemplateField ItemStyle-Width = "30px"  HeaderText = "CustomerID">
-                        <ItemTemplate>
-                            <asp:Label ID="lblCustomerID" runat="server" Text='<%# Eval("CustomerID")%>'></asp:Label>
-                        </ItemTemplate>
-                        <FooterTemplate>
-                            <asp:TextBox ID="txtCustomerID" Width="40px" MaxLength="5" runat="server"></asp:TextBox>
-                        </FooterTemplate>
-                    </asp:TemplateField>
-                    
-                    <asp:TemplateField ItemStyle-Width = "100px"  HeaderText = "Name">
-                        <ItemTemplate>
-                            <asp:Label ID="lblContactName" runat="server" Text='<%# Eval("ContactName")%>'></asp:Label>
-                        </ItemTemplate>
-                        <EditItemTemplate>
-                            <asp:TextBox ID="txtContactName" runat="server" Text='<%# Eval("ContactName")%>'></asp:TextBox>
-                        </EditItemTemplate> 
-                        <FooterTemplate>
-                            <asp:TextBox ID="txtContactName" runat="server"></asp:TextBox>
-                        </FooterTemplate>
-                    </asp:TemplateField>
-                    
-                    <asp:TemplateField ItemStyle-Width = "150px"  HeaderText = "Company">
-                        <ItemTemplate>
-                            <asp:Label ID="lblCompany" runat="server"
-                                Text='<%# Eval("CompanyName")%>'></asp:Label>
-                        </ItemTemplate>
-                        <EditItemTemplate>
-                            <asp:TextBox ID="txtCompany" runat="server"
-                                Text='<%# Eval("CompanyName")%>'></asp:TextBox>
-                        </EditItemTemplate> 
-                        <FooterTemplate>
-                            <asp:TextBox ID="txtCompany" runat="server"></asp:TextBox>
-                        </FooterTemplate>
-                    </asp:TemplateField>
+    
+    <!-Administrar Campeonatos->
+    <div id="divGridABMCamp" style="padding:10px;width:100%">
+        <h3>Administrar Campeonatos</h3>
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+                <asp:GridView ID="grillaCampeonatos" runat="server"  Width="300px"
+                AutoGenerateColumns="false" Font-Names="Arial" Font-Size="11pt" 
+                RowStyle-BackColor="#000000" HeaderStyle-BackColor="green" 
+                AllowPaging="true"  ShowFooter="true" OnPageIndexChanging = "OnPagingCampeonato" 
+                onrowediting="EditCampeonato" onrowupdating="UpdateCampeonato" onrowcancelingedit="CancelarCampeonato"
+                PageSize = "10" >
+                    <Columns>
+                        <asp:TemplateField ItemStyle-Width = "30px"  HeaderText = "Id" Visible="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lblIdCampeonato" runat="server" Text='<%# Eval("idCamp")%>'></asp:Label>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                <asp:TextBox ID="txtIdCampeonato" Width="40px" MaxLength="5" runat="server"></asp:TextBox>
+                            </FooterTemplate>
+                        </asp:TemplateField>
+                        
+                        <asp:TemplateField ItemStyle-Width = "150px"  HeaderText = "Campeonato">
+                            <ItemTemplate>
+                                <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("nombre")%>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtNombre" runat="server" Text='<%# Eval("nombre")%>'></asp:TextBox>
+                            </EditItemTemplate> 
+                            <FooterTemplate>
+                                <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
+                            </FooterTemplate>
+                        </asp:TemplateField>
+                        
+                        <asp:TemplateField ItemStyle-Width = "120px"  HeaderText = "Año">
+                            <ItemTemplate>
+                                <asp:Label ID="lblAnio" runat="server" Text='<%# Eval("anio")%>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtAnio" runat="server" Text='<%# Eval("anio")%>'></asp:TextBox>
+                            </EditItemTemplate> 
+                            <FooterTemplate>
+                                <asp:TextBox ID="txtAnio" runat="server"></asp:TextBox>
+                            </FooterTemplate>
+                        </asp:TemplateField>
 
-                    <asp:TemplateField>
-                        <ItemTemplate>
-                            <asp:LinkButton ID="lnkRemove" runat="server"
-                                CommandArgument = '<%# Eval("id")%>'
-                             OnClientClick = "return confirm('Esta seguro que desea borrar el partido?')"
-                            Text = "Eliminar" OnClick = "BorrarPartido"></asp:LinkButton>
-                        </ItemTemplate>
-                        <FooterTemplate>
-                            <asp:Button ID="btnAdd" runat="server" Text="Add"
-                                OnClick = "AgregarNuevoPartido" />
-                        </FooterTemplate>
-                    </asp:TemplateField>
-                    
-                    <asp:CommandField  ShowEditButton="True" />
-                </Columns>
-                <AlternatingRowStyle BackColor="#C2D69B"  />
-            </asp:GridView>
-        </ContentTemplate>
-        <Triggers>
-            <asp:AsyncPostBackTrigger ControlID = "grillaCampeonato" />
-        </Triggers>
-    </asp:UpdatePanel>
-</div>
-    </form>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lnkRemove" runat="server"
+                                    CommandArgument = '<%# Eval("idCamp")%>'
+                                 OnClientClick = "return confirm('Esta seguro que desea borrar el campeonato?')"
+                                Text = "Eliminar" OnClick = "BorrarCampeonato"></asp:LinkButton>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                <asp:Button ID="btnAdd" runat="server" Text="Agregar"
+                                    OnClick = "AddCampeonato" />
+                            </FooterTemplate>
+                        </asp:TemplateField>
+                        
+                        <asp:CommandField  ShowEditButton="True" />
+                    </Columns>
+                </asp:GridView>                
+                
+                <asp:Label ID="lblOutputCamp" runat="server" ForeColor="Red"></asp:Label>
+            </ContentTemplate>
+            
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID = "grillaCampeonatos" />
+                
+            </Triggers>
+            
+        </asp:UpdatePanel>
+        
+    </div>
+    
+    <!-Administrar Fechas->
+    <div id="divGridABMFechas" style="padding:10px;width:100%">
+        <h3>Administrar Fechas</h3>
+        <asp:UpdatePanel ID="UpdatePanelFechas" runat="server">
+            <ContentTemplate>
+                <asp:GridView ID="grillaFechas" runat="server"  Width="300px"
+                AutoGenerateColumns="false" Font-Names="Arial" Font-Size="11pt" 
+                RowStyle-BackColor="#000000" HeaderStyle-BackColor="green" 
+                AllowPaging="true"  ShowFooter="true" OnPageIndexChanging = "OnPagingFechas" 
+                onrowediting="EditFecha" onrowupdating="UpdateFecha" onrowcancelingedit="CancelarFecha"
+                PageSize = "10" >
+                    <Columns>
+                        <asp:TemplateField ItemStyle-Width = "30px"  HeaderText = "Id" Visible="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lblIdFecha" runat="server" Text='<%# Eval("idFecha")%>'></asp:Label>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                <asp:TextBox ID="txtIdFecha" Width="40px" MaxLength="5" runat="server"></asp:TextBox>
+                            </FooterTemplate>
+                        </asp:TemplateField>
+                        
+                        <asp:TemplateField ItemStyle-Width = "150px"  HeaderText = "Campeonato">
+                            <ItemTemplate>
+                                <asp:Label ID="lblCampeonato" runat="server" Text='<%# Eval("campeonato")%>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtCampeonato" Width="40px" runat="server"></asp:TextBox>
+                            </EditItemTemplate> 
+                            <FooterTemplate>
+                                <asp:DropDownList runat="server" id="ddlCampeonato" AutoPostBack="true"
+                                    OnSelectedIndexChanged="ddlCampeonato_SelectedIndexChanged">
+                                </asp:DropDownList>
+                            </FooterTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField ItemStyle-Width = "120px"  HeaderText = "Fecha Nro:">
+                            <ItemTemplate>
+                                <asp:Label ID="lblNumeroFecha" runat="server" Text='<%# Eval("numeroFecha")%>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtNumeroFecha" runat="server" Text='<%# Eval("numeroFecha")%>'></asp:TextBox>
+                            </EditItemTemplate> 
+                            <FooterTemplate>
+                                <asp:TextBox ID="txtNumeroFecha" runat="server"></asp:TextBox>
+                            </FooterTemplate>
+                        </asp:TemplateField>
+                        
+                        <asp:TemplateField ItemStyle-Width = "120px"  HeaderText = "Descripción">
+                            <ItemTemplate>
+                                <asp:Label ID="lblDesc" runat="server" Text='<%# Eval("descripcion")%>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtDesc" runat="server" Text='<%# Eval("descripcion")%>'></asp:TextBox>
+                            </EditItemTemplate> 
+                            <FooterTemplate>
+                                <asp:TextBox ID="txtDesc" runat="server"></asp:TextBox>
+                            </FooterTemplate>
+                        </asp:TemplateField>
+                        
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lnkRemoveFecha" runat="server"
+                                    CommandArgument = '<%# Eval("idFecha")%>'
+                                 OnClientClick = "return confirm('Esta seguro que desea borrar la fecha?')"
+                                Text = "Eliminar" OnClick = "BorrarFecha"></asp:LinkButton>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                <asp:Button ID="btnAdd" runat="server" Text="Agregar"
+                                    OnClick = "AddFecha" />
+                            </FooterTemplate>
+                        </asp:TemplateField>
+                        
+                        <asp:CommandField  ShowEditButton="True" />
+                    </Columns>
+                </asp:GridView>                
+                
+                <asp:Label ID="lblOutputFecha" runat="server" ForeColor="Red"></asp:Label>
+            </ContentTemplate>
+            
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID = "grillaFechas" />
+                
+            </Triggers>
+            
+        </asp:UpdatePanel>
+    </div>
+    
+</form>
 </asp:Content>
