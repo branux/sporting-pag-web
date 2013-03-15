@@ -38,6 +38,25 @@ public class CampeonatoDAL
         return camp;
     }
 
+    public static List<FechaCampeonato> getFechasDeCampeonato(CampeonatoLiga camp)
+    {
+        List<FechaCampeonato> fechasCamp = new List<FechaCampeonato>();
+        try
+        {
+            OdbcConnection con = ConexionBD.ObtenerConexion();
+            fechasCamp = getFechasDeCampeonato(camp, con);
+        }
+        catch (SportingException sEx)
+        {
+            throw sEx;
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Ocurrio un problema al intentar obtener las fechas del campeonato. " + e.Message);
+        }
+        return fechasCamp;
+    }
+
     /// <summary>
     /// Obtiene la lista con las fechas de un campeonato especifico
     /// </summary>
@@ -49,7 +68,7 @@ public class CampeonatoDAL
         List<FechaCampeonato> fechas = new List<FechaCampeonato>();
         try
         {
-            OdbcCommand cmd = new OdbcCommand("SELECT f.id, f.numero, f.fecha FROM fecha_campeonato f" +
+            OdbcCommand cmd = new OdbcCommand("SELECT f.id, f.numero, f.descripcion FROM fecha_campeonato f" +
                 " WHERE f.idCampeonato = " + camp.IdCampeonato, con);
             cmd.CommandType = CommandType.Text;
             OdbcDataReader dr = cmd.ExecuteReader();
@@ -59,14 +78,14 @@ public class CampeonatoDAL
                 FechaCampeonato f = new FechaCampeonato();
                 f.IdFecha = dr.GetInt32(0);
                 f.Numero = dr.GetInt32(1);
-                f.Fecha = dr.GetDateTime(2);
+                f.Descripcion = dr.GetString(2);
                 f.Resultados = getResultadosFecha(f, con);
-                fechas.Add(f);                
+                fechas.Add(f);
             }
         }
         catch (Exception e)
         {
-            throw new SportingException("Ocurrio un problema al intentar obtener las fechas del campeonato '"+camp.Nombre+"'. " + e.Message);
+            throw new SportingException("Ocurrio un problema al intentar obtener las fechas del campeonato '" + camp.Nombre + "'. " + e.Message);
         }
         return fechas;
     }
@@ -188,5 +207,124 @@ public class CampeonatoDAL
             throw new SportingException("Ocurrio un problema al intentar obtener la tabla de posiciones. " + e.Message);
         }
         return resultados;
+    }
+
+    public static List<CampeonatoLiga> getCampeonatos()
+    {
+        OdbcConnection con = ConexionBD.ObtenerConexion();
+        DataSet ds = new DataSet();
+        OdbcCommand cmd = null;
+        List<CampeonatoLiga> campeonatos = new List<CampeonatoLiga>();
+        try
+        {
+            cmd = new OdbcCommand("SELECT c.id, c.nombre, c.anio FROM campeonato c " +
+                "Order by c.anio desc", con);
+            cmd.CommandType = CommandType.Text;
+            OdbcDataReader dr = cmd.ExecuteReader();
+            
+            CampeonatoLiga camp;
+            while(dr.Read())
+            {
+                camp = new CampeonatoLiga();
+                camp.IdCampeonato = dr.GetInt32(dr.GetOrdinal("id"));
+                camp.Nombre = dr.GetString(dr.GetOrdinal("nombre"));
+                camp.Anio = dr.GetInt32(dr.GetOrdinal("anio"));
+                camp.ListaFechas = getFechasDeCampeonato(camp, con);
+
+                campeonatos.Add(camp);
+            }
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Ocurrio un problema al intentar obtener los campeonatos. " + e.Message);
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+        return campeonatos;
+    }
+
+    public static void insertarCampeonato(CampeonatoLiga camp)
+    {
+        OdbcConnection conexion = null;
+        OdbcCommand cmd = null;
+        try
+        {
+            if (camp == null)
+            {
+                throw new SportingException("Error al registrar nuevo campeonato. Campeonato sin información.");
+            }
+            conexion = ConexionBD.ObtenerConexion();
+
+            //Guardo los datos del jugador
+            String insertarCamperonato = " INSERT INTO campeonato (nombre, anio)" +
+                                         " VALUES ('" + camp.Nombre + "', " + camp.Anio + ")";
+            cmd = new OdbcCommand(insertarCamperonato, conexion);
+            cmd.ExecuteNonQuery();
+            conexion.Close();
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+
+    public static void updateCampeonato(CampeonatoLiga camp)
+    {
+        OdbcConnection conexion = null;
+        OdbcCommand cmd = null;
+        try
+        {
+            if (camp == null)
+            {
+                throw new SportingException("Error al actualizar el campeonato. Campeonato sin información.");
+            }
+            conexion = ConexionBD.ObtenerConexion();
+
+            //Actualizo los datos del campeonato
+            String updateCamp = "UPDATE campeonato set nombre='" + camp.Nombre +
+                                    "', anio = " + camp.Anio + " WHERE id = " +
+                                    camp.IdCampeonato.ToString();
+            cmd = new OdbcCommand(updateCamp, conexion);
+            cmd.ExecuteNonQuery();
+            conexion.Close();
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+
+    public static void deleteCampeonato(string idCamp)
+    {
+        OdbcConnection conexion = null;
+        OdbcCommand cmd = null;
+        try
+        {
+            conexion = ConexionBD.ObtenerConexion();
+
+            String deleteCampeonato = "DELETE FROM campeonato WHERE id = " + idCamp.ToString();
+
+            cmd = new OdbcCommand(deleteCampeonato, conexion);
+            cmd.ExecuteNonQuery();
+            conexion.Close();
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Ocurrio un error al intentar borrar el campeonato. " + e.Message);
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
     }
 }

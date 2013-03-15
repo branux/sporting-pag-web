@@ -78,4 +78,76 @@ public class GestorCampeonato
 
         return resultados;
     }
+
+    public static List<CampeonatoLiga> getCampeonatos()
+    {
+        return CampeonatoDAL.getCampeonatos();
+    }
+
+    public static List<FechaCampeonato> getFechasCampeonato(int idCampeonato)
+    {
+        return CampeonatoDAL.getFechasDeCampeonato(new CampeonatoLiga(idCampeonato));
+    }
+
+    public static List<FechaCampeonato> getFixtureCampeonato(int idCampeonato, int fecha)
+    {
+        List<FechaCampeonato> fixture = new List<FechaCampeonato>();
+        if (fecha == -1)
+        {
+            fixture = CampeonatoDAL.getFechasDeCampeonato(new CampeonatoLiga(idCampeonato));
+        }
+        else
+        {
+            //fixture = CampeonatoDAL.getFixtureCampeonato_porFecha(new CampeonatoLiga(idCampeonato), fecha);
+        }
+        return fixture;
+    }
+
+    public static void registrarCampeonato(CampeonatoLiga camp)
+    {
+        try
+        {
+            CampeonatoDAL.insertarCampeonato(camp);
+        }
+        catch (SportingException spEx)
+        {
+            throw spEx;
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Error al registrar un nuevo campeonato." + e.Message);
+        }
+    }
+
+    public static void updateCampeonato(CampeonatoLiga camp)
+    {
+        try
+        {
+            CampeonatoDAL.updateCampeonato(camp);
+        }
+        catch (SportingException spEx)
+        {
+            throw spEx;
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Error al actualizar el campeonato." + e.Message);
+        }
+    }
+
+    public static void deleteCampeonato(string idCamp)
+    {
+        try
+        {
+            CampeonatoDAL.deleteCampeonato(idCamp);
+        }
+        catch (SportingException spEx)
+        {
+            throw spEx;
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Error al eliminar el campeonato." + e.Message);
+        }
+    }
 }

@@ -13,7 +13,7 @@ public class FechaCampeonato
 {
     private int idFecha;
     private int numero;
-    private DateTime fecha;
+    private String descripcion;
     private List<Resultado> resultados;
 
     public FechaCampeonato()
@@ -33,10 +33,10 @@ public class FechaCampeonato
         set { numero = value; }
     }
 
-    public DateTime Fecha
+    public String Descripcion
     {
-        get { return fecha; }
-        set { fecha = value; }
+        get { return descripcion; }
+        set { descripcion = value; }
     }
 
     public List<Resultado> Resultados
