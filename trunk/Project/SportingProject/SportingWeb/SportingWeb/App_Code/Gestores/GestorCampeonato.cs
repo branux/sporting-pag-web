@@ -198,4 +198,57 @@ public class GestorCampeonato
             throw new SportingException("Error al eliminar la fecha de campeonato." + e.Message);
         }
     }
+
+    public static List<EquipoCampeonato> getEquipos()
+    {
+        return CampeonatoDAL.getEquipos();
+    }
+
+    public static void registrarEquipo(EquipoCampeonato equipo)
+    {
+        try
+        {
+            CampeonatoDAL.insertarEquipo(equipo);
+        }
+        catch (SportingException spEx)
+        {
+            throw spEx;
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Error al registrar el equipo." + e.Message);
+        }
+    }
+
+    public static void updateEquipo(EquipoCampeonato equipo)
+    {
+        try
+        {
+            CampeonatoDAL.updateEquipo(equipo);
+        }
+        catch (SportingException spEx)
+        {
+            throw spEx;
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Error al actualizar el equipo." + e.Message);
+        }
+    }
+
+    public static void deleteEquipo(string idEquipo)
+    {
+        try
+        {
+            CampeonatoDAL.deleteEquipo(idEquipo);
+        }
+        catch (SportingException spEx)
+        {
+            throw spEx;
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Error al eliminar el equipo." + e.Message);
+        }
+    }
 }
