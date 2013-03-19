@@ -22,6 +22,7 @@ namespace SportingWeb.Admin
             {
                 cargarCampeonatos();
                 cargarFechas();
+                cargarEquipos();
             }
             else
             {
@@ -116,17 +117,47 @@ namespace SportingWeb.Admin
             return dtCampeonatos;
         }
 
+        private void cargarEquipos()
+        {
+            try
+            {
+                DataTable dtEquipos = new DataTable();
+                dtEquipos.Columns.Add("idEquipo");
+                dtEquipos.Columns.Add("nombre");
+                dtEquipos.Columns.Add("localidad");
+
+                foreach (EquipoCampeonato equipo in GestorCampeonato.getEquipos())
+                {
+                    DataRow row = dtEquipos.NewRow();
+                    row["idEquipo"] = equipo.IdEquipo;
+                    row["nombre"] = equipo.Nombre;
+                    row["localidad"] = equipo.Localidad;
+                    dtEquipos.Rows.Add(row);
+                }
+
+                grillaEquipos.DataSource = dtEquipos;
+                grillaEquipos.DataBind();
+            }
+            catch (Exception er)
+            {
+                setSuccessColorOutput(false);
+                lblOutputEquipo.Text = er.Message;
+            }
+        }
+
         private void setSuccessColorOutput(bool isSuccess)
         {
             if (isSuccess)
             {
                 lblOutputCamp.ForeColor = Color.Green;
                 lblOutputFecha.ForeColor = Color.Green;
+                lblOutputEquipo.ForeColor = Color.Green;
             }
             else
             {
                 lblOutputCamp.ForeColor = Color.Red;
                 lblOutputFecha.ForeColor = Color.Red;
+                lblOutputEquipo.ForeColor = Color.Red;
             }
         }
 
@@ -204,7 +235,7 @@ namespace SportingWeb.Admin
 
             try
             {
-                //Obtengo los valores del nuevo campeoanto
+                //Obtengo los valores del campeoanto
                 if (((TextBox)grillaCampeonatos.Rows[e.RowIndex].FindControl("txtNombre")).Text == "")
                 {
                     throw new SportingException("Campeonato requerido.");
@@ -261,7 +292,7 @@ namespace SportingWeb.Admin
                 GestorCampeonato.deleteCampeonato(idCamp);
                 
                 setSuccessColorOutput(true);
-                lblOutputCamp.Text = "El campeonato fue eliminado con exito";
+                lblOutputCamp.Text = "El campeonato fue eliminado con éxito";
 
                 //Recargo la grilla
                 cargarCampeonatos();
@@ -289,11 +320,6 @@ namespace SportingWeb.Admin
 
             //Limpio el mensaje de salida para asegurarme que no quede uno viejo.
             lblOutputCamp.Text = "";
-        }
-
-        protected void ddlCampeonato_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
         }
 
         protected void grillaFechas_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -456,7 +482,7 @@ namespace SportingWeb.Admin
                 GestorCampeonato.deleteFechaCampeonato(idFecha);
 
                 setSuccessColorOutput(true);
-                lblOutputFecha.Text = "La fecha fue eliminada con exito";
+                lblOutputFecha.Text = "La fecha fue eliminada con éxito";
 
                 //Recargo la grilla
                 cargarFechas();
@@ -483,6 +509,150 @@ namespace SportingWeb.Admin
 
             //Limpio el mensaje de salida para asegurarme que no quede uno viejo.
             lblOutputFecha.Text = "";
+        }
+
+        protected void AddEquipo(object sender, EventArgs e)
+        {
+            EquipoCampeonato equipo = new EquipoCampeonato();
+
+            try
+            {
+                //Obtengo los valores del nuevo equipo
+                if (((TextBox)grillaEquipos.FooterRow.FindControl("txtNombre")).Text == "")
+                {
+                    throw new SportingException("Equipo requerido.");
+                }
+                equipo.Nombre = ((TextBox)grillaEquipos.FooterRow.FindControl("txtNombre")).Text;
+                if (((TextBox)grillaEquipos.FooterRow.FindControl("txtLocalidad")).Text == "")
+                {
+                    throw new SportingException("Localidad requerida.");
+                }
+                equipo.Localidad = ((TextBox)grillaEquipos.FooterRow.FindControl("txtLocalidad")).Text;
+                
+                //Guardo el nuevo equipo
+                GestorCampeonato.registrarEquipo(equipo);
+                setSuccessColorOutput(true);
+                lblOutputEquipo.Text = "Equipo registrado con éxito!";
+
+                //Recargo la grilla
+                cargarEquipos();
+                grillaEquipos.SelectedIndex = -1;
+            }
+            catch (SportingException spEx)
+            {
+                setSuccessColorOutput(false);
+                lblOutputEquipo.Text = spEx.Message;
+            }
+            catch (Exception ex)
+            {
+                setSuccessColorOutput(false);
+                lblOutputEquipo.Text = ex.Message;
+            }
+        }
+
+        protected void EditEquipo(object sender, GridViewEditEventArgs e)
+        {
+            grillaEquipos.EditIndex = e.NewEditIndex;
+            cargarEquipos();
+
+            //Pongo foco en el nombre del Equipo
+            ((TextBox)grillaEquipos.Rows[e.NewEditIndex].FindControl("txtNombre")).Focus();
+
+            //Limpio el mensaje de salida para asegurarme que no quede uno viejo.
+            lblOutputEquipo.Text = "";
+        }
+
+        protected void CancelarEquipo(object sender, GridViewCancelEditEventArgs e)
+        {
+            grillaEquipos.EditIndex = -1;
+            cargarEquipos();
+
+            //Limpio el mensaje de salida para asegurarme que no quede uno viejo.
+            lblOutputEquipo.Text = "";
+        }
+
+        protected void UpdateEquipo(object sender, GridViewUpdateEventArgs e)
+        {
+            EquipoCampeonato equipo = new EquipoCampeonato();
+
+            try
+            {
+                //Obtengo los valores del equipo
+                if (((TextBox)grillaEquipos.Rows[e.RowIndex].FindControl("txtNombre")).Text == "")
+                {
+                    throw new SportingException("Equipo requerido.");
+                }
+                equipo.Nombre = ((TextBox)grillaEquipos.Rows[e.RowIndex].FindControl("txtNombre")).Text;
+                if (((TextBox)grillaEquipos.Rows[e.RowIndex].FindControl("txtLocalidad")).Text == "")
+                {
+                    throw new SportingException("Localidad requerida.");
+                }
+                equipo.Localidad = ((TextBox)grillaEquipos.Rows[e.RowIndex].FindControl("txtLocalidad")).Text;
+                equipo.IdEquipo = Convert.ToInt32(((Label)grillaEquipos.Rows[e.RowIndex].FindControl("lblIdEquipo")).Text);
+
+                //Modifico un equipo existente
+                GestorCampeonato.updateEquipo(equipo);
+                setSuccessColorOutput(true);
+                lblOutputEquipo.Text = "Equipo actualizado con éxito!";
+
+                //Recargo la grilla
+                grillaEquipos.EditIndex = -1;
+                cargarEquipos();
+            }
+            catch (SportingException spEx)
+            {
+                setSuccessColorOutput(false);
+                lblOutputEquipo.Text = spEx.Message;
+            }
+            catch (Exception ex)
+            {
+                setSuccessColorOutput(false);
+                lblOutputEquipo.Text = ex.Message;
+            }
+        }
+
+        protected void BorrarEquipo(object sender, EventArgs e)
+        {
+            //Limpio el mensaje de salida para asegurarme que no quede uno viejo.
+            lblOutputEquipo.Text = "";
+
+            try
+            {
+                //Obtengo el id del equipo a borrar
+                LinkButton lnkRemoveEquipo = (LinkButton)sender;
+                String idEquipo = lnkRemoveEquipo.CommandArgument;
+
+                //Borro el equipo en BD
+                GestorCampeonato.deleteEquipo(idEquipo);
+
+                setSuccessColorOutput(true);
+                lblOutputEquipo.Text = "El equipo fue eliminado con éxito";
+
+                //Recargo la grilla
+                cargarEquipos();
+                grillaEquipos.SelectedIndex = -1;
+            }
+            catch (SportingException spEx)
+            {
+                setSuccessColorOutput(false);
+                lblOutputEquipo.Text = spEx.Message;
+            }
+            catch (Exception ex)
+            {
+                setSuccessColorOutput(false);
+                lblOutputEquipo.Text = ex.Message;
+            }
+        }
+
+        protected void OnPagingEquipo(object sender, GridViewPageEventArgs e)
+        {
+            //Pagination
+            cargarEquipos();
+            grillaEquipos.PageIndex = e.NewPageIndex;
+            grillaEquipos.DataBind();
+
+            //Limpio el mensaje de salida para asegurarme que no quede uno viejo.
+            lblOutputEquipo.Text = "";
         }
     }
 }

@@ -71,14 +71,10 @@
                 
                 <asp:Label ID="lblOutputCamp" runat="server" ForeColor="Red"></asp:Label>
             </ContentTemplate>
-            
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID = "grillaCampeonatos" />
-                
             </Triggers>
-            
         </asp:UpdatePanel>
-        
     </div>
     
     <!-Administrar Fechas->
@@ -112,8 +108,7 @@
                                 <asp:Label ID="lblIdCamp" runat="server" Text='<%# Eval("idCamp")%>' Visible="false"></asp:Label>
                             </EditItemTemplate> 
                             <FooterTemplate>
-                                <asp:DropDownList runat="server" id="ddlCampeonato" AutoPostBack="false"
-                                    OnSelectedIndexChanged="ddlCampeonato_SelectedIndexChanged">
+                                <asp:DropDownList runat="server" id="ddlCampeonato" AutoPostBack="false">
                                 </asp:DropDownList>
                             </FooterTemplate>
                         </asp:TemplateField>
@@ -164,9 +159,77 @@
             
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID = "grillaFechas" />
-                
             </Triggers>
-            
+        </asp:UpdatePanel>
+    </div>
+    
+    <!-Administrar Equipos->
+    <div id="divGridABMEquipos" style="padding:10px;width:100%">
+        <h3>Administrar Equipos</h3>
+        <asp:UpdatePanel ID="UpdatePanelEquipos" runat="server">
+            <ContentTemplate>
+                <asp:GridView ID="grillaEquipos" runat="server"  Width="300px"
+                AutoGenerateColumns="false" Font-Names="Arial" Font-Size="11pt" 
+                RowStyle-BackColor="#000000" HeaderStyle-BackColor="green" 
+                AllowPaging="true"  ShowFooter="true" OnPageIndexChanging = "OnPagingEquipo" 
+                onrowediting="EditEquipo" onrowupdating="UpdateEquipo" onrowcancelingedit="CancelarEquipo"
+                PageSize = "10" >
+                    <Columns>
+                        <asp:TemplateField ItemStyle-Width = "30px"  HeaderText = "Id" Visible="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lblIdEquipo" runat="server" Text='<%# Eval("idEquipo")%>'></asp:Label>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                <asp:TextBox ID="txtIdEquipo" Width="40px" MaxLength="5" runat="server"></asp:TextBox>
+                            </FooterTemplate>
+                        </asp:TemplateField>
+                        
+                        <asp:TemplateField ItemStyle-Width = "150px"  HeaderText = "Equipo">
+                            <ItemTemplate>
+                                <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("nombre")%>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtNombre" runat="server" Text='<%# Eval("nombre")%>'></asp:TextBox>
+                            </EditItemTemplate> 
+                            <FooterTemplate>
+                                <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
+                            </FooterTemplate>
+                        </asp:TemplateField>
+                        
+                        <asp:TemplateField ItemStyle-Width = "120px"  HeaderText = "Localidad">
+                            <ItemTemplate>
+                                <asp:Label ID="lblLocalidad" runat="server" Text='<%# Eval("localidad")%>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtLocalidad" runat="server" Text='<%# Eval("localidad")%>'></asp:TextBox>
+                            </EditItemTemplate> 
+                            <FooterTemplate>
+                                <asp:TextBox ID="txtLocalidad" runat="server"></asp:TextBox>
+                            </FooterTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lnkRemoveEquipo" runat="server"
+                                    CommandArgument = '<%# Eval("idEquipo")%>'
+                                 OnClientClick = "return confirm('Esta seguro que desea borrar el equipo?')"
+                                Text = "Eliminar" OnClick = "BorrarEquipo"></asp:LinkButton>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                <asp:Button ID="btnAdd" runat="server" Text="Agregar"
+                                    OnClick = "AddEquipo" />
+                            </FooterTemplate>
+                        </asp:TemplateField>
+                        
+                        <asp:CommandField  ShowEditButton="True" />
+                    </Columns>
+                </asp:GridView>                
+                
+                <asp:Label ID="lblOutputEquipo" runat="server" ForeColor="Red"></asp:Label>
+            </ContentTemplate>
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID = "grillaEquipos" />
+            </Triggers>
         </asp:UpdatePanel>
     </div>
     

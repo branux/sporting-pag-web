@@ -412,4 +412,124 @@ public class CampeonatoDAL
             cmd.Connection.Close();
         }
     }
+
+    public static List<EquipoCampeonato> getEquipos()
+    {
+        OdbcConnection conexion = null;
+        OdbcCommand cmd = null;
+        List<EquipoCampeonato> equipos = new List<EquipoCampeonato>();
+        try
+        {
+            conexion = ConexionBD.ObtenerConexion();
+            String getEquipos = "SELECT id, nombre, localidad FROM equipo ";
+
+            cmd = new OdbcCommand(getEquipos, conexion);
+
+            OdbcDataAdapter da = new OdbcDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            EquipoCampeonato equipo;
+            foreach (DataRow row in dt.Rows)
+            {
+                equipo = new EquipoCampeonato();
+                equipo.IdEquipo = Convert.ToInt32(row["id"].ToString());
+                equipo.Nombre = row["nombre"].ToString();
+                equipo.Localidad = row["localidad"].ToString();
+                equipos.Add(equipo);
+            }
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Ocurrio un error al intentar obtener los equipos. " + e.Message);
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+        return equipos;
+    }
+
+    public static void insertarEquipo(EquipoCampeonato equipo)
+    {
+        OdbcConnection conexion = null;
+        OdbcCommand cmd = null;
+        try
+        {
+            if (equipo == null)
+            {
+                throw new SportingException("Error al registrar nuevo equipo. Equipo sin información.");
+            }
+            conexion = ConexionBD.ObtenerConexion();
+
+            //Guardo los datos del equipo
+            String insertarEquipo = " INSERT INTO equipo (nombre, localidad)" +
+                                         " VALUES ('" + equipo.Nombre + "', '" + equipo.Localidad + "')";
+            cmd = new OdbcCommand(insertarEquipo, conexion);
+            cmd.ExecuteNonQuery();
+            conexion.Close();
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+
+    public static void updateEquipo(EquipoCampeonato equipo)
+    {
+        OdbcConnection conexion = null;
+        OdbcCommand cmd = null;
+        try
+        {
+            if (equipo == null)
+            {
+                throw new SportingException("Error al actualizar el equipo. Equipo sin información.");
+            }
+            conexion = ConexionBD.ObtenerConexion();
+
+            //Actualizo los datos del equipo
+            String updateEquipo = "UPDATE equipo set nombre='" + equipo.Nombre +
+                                    "', localidad = '" + equipo.Localidad + "' WHERE id = " +
+                                    equipo.IdEquipo.ToString();
+            cmd = new OdbcCommand(updateEquipo, conexion);
+            cmd.ExecuteNonQuery();
+            conexion.Close();
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+
+    public static void deleteEquipo(string idEquipo)
+    {
+        OdbcConnection conexion = null;
+        OdbcCommand cmd = null;
+        try
+        {
+            conexion = ConexionBD.ObtenerConexion();
+
+            String deleteEquipo = "DELETE FROM equipo WHERE id = " + idEquipo.ToString();
+
+            cmd = new OdbcCommand(deleteEquipo, conexion);
+            cmd.ExecuteNonQuery();
+            conexion.Close();
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Ocurrio un error al intentar borrar el equipo. " + e.Message);
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
 }
