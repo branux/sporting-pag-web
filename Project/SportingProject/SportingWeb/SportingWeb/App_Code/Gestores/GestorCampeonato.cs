@@ -150,4 +150,52 @@ public class GestorCampeonato
             throw new SportingException("Error al eliminar el campeonato." + e.Message);
         }
     }
+
+    public static void registrarFechaCampeonato(FechaCampeonato fechaCamp)
+    {
+        try
+        {
+            CampeonatoDAL.insertarFecha(fechaCamp);
+        }
+        catch (SportingException spEx)
+        {
+            throw spEx;
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Error al registrar una fecha de campeonato." + e.Message);
+        }
+    }
+
+    public static void updateFechaCampeonato(FechaCampeonato fechaCamp)
+    {
+        try
+        {
+            CampeonatoDAL.updateFecha(fechaCamp);
+        }
+        catch (SportingException spEx)
+        {
+            throw spEx;
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Error al actualizar la fecha de campeonato." + e.Message);
+        }
+    }
+
+    public static void deleteFechaCampeonato(string idFecha)
+    {
+        try
+        {
+            CampeonatoDAL.deleteFecha(idFecha);
+        }
+        catch (SportingException spEx)
+        {
+            throw spEx;
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Error al eliminar la fecha de campeonato." + e.Message);
+        }
+    }
 }

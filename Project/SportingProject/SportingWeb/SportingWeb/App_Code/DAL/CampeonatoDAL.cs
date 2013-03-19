@@ -257,7 +257,7 @@ public class CampeonatoDAL
             }
             conexion = ConexionBD.ObtenerConexion();
 
-            //Guardo los datos del jugador
+            //Guardo los datos del campeonato
             String insertarCamperonato = " INSERT INTO campeonato (nombre, anio)" +
                                          " VALUES ('" + camp.Nombre + "', " + camp.Anio + ")";
             cmd = new OdbcCommand(insertarCamperonato, conexion);
@@ -321,6 +321,91 @@ public class CampeonatoDAL
         catch (Exception e)
         {
             throw new SportingException("Ocurrio un error al intentar borrar el campeonato. " + e.Message);
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+
+    public static void insertarFecha(FechaCampeonato fechaCamp)
+    {
+        OdbcConnection conexion = null;
+        OdbcCommand cmd = null;
+        try
+        {
+            if (fechaCamp == null)
+            {
+                throw new SportingException("Error al registrar nueva fecha de campeonato. Fecha sin información.");
+            }
+            conexion = ConexionBD.ObtenerConexion();
+
+            //Guardo los datos de la fecha
+            String insertarFecha = " INSERT INTO fecha_campeonato (numero, descripcion, idCampeonato)" +
+                                         " VALUES (" + fechaCamp.Numero + ", '" + fechaCamp.Descripcion +
+                                         "' , " + fechaCamp.IdCampeonato + ")";
+            cmd = new OdbcCommand(insertarFecha, conexion);
+            cmd.ExecuteNonQuery();
+            conexion.Close();
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+
+    public static void updateFecha(FechaCampeonato fechaCamp)
+    {
+        OdbcConnection conexion = null;
+        OdbcCommand cmd = null;
+        try
+        {
+            if (fechaCamp == null)
+            {
+                throw new SportingException("Error al actualizar la fecha de campeonato. Fecha sin información.");
+            }
+            conexion = ConexionBD.ObtenerConexion();
+
+            //Actualizo los datos de la fecha de campeonato
+            String updateFecha = "UPDATE fecha_campeonato set numero=" + fechaCamp.Numero +
+                                    ", descripcion = '" + fechaCamp.Descripcion +
+                                    "', idCampeonato = "+ fechaCamp.IdCampeonato +" WHERE id = " +
+                                    fechaCamp.IdFecha.ToString();
+            cmd = new OdbcCommand(updateFecha, conexion);
+            cmd.ExecuteNonQuery();
+            conexion.Close();
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+
+    public static void deleteFecha(string idFecha)
+    {
+        OdbcConnection conexion = null;
+        OdbcCommand cmd = null;
+        try
+        {
+            conexion = ConexionBD.ObtenerConexion();
+
+            String deleteFecha = "DELETE FROM fecha_campeonato WHERE id = " + idFecha.ToString();
+
+            cmd = new OdbcCommand(deleteFecha, conexion);
+            cmd.ExecuteNonQuery();
+            conexion.Close();
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Ocurrio un error al intentar borrar la fecha de campeonato. " + e.Message);
         }
         finally
         {
