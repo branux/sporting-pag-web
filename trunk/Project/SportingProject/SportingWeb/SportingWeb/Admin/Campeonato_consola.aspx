@@ -91,7 +91,7 @@
                 RowStyle-BackColor="#000000" HeaderStyle-BackColor="green" 
                 AllowPaging="true"  ShowFooter="true" OnPageIndexChanging = "OnPagingFechas" 
                 onrowediting="EditFecha" onrowupdating="UpdateFecha" onrowcancelingedit="CancelarFecha"
-                PageSize = "10" >
+                PageSize = "10" onrowdatabound="grillaFechas_RowDataBound" >
                     <Columns>
                         <asp:TemplateField ItemStyle-Width = "30px"  HeaderText = "Id" Visible="false">
                             <ItemTemplate>
@@ -107,10 +107,12 @@
                                 <asp:Label ID="lblCampeonato" runat="server" Text='<%# Eval("campeonato")%>'></asp:Label>
                             </ItemTemplate>
                             <EditItemTemplate>
-                                <asp:TextBox ID="txtCampeonato" Width="40px" runat="server"></asp:TextBox>
+                                <asp:DropDownList runat="server" id="ddlCampeonato_edit" AutoPostBack="false">
+                                </asp:DropDownList>
+                                <asp:Label ID="lblIdCamp" runat="server" Text='<%# Eval("idCamp")%>' Visible="false"></asp:Label>
                             </EditItemTemplate> 
                             <FooterTemplate>
-                                <asp:DropDownList runat="server" id="ddlCampeonato" AutoPostBack="true"
+                                <asp:DropDownList runat="server" id="ddlCampeonato" AutoPostBack="false"
                                     OnSelectedIndexChanged="ddlCampeonato_SelectedIndexChanged">
                                 </asp:DropDownList>
                             </FooterTemplate>

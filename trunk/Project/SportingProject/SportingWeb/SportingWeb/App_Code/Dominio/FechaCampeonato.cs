@@ -15,6 +15,13 @@ public class FechaCampeonato
     private int numero;
     private String descripcion;
     private List<Resultado> resultados;
+    private int idCampeonato; //Se usa para el ABM fecha cuando se crea una fecha saber a que camp corresponde.
+
+    public int IdCampeonato
+    {
+        get { return idCampeonato; }
+        set { idCampeonato = value; }
+    }
 
     public FechaCampeonato()
     {
