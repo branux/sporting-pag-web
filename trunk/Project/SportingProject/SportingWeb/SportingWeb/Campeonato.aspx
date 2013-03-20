@@ -21,6 +21,9 @@
                             <asp:GridView ID="gridTablaPosiciones" rules="none" runat="server" 
                                 GridLines="Horizontal" >
                             </asp:GridView>
+                            <asp:GridView ID="gridTablaFixture" rules="none" runat="server" 
+                                GridLines="Horizontal" >
+                            </asp:GridView>
                         </div> 
                     </div> 
                 </form>

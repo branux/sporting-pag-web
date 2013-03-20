@@ -23,6 +23,7 @@ function cargarCampeonato() {
                     }); 
               },
               failure: function(msg) {
+                alert(msg);
                 $('#fixture').text(msg);
               }
         });

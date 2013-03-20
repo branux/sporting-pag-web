@@ -38,7 +38,7 @@ public partial class Default : System.Web.UI.Page
 
     private void cargarNoticiasLaterales()
     {
-        List<Noticia> noticias = GestorNoticias.getNoticiasLaterales();
+       /* List<Noticia> noticias = GestorNoticias.getNoticiasLaterales();
         if (noticias[0] != null)
         {
             cargarNoticiaLateral1(noticias[0]);
@@ -46,10 +46,10 @@ public partial class Default : System.Web.UI.Page
         if (noticias[1] != null)
         {
             cargarNoticiaLateral2(noticias[1]);
-        }
+        }*/
     }
 
-    private void cargarNoticiaLateral1(Noticia not)
+    /*private void cargarNoticiaLateral1(Noticia not)
     {
         lblTituloLateral1.Text = not.Titulo;
         lblDescripcionLateral1.Text = not.Descripcion;
@@ -65,6 +65,6 @@ public partial class Default : System.Web.UI.Page
         imgLateral2.ImageUrl = not.GetPortada().PathSmall;
         idNoticiaLateral2 = not.IdNoticia.ToString();
         pathBigLateral2 = not.GetPortada().PathBig;
-    }
+    }*/
 }
 
