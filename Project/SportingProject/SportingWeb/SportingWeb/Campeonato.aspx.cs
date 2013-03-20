@@ -68,7 +68,7 @@ public partial class Campeonato : System.Web.UI.Page
         }
     }
 
-    /*protected void cargarFixture()
+   /* protected void cargarFixture()
     {
         try
         {
@@ -81,18 +81,21 @@ public partial class Campeonato : System.Web.UI.Page
 
             CampeonatoLiga campeonatoactual = GestorCampeonato.getCampeonatoActual();
 
-            foreach (FechaCampeonato res in campeonatoactual.ListaFechas)
+            foreach (FechaCampeonato fecha in campeonatoactual.ListaFechas)
             {
-                DataRow row = dtTablaFixture.NewRow();
-                row["local"] = res.EquipoLocal.Nombre;
-                row["puntosLocal"] = res.EquipoLocalPuntos;
-                row["puntosVisitante"] = res.EquipoVisitantePuntos;
-                row["visitante"] = res.EquipoVisitante.Nombre;
+                foreach (Resultado res in fecha.Resultados)
+                {
+                    DataRow row = dtTablaFixture.NewRow();
+                    row["local"] = res.EquipoLocal.Nombre;
+                    row["puntosLocal"] = res.EquipoLocalPuntos;
+                    row["puntosVisitante"] = res.EquipoVisitantePuntos;
+                    row["visitante"] = res.EquipoVisitante.Nombre;
 
-                dtTablaFixture.Rows.Add(row);
+                    dtTablaFixture.Rows.Add(row);
+                }
             }
-            gridFixture.DataSource = dtTablaFixture;
-            gridFixture.DataBind();
+            gridTablaFixture.DataSource = dtTablaFixture;
+            gridTablaFixture.DataBind();
         }
         catch (Exception er)
         {

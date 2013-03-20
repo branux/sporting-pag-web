@@ -6,7 +6,6 @@
 }
 #sliderContent {
     width: 650px; /* important to be same as image width or wider */
-    position: absolute;
 	top: 0;
 	float:right;
 	/*margin-left: 5%;	*/

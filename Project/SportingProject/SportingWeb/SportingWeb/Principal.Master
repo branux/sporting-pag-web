@@ -45,7 +45,29 @@
                             <li class="btnContacto"><a href="Contacto.aspx">Contacto</a></li>
                         </ul>
 		            </div> <!-- end of menu -->               
-               </div> <!-- end of banner -->              
+               </div> <!-- end of banner -->   
+               <div id="side_column">
+        
+        	<div class="side_column_box">
+				
+            	<h2>Auspiciantes</h2>
+                     <div class="side_column_box_content">
+                	    <div class="news_section">
+                            <h3><a href=""> <asp:Label ID="lblTituloLateral1" runat="server"></asp:Label></a></h3>
+                            <a><asp:Image ID="imgLateral1" class="image_wrapper" runat="server" ImageUrl=""/></a>
+                            <p><asp:Label ID="lblDescripcionLateral1" runat="server"></asp:Label></p>
+                       </div>
+                            
+                        <div class="news_section">
+                            <h3><a href=""> <asp:Label ID="lblTituloLateral2" runat="server"></asp:Label></a></h3>
+                            <a><asp:Image ID="imgLateral2" class="image_wrapper" runat="server" ImageUrl=""/></a>
+                            <p><asp:Label ID="lblDescripcionLateral2" runat="server"></asp:Label></p>
+                       </div>
+                </div>
+                <div class="bottom"></div>
+            </div>
+            
+        </div> <!-- end of side column -->           
                <asp:ContentPlaceHolder ID="CPHBody" runat="server">
                 </asp:ContentPlaceHolder>                
                 <div id="templatemo_footer">              
