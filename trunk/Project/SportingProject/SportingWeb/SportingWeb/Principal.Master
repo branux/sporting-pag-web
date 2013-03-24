@@ -20,12 +20,13 @@
     <script type="text/javascript" src="../Scripts/s3Slider.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.tinyscrollbar.min.js"></script>
     <script type="text/javascript" src="../Scripts/noticia.js"></script>
-    
+    <script type="text/javascript" src="../Scripts/jquery.pajinate.min.js"></script>
+     <script type="text/javascript" src="../Scripts/currentPage.js"></script>
     <link rel="stylesheet" type="text/css" href="../Styles/jquery.lightbox-0.5.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="../Styles/GaleriaImagenes.css"/>
     <link href="Styles/Principal.css" rel="stylesheet" type="text/css" />
     <link href="Styles/S3Slider.css" rel="stylesheet" type="text/css" />
-  
+    <link href="Styles/pajinate.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div id="templatemo_container_wrapper">
@@ -41,7 +42,7 @@
                             <li class="btnEquipo"><a href="Equipo.aspx">Equipo</a></li>
                             <li class="btnNoticias"><a href="ListaNoticias.aspx">Noticias</a></li>
                             <li class="btnCampeonato"><a href="Campeonato.aspx">Campeonato</a></li>
-                            <li class="btnMultimedia"><a href="Multimedia.aspx">Multimedia</a></li>
+                            <li class="btnHistoria"><a href="Historia.aspx">Historia</a></li>
                             <li class="btnContacto"><a href="Contacto.aspx">Contacto</a></li>
                         </ul>
 		            </div> <!-- end of menu -->               
@@ -69,6 +70,7 @@
             
         </div> <!-- end of side column -->           
                <asp:ContentPlaceHolder ID="CPHBody" runat="server">
+               
                 </asp:ContentPlaceHolder>                
                 <div id="templatemo_footer">              
                     <div id="templatemo_footer_bar">                  
@@ -77,7 +79,7 @@
                             <li><a href="Equipo.aspx">Equipo</a></li>
                           <li><a href="ListaNoticias.aspx">Noticias</a></li>
                             <li><a href="Campeonato.aspx">Campeonato</a></li>
-                            <li><a href="Multimedia.aspx">Multimedia</a></li>
+                            <li><a href="Historia.aspx">Historia</a></li>
                             <li class="last_menu"><a href="Contacto.aspx">Contacto</a></li>
                         </ul>
                         Copyright © 2013 <a> COVA Diseño Web</a>                        

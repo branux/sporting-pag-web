@@ -18,6 +18,7 @@ public partial class Campeonato : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            currentPage.Value = "Campeonato";
             cargarTablaPosiciones();
             formatearTablaPosiciones();
         }
@@ -67,41 +68,5 @@ public partial class Campeonato : System.Web.UI.Page
             throw er;
         }
     }
-
-   /* protected void cargarFixture()
-    {
-        try
-        {
-            DataTable dtTablaFixture = new DataTable();
-            dtTablaFixture.Columns.Add("local");
-            dtTablaFixture.Columns.Add("puntosLocal");
-            dtTablaFixture.Columns.Add("puntosVisitante");
-            dtTablaFixture.Columns.Add("visitante");
-            
-
-            CampeonatoLiga campeonatoactual = GestorCampeonato.getCampeonatoActual();
-
-            foreach (FechaCampeonato fecha in campeonatoactual.ListaFechas)
-            {
-                foreach (Resultado res in fecha.Resultados)
-                {
-                    DataRow row = dtTablaFixture.NewRow();
-                    row["local"] = res.EquipoLocal.Nombre;
-                    row["puntosLocal"] = res.EquipoLocalPuntos;
-                    row["puntosVisitante"] = res.EquipoVisitantePuntos;
-                    row["visitante"] = res.EquipoVisitante.Nombre;
-
-                    dtTablaFixture.Rows.Add(row);
-                }
-            }
-            gridTablaFixture.DataSource = dtTablaFixture;
-            gridTablaFixture.DataBind();
-        }
-        catch (Exception er)
-        {
-            //lblOutput.Text = "Error al cargar fixture " + er.Message;
-            throw er;
-        }
-    }*/
 }
 

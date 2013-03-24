@@ -10,8 +10,7 @@
 
 
 
-public partial class Equipo
-{
+public partial class Equipo {
     
     /// <summary>
     /// Control jugadoresPlantel.
@@ -21,4 +20,13 @@ public partial class Equipo
     /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     /// </remarks>
     protected global::System.Web.UI.HtmlControls.HtmlInputHidden jugadoresPlantel;
+    
+    /// <summary>
+    /// Control currentPage.
+    /// </summary>
+    /// <remarks>
+    /// Campo generado automáticamente.
+    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    /// </remarks>
+    protected global::System.Web.UI.HtmlControls.HtmlInputHidden currentPage;
 }

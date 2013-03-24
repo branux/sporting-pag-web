@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" CodeBehind="Contacto.aspx.cs" Inherits="Contacto" Title="Contacto" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="CPHBody" runat="server">
-
+    <input id="currentPage" type="hidden" runat="Server"/>
     <div id="templatemo_content">      
         <div id="side_column">
             <div class="side_column_box">

@@ -19,6 +19,7 @@ public partial class ListaNoticias : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            currentPage.Value = "Noticias";
             cargarNoticias();
         }
     }

@@ -8,16 +8,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-
-
-public partial class Contacto {
+namespace SportingWeb {
     
-    /// <summary>
-    /// Control currentPage.
-    /// </summary>
-    /// <remarks>
-    /// Campo generado automáticamente.
-    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    /// </remarks>
-    protected global::System.Web.UI.HtmlControls.HtmlInputHidden currentPage;
+    
+    public partial class Historia {
+        
+        /// <summary>
+        /// Control currentPage.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden currentPage;
+    }
 }

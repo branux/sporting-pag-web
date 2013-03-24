@@ -260,9 +260,9 @@ h4 {
 	padding-right:1px;
 }
 
-.btnMultimedia
+.btnHistoria
 {
-	padding-left:513px;
+	padding-left:524px;
 	padding-right:1px;
 }
 
@@ -409,12 +409,12 @@ main_column_lista_noticias
 
 .itemNoticia
 {
-	border-bottom: 1px dotted #CCCCCC;
+	-bottom: 1px dotted #CCCCCC;
 	clear: both;
 	margin-bottom: 10px;
 	overflow: hidden;
 	padding-bottom: 10px;
-	text-align: left !important; 
+	text-align: left !important;
 }
 
 .itemNoticia img
@@ -546,11 +546,6 @@ p.caption span big {
 	border-collapse:collapse;
 }
 
-.tablaPosiciones 
-{
-
-}
-
 .fechaCampeonato
 {
 	font-size:14px;
@@ -604,14 +599,15 @@ p.caption span big {
 {
 	clear:both;
 	float:left;
-	/*width:50%;*/
+	margin-left:150px;
 	background: url(../Images/campeonato/fondoFixture.png);
 }
 #tablaPosiciones
 {
-	float:right;
 	background: url(../Images/campeonato/fondoFixture.png);
 	text-align:center;
 	width:50%;
+	margin-left:150px;
+	padding-top:10px;
 }
 /* end campeonato*/

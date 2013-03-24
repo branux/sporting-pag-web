@@ -22,6 +22,7 @@ public partial class Equipo : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
+            currentPage.Value = "Equipo";
             cargarPlantel();
         }
     }
