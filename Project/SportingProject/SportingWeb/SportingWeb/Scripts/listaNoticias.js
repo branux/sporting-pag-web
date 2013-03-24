@@ -1,6 +1,5 @@
 ﻿$(document).ready(function() {
         getNoticias();	
-        showScroll();
 });
 
 function getNoticias() {
@@ -12,19 +11,20 @@ function getNoticias() {
               dataType: "json",
               success: function(response) {
                     var noticias = response.d;
-                    $('#grillaNoticias').empty();
+                    $('#pageNoticias').empty();
                     $.each(noticias, function(index, not) {
-                        $('#grillaNoticias').append('<p><div class="itemNoticia">' +
+                       $('#pageNoticias').append('<li><p><div class="itemNoticia">' +
                                                         '<img src="'+getPortada(not.Imagenes)+'"/>' +
                                                         '<h3>' + not.Titulo + '</h3>' +
                                                         '<p>' + not.Descripcion + '</p>' +
-                                                    '</div></p>');
+                                                    '</div></p></li>');
                     });
               },
               failure: function(msg) {
-                $('#grillaNoticias').text(msg);
+                $('#pageNoticias').text(msg);
               }
         });
+        paginar();
   };
   
   function getPortada(imagenes) {
@@ -42,7 +42,19 @@ function getNoticias() {
         return portada.PathSmall;
   };
   
-  function showScroll() {
-        //$('#scrollbar1').tinyscrollbar();	
-  };
-
+function paginar(){
+    $('#pageNoticias').addClass('content'); 
+    $.ajax({
+        target:'#paging_container',
+        success: function() {
+            $('#paging_container').pajinate({
+                items_per_page : 3,
+                num_page_links_to_display : 3,
+                nav_label_first : '&laquo;',
+                nav_label_prev : '<',
+                nav_label_next : '>',
+                nav_label_last : '&raquo;'
+            });
+        }
+    });  
+};

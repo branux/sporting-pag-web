@@ -1,8 +1,9 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" CodeBehind="Equipo.aspx.cs" Inherits="Equipo" Title="Equipo" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="CPHBody" runat="server">
      <script type="text/javascript" src="../Scripts/plantel.js"></script>
+    
      <input id="jugadoresPlantel" type="hidden" runat="Server"/>
-     
+     <input id="currentPage" type="hidden" runat="Server"/>
      <div id="templatemo_content">      
     
         <div id="side_column">

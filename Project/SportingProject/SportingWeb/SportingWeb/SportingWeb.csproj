@@ -141,6 +141,13 @@
     <Compile Include="Equipo.aspx.designer.cs">
       <DependentUpon>Equipo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Historia.aspx.cs">
+      <DependentUpon>Historia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Historia.aspx.designer.cs">
+      <DependentUpon>Historia.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ListaNoticias.aspx.cs">
       <DependentUpon>ListaNoticias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -206,7 +213,11 @@
     <Content Include="Admin\Equipo_consola.aspx" />
     <Content Include="Admin\Fixture_consola.aspx" />
     <Content Include="Admin\Campeonato_consola.aspx" />
+    <Content Include="Historia.aspx" />
+    <Content Include="Scripts\currentPage.js" />
+    <Content Include="Scripts\jquery.pajinate.min.js" />
     <Content Include="Styles\Consola.css" />
+    <Content Include="Styles\pajinate.css" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

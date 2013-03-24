@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" Inherits="Default" Title="Sporting Club" Codebehind="Default.aspx.cs" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="CPHBody" runat="server">
+ <input id="currentPage" type="hidden" runat="Server"/>
  <div id="templatemo_content">
     
         <div id="main_column">

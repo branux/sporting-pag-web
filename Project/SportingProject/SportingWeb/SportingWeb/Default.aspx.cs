@@ -25,6 +25,7 @@ public partial class Default : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
+            currentPage.Value = "Inicio";
             cargarNoticiasPrincipales();
             cargarNoticiasLaterales();
         }
