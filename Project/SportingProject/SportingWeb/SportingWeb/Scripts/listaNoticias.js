@@ -15,7 +15,7 @@ function getNoticias() {
                     $.each(noticias, function(index, not) {
                        $('#pageNoticias').append('<li><p><div class="itemNoticia">' +
                                                         '<img src="'+getPortada(not.Imagenes)+'"/>' +
-                                                        '<h3>' + not.Titulo + '</h3>' +
+                                                        '<h3><a href="TemplateNoticia.aspx?id='+not.IdNoticia+'">' + not.Titulo + '</a></h3>' +
                                                         '<p>' + not.Descripcion + '</p>' +
                                                     '</div></p></li>');
                     });

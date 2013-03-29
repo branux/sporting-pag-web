@@ -1,14 +1,14 @@
 ﻿/* jQuery lightBox plugin - Gallery style */
 #gallery 
 {
-	/*padding:50px;*/
+	float:left;
+	padding-top: 35px;
 }
 #gallery ul { list-style: none; }
 .imagenNoticia {
 	border: 5px solid #3e3e3e;
 	height:150px;
 	width:150px;
-	margin-left:50px;
 }
 .imagenNoticia:hover{
 	border: 5px solid #fff;

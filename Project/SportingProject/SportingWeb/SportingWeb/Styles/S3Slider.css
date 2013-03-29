@@ -1,20 +1,24 @@
-﻿#slider {
+﻿
+#slider {
     width: 650px; /* important to be same as image width */
     height: 400px; /* important to be same as image height */
     position: relative; /* important */
 	overflow: hidden; /* important */
 }
+
 #sliderContent {
     width: 650px; /* important to be same as image width or wider */
 	top: 0;
 	float:right;
 	/*margin-left: 5%;	*/
 }
+
 .sliderImage {
     float: left;
     position: relative;
 	display: none;
 }
+
 .sliderImage span {
     position: absolute;
 	font: 14px/15px Arial, Helvetica, sans-serif;
@@ -31,6 +35,8 @@
 .clear {
 	clear: both;
 }
+
+.auspiciantesImage span strong,
 .sliderImage span strong {
     font-size: 20px;
     color: #DB550C;

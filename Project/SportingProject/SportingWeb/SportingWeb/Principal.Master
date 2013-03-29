@@ -21,12 +21,15 @@
     <script type="text/javascript" src="../Scripts/jquery.tinyscrollbar.min.js"></script>
     <script type="text/javascript" src="../Scripts/noticia.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.pajinate.min.js"></script>
-     <script type="text/javascript" src="../Scripts/currentPage.js"></script>
+    <script type="text/javascript" src="../Scripts/currentPage.js"></script>
+    <script type="text/javascript" src="../Scripts/responsiveSlides.js"></script>
+    <script type="text/javascript" src="../Scripts/multimedia.js"></script>
     <link rel="stylesheet" type="text/css" href="../Styles/jquery.lightbox-0.5.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="../Styles/GaleriaImagenes.css"/>
     <link href="Styles/Principal.css" rel="stylesheet" type="text/css" />
     <link href="Styles/S3Slider.css" rel="stylesheet" type="text/css" />
     <link href="Styles/pajinate.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/ResponsiveSlides.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div id="templatemo_container_wrapper">
@@ -47,31 +50,28 @@
                         </ul>
 		            </div> <!-- end of menu -->               
                </div> <!-- end of banner -->   
-               <div id="side_column">
-        
-        	<div class="side_column_box">
-				
-            	<h2>Auspiciantes</h2>
-                     <div class="side_column_box_content">
-                	    <div class="news_section">
-                            <h3><a href=""> <asp:Label ID="lblTituloLateral1" runat="server"></asp:Label></a></h3>
-                            <a><asp:Image ID="imgLateral1" class="image_wrapper" runat="server" ImageUrl=""/></a>
-                            <p><asp:Label ID="lblDescripcionLateral1" runat="server"></asp:Label></p>
-                       </div>
-                            
-                        <div class="news_section">
-                            <h3><a href=""> <asp:Label ID="lblTituloLateral2" runat="server"></asp:Label></a></h3>
-                            <a><asp:Image ID="imgLateral2" class="image_wrapper" runat="server" ImageUrl=""/></a>
-                            <p><asp:Label ID="lblDescripcionLateral2" runat="server"></asp:Label></p>
-                       </div>
-                </div>
-                <div class="bottom"></div>
-            </div>
+               <div id="side_without_food">
+                   <div id="side_column">
             
-        </div> <!-- end of side column -->           
-               <asp:ContentPlaceHolder ID="CPHBody" runat="server">
+        	            <div class="side_column_box">
+        				
+            	        <h2>Auspiciantes</h2>
+                        <div class="side_column_box_content">
+                                <ul id="auspiciantes" class="rslides">
+
+                                </ul>
+                        </div>
+                        <div class="bottom"></div>
+                    </div>
+                
+                 </div> <!-- end of side column -->
+             </div>   
+                <div id="main_without_foot">
+                    <asp:ContentPlaceHolder ID="CPHBody" runat="server">
                
-                </asp:ContentPlaceHolder>                
+                    </asp:ContentPlaceHolder>
+                </div>        
+                               
                 <div id="templatemo_footer">              
                     <div id="templatemo_footer_bar">                  
                         <ul class="footer_menu">

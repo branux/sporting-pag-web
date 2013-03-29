@@ -91,6 +91,7 @@
     <Compile Include="App_Code\DAL\PlantelDAL.cs" />
     <Compile Include="App_Code\DAL\ImagenDAL.cs" />
     <Compile Include="App_Code\DAL\NoticiaDAL.cs" />
+    <Compile Include="App_Code\Dominio\Auspiciante.cs" />
     <Compile Include="App_Code\Dominio\CampeonatoLiga.cs">
     </Compile>
     <Compile Include="App_Code\Dominio\EquipoCampeonato.cs">
@@ -216,8 +217,10 @@
     <Content Include="Historia.aspx" />
     <Content Include="Scripts\currentPage.js" />
     <Content Include="Scripts\jquery.pajinate.min.js" />
+    <Content Include="Scripts\responsiveSlides.js" />
     <Content Include="Styles\Consola.css" />
     <Content Include="Styles\pajinate.css" />
+    <Content Include="Styles\ResponsiveSlides.css" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

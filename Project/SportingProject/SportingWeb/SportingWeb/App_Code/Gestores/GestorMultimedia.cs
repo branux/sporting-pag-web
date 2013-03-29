@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class GestorMultimedia
 {
-    public static List<MultimediaVideo> getAllMultimedia()
+    public static List<Auspiciante> getAllAuspiciantes()
     {
-        return MultimediaDAL.getAllMultimedia();
+        return MultimediaDAL.getAllAuspiciantes();
     }
 }

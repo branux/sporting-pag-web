@@ -14,8 +14,5 @@
             $('#slider').s3Slider({
                 timeOut: 4000
             });   
-        }
-         
+        }      
 });
-    
-    
