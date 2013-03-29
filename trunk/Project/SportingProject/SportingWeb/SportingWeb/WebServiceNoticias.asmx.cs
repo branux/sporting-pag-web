@@ -37,5 +37,11 @@ public class WebServiceNoticias : System.Web.Services.WebService
     {
         return GestorCampeonato.getCampeonatoActual().ListaFechas;
     }
+
+    [WebMethod]
+    public List<Auspiciante> GetAllAuspiciantes()
+    {
+        return GestorMultimedia.getAllAuspiciantes();
+    }
 }
 

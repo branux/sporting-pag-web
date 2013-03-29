@@ -9,7 +9,7 @@
 }
 		
 a:link, a:visited { color: #DB550C; text-decoration: none; font-weight: normal; } 
-a:active, a:hover { color: #DB550C; text-decoration: underline; }
+a:active, a:hover { color: #DB850D;  }
 
 p { margin: 0px; padding: 0px; }
 
@@ -371,6 +371,26 @@ main_column_lista_noticias
 	width: 600px;
 }
 
+.main_column_section_noticia {
+	position: relative;
+	margin-bottom: 30px;
+	/*background: #000000;*/
+	margin-left: 220px;
+	width: 600px;
+}
+
+.tituloNoticia
+{
+	position: relative;
+	height: 25px;
+	margin: 0px;
+	padding: 10px 0 0 0;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	color: #000000;
+}
+
 .main_column_section .bottom {
 	position: absolute;
 	bottom: 0px;
@@ -380,7 +400,22 @@ main_column_lista_noticias
 	background: url(../Images/templatemo_main_column_section_bottom.jpg);
 }
 
-.main_column_section h2 {
+.descripcionTemplateNoticia
+{
+	padding-left:150px;
+	width:420px;
+	text-align:justify;
+}
+
+.itemNoticia h3,
+.itemNoticia p
+{
+	margin-left:215px;
+}
+
+.main_column_section_noticia h2,
+.main_column_section h2 
+{
 	background: url(../Images/h2grande.png) right top no-repeat;
 }
 
@@ -611,3 +646,21 @@ p.caption span big {
 	padding-top:10px;
 }
 /* end campeonato*/
+
+.auspiciante
+{
+	width:100px;
+}
+
+#main_without_foot
+{
+	position:relative;
+	float:left;
+}
+
+#side_without_food
+{
+	position:relative;
+	height: 600px;
+	float:left;
+}

@@ -13,6 +13,8 @@ using System.Xml.Linq;
 
 public partial class TemplateNoticia : System.Web.UI.Page
 {
+    protected String tituloNoticia;
+    protected String descripcionNoticia;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -31,8 +33,8 @@ public partial class TemplateNoticia : System.Web.UI.Page
             {
                 int id = Convert.ToInt32(Request.QueryString["id"]);
                 not = GestorNoticias.getNoticia(id);
-                this.lblTituloNoticia.Text = not.Titulo;
-                this.lblDescripcionNoticia.Text = not.Descripcion;
+                tituloNoticia = not.Titulo;
+                descripcionNoticia = not.Descripcion;
 
                 GaleriaNoticia.DataSource = GestorNoticias.getTableImagenes(id).DefaultView;
                 GaleriaNoticia.DataBind();

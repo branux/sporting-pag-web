@@ -18,19 +18,13 @@ public partial class Multimedia : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            cargarMultimedia();
+
         }
     }
 
     private void cargarMultimedia()
     {
-        List<MultimediaVideo> mList = GestorMultimedia.getAllMultimedia();
-        String mult = "";
-        foreach (MultimediaVideo m in mList)
-        {
-            mult += m.ToString() + ";";
-        }
-        this.multimedia.Value = mult;
+
     }
 }
 

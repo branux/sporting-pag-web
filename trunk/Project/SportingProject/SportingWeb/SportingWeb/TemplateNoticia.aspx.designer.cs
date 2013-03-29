@@ -13,15 +13,6 @@
 public partial class TemplateNoticia {
     
     /// <summary>
-    /// Control GaleriaNoticia.
-    /// </summary>
-    /// <remarks>
-    /// Campo generado automáticamente.
-    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.DataList GaleriaNoticia;
-    
-    /// <summary>
     /// Control frmNoticiaPrincipal1.
     /// </summary>
     /// <remarks>
@@ -31,20 +22,11 @@ public partial class TemplateNoticia {
     protected global::System.Web.UI.HtmlControls.HtmlForm frmNoticiaPrincipal1;
     
     /// <summary>
-    /// Control lblTituloNoticia.
+    /// Control GaleriaNoticia.
     /// </summary>
     /// <remarks>
     /// Campo generado automáticamente.
     /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.Label lblTituloNoticia;
-    
-    /// <summary>
-    /// Control lblDescripcionNoticia.
-    /// </summary>
-    /// <remarks>
-    /// Campo generado automáticamente.
-    /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.Label lblDescripcionNoticia;
+    protected global::System.Web.UI.WebControls.DataList GaleriaNoticia;
 }
