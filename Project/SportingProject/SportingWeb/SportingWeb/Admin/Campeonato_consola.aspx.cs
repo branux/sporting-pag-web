@@ -175,7 +175,7 @@ namespace SportingWeb.Admin
                 campeonato.Nombre = ((TextBox)grillaCampeonatos.FooterRow.FindControl("txtNombre")).Text;
                 if (((TextBox)grillaCampeonatos.FooterRow.FindControl("txtAnio")).Text == "")
                 {
-                    throw new SportingException("Anio requerido.");
+                    throw new SportingException("Año requerido.");
                 }
                 try
                 {

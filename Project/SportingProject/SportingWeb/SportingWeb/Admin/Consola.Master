@@ -23,7 +23,7 @@
     <link rel="stylesheet" type="text/css" href="../Styles/jquery.lightbox-0.5.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="../Styles/GaleriaImagenes.css"/>
     <link href="../Styles/Consola.css" rel="stylesheet" type="text/css" />
-    <link href="Styles/S3Slider.css" rel="stylesheet" type="text/css" />
+    <link href="../Styles/S3Slider.css" rel="stylesheet" type="text/css" />
     <asp:ContentPlaceHolder ID="CPHHead_consola" runat="server"></asp:ContentPlaceHolder> 
 </head>
 <body>

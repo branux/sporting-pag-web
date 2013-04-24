@@ -17,6 +17,13 @@ public class Resultado
     private int equipoLocalPuntos;
     private int equipoVisitantePuntos;
     private Boolean jugado;
+    private DateTime fechaPartido;
+
+    public DateTime FechaPartido
+    {
+        get { return fechaPartido; }
+        set { fechaPartido = value; }
+    }
 
     public Resultado()
     {

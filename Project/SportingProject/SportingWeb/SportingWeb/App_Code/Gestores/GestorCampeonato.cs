@@ -92,13 +92,24 @@ public class GestorCampeonato
     public static List<FechaCampeonato> getFixtureCampeonato(int idCampeonato, int fecha)
     {
         List<FechaCampeonato> fixture = new List<FechaCampeonato>();
-        if (fecha == -1)
+        try
         {
-            fixture = CampeonatoDAL.getFechasDeCampeonato(new CampeonatoLiga(idCampeonato));
+            if (fecha == -1)
+            {
+                fixture = CampeonatoDAL.getFechasDeCampeonato(new CampeonatoLiga(idCampeonato));
+            }
+            else
+            {
+                fixture = CampeonatoDAL.getFixtureCampeonato_porFecha(new CampeonatoLiga(idCampeonato), fecha);
+            }
         }
-        else
+        catch (SportingException spEx)
         {
-            //fixture = CampeonatoDAL.getFixtureCampeonato_porFecha(new CampeonatoLiga(idCampeonato), fecha);
+            throw spEx;
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Error al obtener el fixture del campeonato." + e.Message);
         }
         return fixture;
     }
@@ -249,6 +260,39 @@ public class GestorCampeonato
         catch (Exception e)
         {
             throw new SportingException("Error al eliminar el equipo." + e.Message);
+        }
+    }
+
+    public static void registrarPartidoFixture(FechaCampeonato partidoFixture)
+    {
+        try
+        {
+            if (partidoFixture != null && partidoFixture.Resultados[0] != null)
+            {
+                //Estoy guardando un solo partido por eso tomo el primero
+                Resultado partido = partidoFixture.Resultados[0];
+                if (partido.EquipoLocalPuntos != 0 || partido.EquipoVisitantePuntos != 0)
+                {
+                    partidoFixture.Resultados[0].Jugado = true;
+                }
+                else
+                {
+                    partidoFixture.Resultados[0].Jugado = false;
+                }
+                CampeonatoDAL.insertarPartidoFixture(partidoFixture);
+            }
+            else
+            {
+                throw new SportingException("Error al registrar un partido del fixture.");
+            }
+        }
+        catch (SportingException spEx)
+        {
+            throw spEx;
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Error al registrar un partido del fixture." + e.Message);
         }
     }
 }

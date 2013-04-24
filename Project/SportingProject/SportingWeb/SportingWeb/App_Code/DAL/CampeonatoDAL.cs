@@ -101,7 +101,7 @@ public class CampeonatoDAL
         List<Resultado> resultados = new List<Resultado>();
         try
         {
-            OdbcCommand cmd = new OdbcCommand("SELECT r.id, r.idEquipoLocal, r.localPuntos, r.idEquipoVisitante, r.visitantePuntos "+
+            OdbcCommand cmd = new OdbcCommand("SELECT r.id, r.idEquipoLocal, r.localPuntos, r.idEquipoVisitante, r.visitantePuntos, r.jugado, r.fechaPartido "+
                 "FROM resultado_partido r " +
                 "WHERE r.idFecha = " + fecha.IdFecha, con);
             cmd.CommandType = CommandType.Text;
@@ -115,6 +115,8 @@ public class CampeonatoDAL
                 r.EquipoLocalPuntos = dr.GetInt32(2);
                 r.EquipoVisitante = getEquipoById(dr.GetInt32(3), con);
                 r.EquipoVisitantePuntos = dr.GetInt32(4);
+                r.Jugado = dr.GetBoolean(5);
+                r.FechaPartido = dr.GetDate(dr.GetOrdinal("fechaPartido"));
                 resultados.Add(r);
             }
         }
@@ -526,6 +528,75 @@ public class CampeonatoDAL
         catch (Exception e)
         {
             throw new SportingException("Ocurrio un error al intentar borrar el equipo. " + e.Message);
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+
+    public static List<FechaCampeonato> getFixtureCampeonato_porFecha(CampeonatoLiga camp, int fecha)
+    {
+        List<FechaCampeonato> fechasCamp = new List<FechaCampeonato>();
+        try
+        {
+            OdbcConnection con = ConexionBD.ObtenerConexion();
+            String getFixture = " SELECT f.id, f.numero, f.descripcion FROM fecha_campeonato f" +
+                                " WHERE f.idCampeonato = " + camp.IdCampeonato + " AND f.numero = " + fecha;
+            OdbcCommand cmd = new OdbcCommand(getFixture, con);
+            OdbcDataAdapter da = new OdbcDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            FechaCampeonato f;
+            foreach (DataRow row in dt.Rows)
+            {
+                f = new FechaCampeonato();
+                f.IdFecha = Convert.ToInt32(row["id"].ToString());
+                f.Numero = Convert.ToInt32(row["numero"].ToString());
+                f.Descripcion = row["descripcion"].ToString();
+                f.Resultados = getResultadosFecha(f, con);
+                fechasCamp.Add(f);
+            }
+        }
+        catch (SportingException sEx)
+        {
+            throw sEx;
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Ocurrio un problema al intentar obtener las fechas del campeonato. " + e.Message);
+        }
+        return fechasCamp;
+    }
+
+    public static void insertarPartidoFixture(FechaCampeonato partidoFixture)
+    {
+        OdbcConnection conexion = null;
+        OdbcCommand cmd = null;
+        try
+        {
+            if (partidoFixture == null)
+            {
+                throw new SportingException("Error al registrar nuevo partido en el fixture. Partido sin información.");
+            }
+            conexion = ConexionBD.ObtenerConexion();
+
+            //Guardo los datos del partido
+            String insertarPartidoFixture = " INSERT INTO resultado_partido (idFecha, idEquipoLocal, localPuntos, " +
+                                            " idEquipoVisitante, visitantePuntos, jugado, fechaPartido) " +
+                                            " VALUES (" + partidoFixture.IdFecha + ", " + partidoFixture.Resultados[0].EquipoLocal.IdEquipo + ", " +
+                                            partidoFixture.Resultados[0].EquipoLocalPuntos +", "+ partidoFixture.Resultados[0].EquipoVisitante.IdEquipo + ", " +
+                                            partidoFixture.Resultados[0].EquipoVisitantePuntos +", "+ partidoFixture.Resultados[0].Jugado+ ", '" +
+                                            partidoFixture.Resultados[0].FechaPartido.ToString("yyyy/MM/dd") + "')";
+
+            cmd = new OdbcCommand(insertarPartidoFixture, conexion);
+            cmd.ExecuteNonQuery();
+            conexion.Close();
+        }
+        catch (Exception e)
+        {
+            throw e;
         }
         finally
         {
