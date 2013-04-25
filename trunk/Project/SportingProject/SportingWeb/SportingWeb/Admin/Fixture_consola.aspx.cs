@@ -284,16 +284,89 @@ namespace SportingWeb.Admin
 
         protected void UpdateFixture(object sender, GridViewUpdateEventArgs e)
         {
-            //Obtengo los valores del partido a modificar
-            //string CustomerID = ((Label)GridView1.Rows[e.RowIndex].FindControl("lblCustomerID")).Text;
-            //string Name = ((TextBox)GridView1.Rows[e.RowIndex].FindControl("txtContactName")).Text;
-            //string Company = ((TextBox)GridView1.Rows[e.RowIndex].FindControl("txtCompany")).Text;
+            FechaCampeonato fechaFixture = new FechaCampeonato();
+            Resultado resultadoPartido = new Resultado();
+            try
+            {
+                //Obtengo los valores de la fecha del fixture a modificar
+                if (((DropDownList)grillaCampeonato.Rows[e.RowIndex].FindControl("ddlFechaGrilla_edit")).SelectedValue == "")
+                {
+                    throw new SportingException("El campo Fecha Nro es requerido. Seleccione una fecha.");
+                }
+                fechaFixture.IdFecha = Convert.ToInt32(((DropDownList)grillaCampeonato.Rows[e.RowIndex].FindControl("ddlFechaGrilla_edit")).SelectedValue);
+                if (((TextBox)grillaCampeonato.Rows[e.RowIndex].FindControl("txtFechaPartido")).Text == "")
+                {
+                    throw new SportingException("El campo Fecha partido es requerido. Seleccione una fecha");
+                }
+                try
+                {
+                    resultadoPartido.FechaPartido = Convert.ToDateTime(((TextBox)grillaCampeonato.Rows[e.RowIndex].FindControl("txtFechaPartido")).Text);
+                }
+                catch (Exception ex)
+                {
+                    throw new SportingException("Fecha incorrecta. Ingrese una fecha válida.");
+                }
+                if (((DropDownList)grillaCampeonato.Rows[e.RowIndex].FindControl("ddlLocalGrilla_edit")).SelectedValue == "")
+                {
+                    throw new SportingException("El campo Local es requerido. Seleccione un equipo Local.");
+                }
+                resultadoPartido.EquipoLocal = new EquipoCampeonato();
+                resultadoPartido.EquipoLocal.IdEquipo = Convert.ToInt32(((DropDownList)grillaCampeonato.Rows[e.RowIndex].FindControl("ddlLocalGrilla_edit")).SelectedValue);
+                if (((TextBox)grillaCampeonato.Rows[e.RowIndex].FindControl("txtPuntosLocal")).Text == "")
+                {
+                    throw new SportingException("El campo Puntos Local es requerido. Si el partido no ha sido jugado ingrese cero (0)");
+                }
+                try
+                {
+                    resultadoPartido.EquipoLocalPuntos = Convert.ToInt32(((TextBox)grillaCampeonato.Rows[e.RowIndex].FindControl("txtPuntosLocal")).Text);
+                }
+                catch (Exception ex)
+                {
+                    throw new SportingException("Puntos Local incorrecto. Ingrese solo números.");
+                }
+                if (((DropDownList)grillaCampeonato.Rows[e.RowIndex].FindControl("ddlVisitanteGrilla_edit")).SelectedValue == "")
+                {
+                    throw new SportingException("El campo Visitante es requerido. Seleccione un equipo Visitante.");
+                }
+                resultadoPartido.EquipoVisitante = new EquipoCampeonato();
+                resultadoPartido.EquipoVisitante.IdEquipo = Convert.ToInt32(((DropDownList)grillaCampeonato.Rows[e.RowIndex].FindControl("ddlVisitanteGrilla_edit")).SelectedValue);
+                if (((TextBox)grillaCampeonato.Rows[e.RowIndex].FindControl("txtPuntosVisitante")).Text == "")
+                {
+                    throw new SportingException("El campo Puntos Visitante es requerido. Si el partido no ha sido jugado ingrese cero (0)");
+                }
+                try
+                {
+                    resultadoPartido.EquipoVisitantePuntos = Convert.ToInt32(((TextBox)grillaCampeonato.Rows[e.RowIndex].FindControl("txtPuntosVisitante")).Text);
+                }
+                catch (Exception ex)
+                {
+                    throw new SportingException("Puntos Visitante incorrecto. Ingrese solo números.");
+                }
+                resultadoPartido.IdResultado = Convert.ToInt32(((Label)grillaCampeonato.Rows[e.RowIndex].FindControl("lblIdResultadoPartido")).Text);
+                fechaFixture.Resultados = new List<Resultado>();
+                fechaFixture.Resultados.Add(resultadoPartido);
 
-            //Guardo el partido en BD
-            //TODO
+                //Modifico el partido del fixture existente
+                GestorCampeonato.updatePartidoFixture(fechaFixture);
+                setSuccessColorOutput(true);
+                lblOutputFixture.Text = "Partido actualizado con éxito!";
 
-            //Recargo la grilla
-            //TODO
+                //Recargo la grilla de fixture
+                grillaCampeonato.EditIndex = -1;
+                int idCamp = Convert.ToInt32(ddlCampeonato.SelectedValue);
+                int idFecha = Convert.ToInt32(ddlFecha.SelectedValue);
+                cargarFixture(idCamp, idFecha);
+            }
+            catch (SportingException spEx)
+            {
+                setSuccessColorOutput(false);
+                lblOutputFixture.Text = spEx.Message;
+            }
+            catch (Exception ex)
+            {
+                setSuccessColorOutput(false);
+                lblOutputFixture.Text = ex.Message;
+            }
         }
 
         protected void BorrarPartido(object sender, EventArgs e)
@@ -312,9 +385,15 @@ namespace SportingWeb.Admin
         protected void OnPagingFixture(object sender, GridViewPageEventArgs e)
         {
             //Pagination
-            ////BindData();
-            ////GridView1.PageIndex = e.NewPageIndex;
-            ////GridView1.DataBind();
+            //Cargo el fixture
+            int idCamp = Convert.ToInt32(ddlCampeonato.SelectedValue);
+            int idFecha = Convert.ToInt32(ddlFecha.SelectedValue);
+            cargarFixture(idCamp, idFecha);
+            grillaCampeonato.PageIndex = e.NewPageIndex;
+            grillaCampeonato.DataBind();
+
+            //Limpio el mensaje de salida para asegurarme que no quede uno viejo.
+            lblOutputFixture.Text = "";
         }
 
         protected void ddlCampeonato_SelectedIndexChanged(object sender, EventArgs e)

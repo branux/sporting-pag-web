@@ -295,4 +295,37 @@ public class GestorCampeonato
             throw new SportingException("Error al registrar un partido del fixture." + e.Message);
         }
     }
+
+    public static void updatePartidoFixture(FechaCampeonato partidoFixture)
+    {
+        try
+        {
+            if (partidoFixture != null && partidoFixture.Resultados[0] != null)
+            {
+                //Estoy actualizando un solo partido por eso tomo el primero
+                Resultado partido = partidoFixture.Resultados[0];
+                if (partido.EquipoLocalPuntos != 0 || partido.EquipoVisitantePuntos != 0)
+                {
+                    partidoFixture.Resultados[0].Jugado = true;
+                }
+                else
+                {
+                    partidoFixture.Resultados[0].Jugado = false;
+                }
+                CampeonatoDAL.updatePartidoFixture(partidoFixture);
+            }
+            else
+            {
+                throw new SportingException("Error al modificar un partido del fixture.");
+            }
+        }
+        catch (SportingException spEx)
+        {
+            throw spEx;
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Error al modificar un partido del fixture." + e.Message);
+        }
+    }
 }

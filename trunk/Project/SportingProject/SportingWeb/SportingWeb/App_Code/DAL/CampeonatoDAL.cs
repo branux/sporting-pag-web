@@ -603,4 +603,41 @@ public class CampeonatoDAL
             cmd.Connection.Close();
         }
     }
+
+    public static void updatePartidoFixture(FechaCampeonato partidoFixture)
+    {
+        OdbcConnection conexion = null;
+        OdbcCommand cmd = null;
+        try
+        {
+            if (partidoFixture == null)
+            {
+                throw new SportingException("Error al modificar partido en el fixture. Partido sin información.");
+            }
+            conexion = ConexionBD.ObtenerConexion();
+
+            //Actualizo los datos del partido
+            String updatePartidoFixture = "UPDATE resultado_partido set idFecha = " + partidoFixture.IdFecha + ", "+
+                                             " idEquipoLocal = " + partidoFixture.Resultados[0].EquipoLocal.IdEquipo + ", "+
+                                             " localPuntos = " + partidoFixture.Resultados[0].EquipoLocalPuntos + ", "+
+                                             " idEquipoVisitante = " + partidoFixture.Resultados[0].EquipoVisitante.IdEquipo + ", "+
+                                             " visitantePuntos = " + partidoFixture.Resultados[0].EquipoVisitantePuntos + ", "+
+                                             " jugado = " + partidoFixture.Resultados[0].Jugado + ", "+
+                                             " fechaPartido = '" + partidoFixture.Resultados[0].FechaPartido.ToString("yyyy/MM/dd") + "' "+
+                                          "WHERE id = " +partidoFixture.Resultados[0].IdResultado.ToString();
+
+
+            cmd = new OdbcCommand(updatePartidoFixture, conexion);
+            cmd.ExecuteNonQuery();
+            conexion.Close();
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
 }
