@@ -640,4 +640,28 @@ public class CampeonatoDAL
             cmd.Connection.Close();
         }
     }
+
+    public static void deletePartidoFixture(string idResultadoPartido)
+    {
+        OdbcConnection conexion = null;
+        OdbcCommand cmd = null;
+        try
+        {
+            conexion = ConexionBD.ObtenerConexion();
+
+            String deletePartidoFixture = "DELETE FROM resultado_partido WHERE id = " + idResultadoPartido.ToString();
+
+            cmd = new OdbcCommand(deletePartidoFixture, conexion);
+            cmd.ExecuteNonQuery();
+            conexion.Close();
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Ocurrio un error al intentar borrar el partido del fixture. " + e.Message);
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
 }
