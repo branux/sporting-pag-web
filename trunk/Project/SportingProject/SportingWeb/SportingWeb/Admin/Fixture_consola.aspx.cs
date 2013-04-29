@@ -371,15 +371,37 @@ namespace SportingWeb.Admin
 
         protected void BorrarPartido(object sender, EventArgs e)
         {
-            //Obtengo el id del partido a borrar
-            LinkButton lnkRemove = (LinkButton)sender;
-            String idPartido = lnkRemove.CommandArgument;
+            //Limpio el mensaje de salida para asegurarme que no quede uno viejo.
+            lblOutputFixture.Text = "";
 
-            //Borro el partido en BD
-            //TODO
+            try
+            {
+                //Obtengo el id del partido a borrar
+                LinkButton lnkRemove = (LinkButton)sender;
+                String idResultadoPartido = lnkRemove.CommandArgument;
 
-            //Recargo la grilla
-            //TODO
+                //Borro el partido del fixture
+                GestorCampeonato.deletePartidoFixture(idResultadoPartido);
+
+                setSuccessColorOutput(true);
+                lblOutputFixture.Text = "El partido fue eliminado con éxito";
+
+                //Recargo la grilla de fixture
+                int idCamp = Convert.ToInt32(ddlCampeonato.SelectedValue);
+                int idFecha = Convert.ToInt32(ddlFecha.SelectedValue);
+                cargarFixture(idCamp, idFecha);
+                grillaCampeonato.SelectedIndex = -1;
+            }
+            catch (SportingException spEx)
+            {
+                setSuccessColorOutput(false);
+                lblOutputFixture.Text = spEx.Message;
+            }
+            catch (Exception ex)
+            {
+                setSuccessColorOutput(false);
+                lblOutputFixture.Text = ex.Message;
+            }
         }
 
         protected void OnPagingFixture(object sender, GridViewPageEventArgs e)

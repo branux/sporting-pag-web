@@ -162,7 +162,7 @@
                         <ItemTemplate>
                             <asp:LinkButton ID="lnkRemove" runat="server"
                                 CommandArgument = '<%# Eval("idResultadoPartido")%>'
-                             OnClientClick = "return confirm('Esta seguro que desea borrar el partido?')"
+                             OnClientClick = "return confirm('Esta seguro que desea borrar este partido del fixture?')"
                             Text = "Eliminar" OnClick = "BorrarPartido"></asp:LinkButton>
                         </ItemTemplate>
                         <FooterTemplate>

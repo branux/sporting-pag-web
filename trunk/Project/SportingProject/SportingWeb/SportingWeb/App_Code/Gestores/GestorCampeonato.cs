@@ -328,4 +328,20 @@ public class GestorCampeonato
             throw new SportingException("Error al modificar un partido del fixture." + e.Message);
         }
     }
+
+    public static void deletePartidoFixture(string idResultadoPartido)
+    {
+        try
+        {
+            CampeonatoDAL.deletePartidoFixture(idResultadoPartido);
+        }
+        catch (SportingException spEx)
+        {
+            throw spEx;
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Error al eliminar el partido del fixture." + e.Message);
+        }
+    }
 }
