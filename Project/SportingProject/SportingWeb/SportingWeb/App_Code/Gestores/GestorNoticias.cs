@@ -59,4 +59,79 @@ public class GestorNoticias
     {
         return NoticiaDAL.getDataTableNoticias();
     }
+
+    public static List<Noticia> getNoticias()
+    {
+        List<Noticia> noticias = new List<Noticia>();
+        try
+        {
+            noticias = NoticiaDAL.getNoticias();
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Ocurrio un error al intentar obtener todas las noticias. " + e.Message);
+        }
+        return noticias;
+    }
+
+
+    public static void registrarNoticia(Noticia noticia)
+    {
+        try
+        {
+            NoticiaDAL.insertarNoticia(noticia);
+        }
+        catch (SportingException spEx)
+        {
+            throw spEx;
+        }
+        catch (PathImgEmptyException imgEx)
+        {
+            throw imgEx;
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Error al registrar una nueva noticia." + e.Message);
+        }
+    }
+
+    public static void updateNoticia(Noticia noticia)
+    {
+        try
+        {
+            NoticiaDAL.updateNoticia(noticia);
+        }
+        catch (SportingException spEx)
+        {
+            throw spEx;
+        }
+        catch (PathImgEmptyException imgEx)
+        {
+            throw imgEx;
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Error al modificar una noticia." + e.Message);
+        }
+    }
+
+    public static void deleteNoticia(int id)
+    {
+        try
+        {
+            NoticiaDAL.deleteNoticia(id);
+        }
+        catch (SportingException spEx)
+        {
+            throw spEx;
+        }
+        catch (PathImgEmptyException imgEx)
+        {
+            throw imgEx;
+        }
+        catch (Exception e)
+        {
+            throw new SportingException("Error al eliminar una noticia." + e.Message);
+        }
+    }
 }
