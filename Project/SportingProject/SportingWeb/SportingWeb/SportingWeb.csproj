@@ -93,6 +93,7 @@
       <DependentUpon>Noticias_consola.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\ConexionBD.cs" />
+    <Compile Include="App_Code\Constantes.cs" />
     <Compile Include="App_Code\DAL\CampeonatoDAL.cs" />
     <Compile Include="App_Code\DAL\MultimediaDAL.cs" />
     <Compile Include="App_Code\DAL\PlantelDAL.cs" />

@@ -16,7 +16,7 @@ public partial class Campeonato : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (!Page.IsPostBack)
         {
             currentPage.Value = "Campeonato";
             cargarTablaPosiciones();
