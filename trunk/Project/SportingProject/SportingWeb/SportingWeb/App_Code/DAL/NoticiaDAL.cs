@@ -27,7 +27,7 @@ public class NoticiaDAL
                 noticia.IdNoticia = dr.GetInt32(0);
                 noticia.Titulo = dr.GetString(1);
                 noticia.Descripcion = dr.GetString(2);
-                ImagenDAL.setImagenes(con, noticia);
+                noticia.Imagenes = ImagenDAL.getImagenes(noticia);
             }
         }
         catch (Exception e)
@@ -47,34 +47,41 @@ public class NoticiaDAL
     /// <returns></returns>
     public static List<Noticia> getNoticias()
     {
-        OdbcConnection con = ConexionBD.ObtenerConexion();
         DataSet ds = new DataSet();
         List<Noticia> listaNoticias = new List<Noticia>();
-        try
-        {
-            OdbcCommand cmd = new OdbcCommand(selectNoticia, con);
-            cmd.CommandType = CommandType.Text;
-            OdbcDataReader dr = cmd.ExecuteReader();
+        OdbcDataReader dr = null;
 
-            while (dr.Read())
+        using (OdbcConnection con = new OdbcConnection(Constantes.CONNECTION_STRING))
+        {
+            using (OdbcCommand cmd = new OdbcCommand(selectNoticia, con))
             {
-                Noticia noticia = new Noticia();
-                noticia.IdNoticia = dr.GetInt32(0);
-                noticia.Titulo = dr.GetString(1);
-                noticia.Descripcion = dr.GetString(2);
-                noticia.Principal = dr.GetBoolean(3);
-                ImagenDAL.setImagenes(con, noticia);
-                listaNoticias.Add(noticia);
+                con.Open();
+                cmd.CommandType = CommandType.Text;
+                dr = cmd.ExecuteReader();
             }
         }
-        catch (Exception e)
+
+        if (dr != null)
         {
-            throw new SportingException("Ocurrio un problema al intentar obtener todas las noticias. " + e.Message);
+            try
+            {
+                while (dr.Read())
+                {
+                    Noticia noticia = new Noticia();
+                    noticia.IdNoticia = dr.GetInt32(0);
+                    noticia.Titulo = dr.GetString(1);
+                    noticia.Descripcion = dr.GetString(2);
+                    noticia.Principal = dr.GetBoolean(3);
+                    noticia.Imagenes = ImagenDAL.getImagenes(noticia);
+                    listaNoticias.Add(noticia);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new SportingException("Ocurrio un problema al intentar obtener todas las noticias. " + e.Message);
+            }
         }
-        finally
-        {
-            con.Close();
-        }
+
         return listaNoticias;
     }
 
@@ -85,27 +92,31 @@ public class NoticiaDAL
     /// <returns></returns>
     public static DataTable getDataTableNoticias()
     {
-        OdbcConnection con = ConexionBD.ObtenerConexion();
         DataTable dataTable = new DataTable();
-        try
-        {
-            OdbcCommand cmd = new OdbcCommand("SELECT n.id, n.titulo, n.descripcion, n.principal, i.pathMedium "+
+        String query = "SELECT n.id, n.titulo, n.descripcion, n.principal, i.pathMedium "+
                 "FROM noticia n, imagen_X_noticia ixn, imagen i "+
-                "WHERE ixn.idImagen = i.id AND ixn.idNoticia = n.id AND i.portada = 1", con);
-            cmd.CommandType = CommandType.Text;
-            dataTable = new DataTable();
-            OdbcDataAdapter adapter = new OdbcDataAdapter();
-            adapter.SelectCommand = cmd;
-            adapter.Fill(dataTable);
-        }
-        catch (Exception e)
+                "WHERE ixn.idImagen = i.id AND ixn.idNoticia = n.id AND i.portada = 1";
+
+        using (OdbcConnection con = new OdbcConnection(Constantes.CONNECTION_STRING))
         {
-            throw new SportingException("Ocurrio un problema al intentar obtener todas las noticias. " + e.Message);
+            using (OdbcCommand cmd = new OdbcCommand(query, con))
+            {
+                con.Open();
+                cmd.CommandType = CommandType.Text;
+                try
+                {
+                    dataTable = new DataTable();
+                    OdbcDataAdapter adapter = new OdbcDataAdapter();
+                    adapter.SelectCommand = cmd;
+                    adapter.Fill(dataTable);
+                }
+                catch (Exception e)
+                {
+                    throw new SportingException("Ocurrio un problema al intentar obtener todas las noticias. " + e.Message);
+                }
+            }
         }
-        finally
-        {
-            con.Close();
-        }
+
         return dataTable;
     }
 
@@ -127,7 +138,7 @@ public class NoticiaDAL
                 noticia.Titulo = dr.GetString(1);
                 noticia.Descripcion = dr.GetString(2);
                 noticia.Principal = dr.GetBoolean(3);
-                ImagenDAL.setImagenes(con,noticia);
+                noticia.Imagenes = ImagenDAL.getImagenes(noticia);
                 listaNoticias.Add(noticia);
             }
         }

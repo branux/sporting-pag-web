@@ -17,7 +17,7 @@ public partial class ListaNoticias : System.Web.UI.Page
     public List<Noticia> listaNoticia;
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (!Page.IsPostBack)
         {
             currentPage.Value = "Noticias";
             cargarNoticias();
