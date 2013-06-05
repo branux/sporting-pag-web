@@ -13,48 +13,47 @@ public class CampeonatoDAL
     /// <returns></returns>
     public static CampeonatoLiga getCampeonatoActual()
     {
-        OdbcConnection con = ConexionBD.ObtenerConexion();
-        DataSet ds = new DataSet();
         CampeonatoLiga camp = new CampeonatoLiga();
-        try
-        {
-            OdbcCommand cmd = new OdbcCommand("SELECT c.id, c.nombre, c.anio FROM campeonato c "+
-                "WHERE c.id = (SELECT MAX(id) FROM campeonato)", con);
-            cmd.CommandType = CommandType.Text;
-            OdbcDataReader dr = cmd.ExecuteReader();
+        OdbcDataReader dr = null;
+        String selectCampActual = "SELECT c.id, c.nombre, c.anio FROM campeonato c "+
+                "WHERE c.id = (SELECT MAX(id) FROM campeonato)";
 
-            if (dr.HasRows)
+        using (OdbcConnection con = new OdbcConnection(Constantes.CONNECTION_STRING))
+        {
+            using (OdbcCommand cmd = new OdbcCommand(selectCampActual, con))
             {
-                camp.IdCampeonato = dr.GetInt32(dr.GetOrdinal("id"));
-                camp.Nombre = dr.GetString(dr.GetOrdinal("nombre"));
-                camp.Anio = dr.GetInt32(dr.GetOrdinal("anio"));
-                camp.ListaFechas = getFechasDeCampeonato(camp, con);
+                try
+                {
+                    con.Open();
+                    cmd.CommandType = CommandType.Text;
+                    dr = cmd.ExecuteReader();
+
+                    if (dr.HasRows)
+                    {
+                        camp.IdCampeonato = dr.GetInt32(dr.GetOrdinal("id"));
+                        camp.Nombre = dr.GetString(dr.GetOrdinal("nombre"));
+                        camp.Anio = dr.GetInt32(dr.GetOrdinal("anio"));
+                        camp.ListaFechas = getFechasDeCampeonato(camp, con);
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw new SportingException("Ocurrio un problema al intentar obtener el campeonato actual. " + e.Message);
+                }
             }
         }
-        catch (Exception e)
-        {
-            throw new SportingException("Ocurrio un problema al intentar obtener el campeonato actual. " + e.Message);
-        }
+        
         return camp;
     }
 
     public static List<FechaCampeonato> getFechasDeCampeonato(CampeonatoLiga camp)
     {
-        List<FechaCampeonato> fechasCamp = new List<FechaCampeonato>();
-        try
+        List<FechaCampeonato> fechas = new List<FechaCampeonato>();
+        using (OdbcConnection con = new OdbcConnection(Constantes.CONNECTION_STRING))
         {
-            OdbcConnection con = ConexionBD.ObtenerConexion();
-            fechasCamp = getFechasDeCampeonato(camp, con);
+            fechas = getFechasDeCampeonato(camp, con);
         }
-        catch (SportingException sEx)
-        {
-            throw sEx;
-        }
-        catch (Exception e)
-        {
-            throw new SportingException("Ocurrio un problema al intentar obtener las fechas del campeonato. " + e.Message);
-        }
-        return fechasCamp;
+        return fechas;
     }
 
     /// <summary>
@@ -64,14 +63,16 @@ public class CampeonatoDAL
     /// <returns></returns>
     public static List<FechaCampeonato> getFechasDeCampeonato(CampeonatoLiga camp, OdbcConnection con)
     {
-        DataSet ds = new DataSet();
         List<FechaCampeonato> fechas = new List<FechaCampeonato>();
+        String getFechas = "SELECT f.id, f.numero, f.descripcion FROM fecha_campeonato f" +
+                " WHERE f.idCampeonato = " + camp.IdCampeonato;
+        OdbcDataReader dr = null;
+
         try
         {
-            OdbcCommand cmd = new OdbcCommand("SELECT f.id, f.numero, f.descripcion FROM fecha_campeonato f" +
-                " WHERE f.idCampeonato = " + camp.IdCampeonato, con);
+            OdbcCommand cmd = new OdbcCommand(getFechas, con);
             cmd.CommandType = CommandType.Text;
-            OdbcDataReader dr = cmd.ExecuteReader();
+            dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
@@ -87,6 +88,7 @@ public class CampeonatoDAL
         {
             throw new SportingException("Ocurrio un problema al intentar obtener las fechas del campeonato '" + camp.Nombre + "'. " + e.Message);
         }
+
         return fechas;
     }
 
@@ -97,15 +99,17 @@ public class CampeonatoDAL
     /// <returns></returns>
     public static List<Resultado> getResultadosFecha(FechaCampeonato fecha, OdbcConnection con)
     {
-        DataSet ds = new DataSet();
         List<Resultado> resultados = new List<Resultado>();
+        String getResultadosFecha = "SELECT r.id, r.idEquipoLocal, r.localPuntos, r.idEquipoVisitante, r.visitantePuntos, r.jugado, r.fechaPartido "+
+                "FROM resultado_partido r " +
+                "WHERE r.idFecha = " + fecha.IdFecha;
+        OdbcDataReader dr = null;
+
         try
         {
-            OdbcCommand cmd = new OdbcCommand("SELECT r.id, r.idEquipoLocal, r.localPuntos, r.idEquipoVisitante, r.visitantePuntos, r.jugado, r.fechaPartido "+
-                "FROM resultado_partido r " +
-                "WHERE r.idFecha = " + fecha.IdFecha, con);
+            OdbcCommand cmd = new OdbcCommand(getResultadosFecha, con);
             cmd.CommandType = CommandType.Text;
-            OdbcDataReader dr = cmd.ExecuteReader();
+            dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
@@ -133,14 +137,16 @@ public class CampeonatoDAL
     /// <returns></returns>
     public static EquipoCampeonato getEquipoById(int id, OdbcConnection con)
     {
-        DataSet ds = new DataSet();
         EquipoCampeonato equipo = null;
+        String selectEquipo = "SELECT e.id, e.nombre, e.localidad FROM equipo e " +
+                "WHERE e.id = "+id;
+        OdbcDataReader dr = null;
+
         try
         {
-            OdbcCommand cmd = new OdbcCommand("SELECT e.id, e.nombre, e.localidad FROM equipo e " +
-                "WHERE e.id = "+id, con);
+            OdbcCommand cmd = new OdbcCommand(selectEquipo, con);
             cmd.CommandType = CommandType.Text;
-            OdbcDataReader dr = cmd.ExecuteReader();
+            dr = cmd.ExecuteReader();
 
             if (dr.HasRows)
             {
@@ -152,7 +158,7 @@ public class CampeonatoDAL
         }
         catch (Exception e)
         {
-            throw new SportingException("Ocurrio un problema al intentar obtener el equipo con id '"+id+"'. " + e.Message);
+            throw new SportingException("Ocurrio un problema al intentar obtener el equipo con id '" + id + "'. " + e.Message);
         }
         if (equipo == null)
         {
@@ -170,7 +176,6 @@ public class CampeonatoDAL
     public static List<Resultado> getResultadosCampeonato(CampeonatoLiga camp, Boolean soloJugados)
     {
         OdbcConnection con = ConexionBD.ObtenerConexion();
-        DataSet ds = new DataSet();
         List<Resultado> resultados = null;
         try
         {
@@ -213,36 +218,38 @@ public class CampeonatoDAL
 
     public static List<CampeonatoLiga> getCampeonatos()
     {
-        OdbcConnection con = ConexionBD.ObtenerConexion();
-        DataSet ds = new DataSet();
-        OdbcCommand cmd = null;
         List<CampeonatoLiga> campeonatos = new List<CampeonatoLiga>();
-        try
-        {
-            cmd = new OdbcCommand("SELECT c.id, c.nombre, c.anio FROM campeonato c " +
-                "Order by c.anio desc", con);
-            cmd.CommandType = CommandType.Text;
-            OdbcDataReader dr = cmd.ExecuteReader();
-            
-            CampeonatoLiga camp;
-            while(dr.Read())
-            {
-                camp = new CampeonatoLiga();
-                camp.IdCampeonato = dr.GetInt32(dr.GetOrdinal("id"));
-                camp.Nombre = dr.GetString(dr.GetOrdinal("nombre"));
-                camp.Anio = dr.GetInt32(dr.GetOrdinal("anio"));
-                camp.ListaFechas = getFechasDeCampeonato(camp, con);
+        OdbcDataReader dr = null;
+        String query = "SELECT c.id, c.nombre, c.anio FROM campeonato c " +
+                "Order by c.anio desc";
 
-                campeonatos.Add(camp);
+        using (OdbcConnection con = new OdbcConnection(Constantes.CONNECTION_STRING))
+        {
+            using (OdbcCommand cmd = new OdbcCommand(query, con))
+            {
+                try
+                {
+                    con.Open();
+                    cmd.CommandType = CommandType.Text;
+                    dr = cmd.ExecuteReader();
+
+                    CampeonatoLiga camp;
+                    while (dr.Read())
+                    {
+                        camp = new CampeonatoLiga();
+                        camp.IdCampeonato = dr.GetInt32(dr.GetOrdinal("id"));
+                        camp.Nombre = dr.GetString(dr.GetOrdinal("nombre"));
+                        camp.Anio = dr.GetInt32(dr.GetOrdinal("anio"));
+                        camp.ListaFechas = getFechasDeCampeonato(camp, con);
+
+                        campeonatos.Add(camp);
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw new SportingException("Ocurrio un problema al intentar obtener los campeonatos. " + e.Message);
+                }
             }
-        }
-        catch (Exception e)
-        {
-            throw new SportingException("Ocurrio un problema al intentar obtener los campeonatos. " + e.Message);
-        }
-        finally
-        {
-            cmd.Connection.Close();
         }
         return campeonatos;
     }

@@ -232,6 +232,7 @@ namespace SportingWeb.Admin
         {
             txtNomApe.Text = "";
             txtPosicion.Text = "";
+            txtId.Text = "";
             imgJugador.ImageUrl = null;
         }
 
