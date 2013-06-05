@@ -35,7 +35,9 @@ public class WebServiceNoticias : System.Web.Services.WebService
     [WebMethod]
     public List<FechaCampeonato> GetFixtureCampeonato()
     {
-        return GestorCampeonato.getCampeonatoActual().ListaFechas;
+        CampeonatoLiga camp = GestorCampeonato.getCampeonatoActual();
+        List<FechaCampeonato> fechas = camp.ListaFechas;
+        return fechas;
     }
 
     [WebMethod]
