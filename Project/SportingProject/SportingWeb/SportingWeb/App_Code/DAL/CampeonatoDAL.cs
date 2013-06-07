@@ -51,6 +51,7 @@ public class CampeonatoDAL
         List<FechaCampeonato> fechas = new List<FechaCampeonato>();
         using (OdbcConnection con = new OdbcConnection(Constantes.CONNECTION_STRING))
         {
+            con.Open();
             fechas = getFechasDeCampeonato(camp, con);
         }
         return fechas;
@@ -549,7 +550,7 @@ public class CampeonatoDAL
         {
             OdbcConnection con = ConexionBD.ObtenerConexion();
             String getFixture = " SELECT f.id, f.numero, f.descripcion FROM fecha_campeonato f" +
-                                " WHERE f.idCampeonato = " + camp.IdCampeonato + " AND f.numero = " + fecha;
+                                " WHERE f.idCampeonato = " + camp.IdCampeonato + " AND f.id = " + fecha;
             OdbcCommand cmd = new OdbcCommand(getFixture, con);
             OdbcDataAdapter da = new OdbcDataAdapter(cmd);
             DataTable dt = new DataTable();

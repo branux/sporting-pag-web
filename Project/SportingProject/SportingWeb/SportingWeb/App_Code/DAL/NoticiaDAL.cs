@@ -93,7 +93,7 @@ public class NoticiaDAL
     public static DataTable getDataTableNoticias()
     {
         DataTable dataTable = new DataTable();
-        String query = "SELECT n.id, n.titulo, n.descripcion, n.principal, i.pathMedium "+
+        String query = "SELECT n.id, n.titulo, n.descripcion, n.principal, i.pathBig "+
                 "FROM noticia n, imagen_X_noticia ixn, imagen i "+
                 "WHERE ixn.idImagen = i.id AND ixn.idNoticia = n.id AND i.portada = 1";
 

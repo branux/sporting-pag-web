@@ -17,9 +17,16 @@
                                         <Columns>
                                               <asp:TemplateField>         
                                                       <ItemTemplate>
-                                                            <li class="sliderImage">
-                                                                <a href="TemplateNoticia.aspx?id=<%# DataBinder.Eval(Container.DataItem, "id")%>"><img src="<%# DataBinder.Eval(Container.DataItem, "pathmedium")%>" alt="1" /></a>
-                                                                <span class="top"><h3 id="tituloNoticiaPortada"><%# DataBinder.Eval(Container.DataItem, "titulo")%></h3><%# DataBinder.Eval(Container.DataItem, "descripcion")%></span>
+                                                            <li id="itemNoticia" class="sliderImage">
+                                                                <a href="TemplateNoticia.aspx?id=<%# DataBinder.Eval(Container.DataItem, "id")%>">
+                                                                    <img src="<%# DataBinder.Eval(Container.DataItem, "pathbig")%>" alt="" />
+                                                                </a>
+                                                                <span class="top">
+                                                                    <a href="TemplateNoticia.aspx?id=<%# DataBinder.Eval(Container.DataItem, "id")%>">
+                                                                        <h3 id="tituloNoticiaPortada"><%# DataBinder.Eval(Container.DataItem, "titulo")%></h3>
+                                                                    </a>
+                                                                    <%# evalWithMaxLength("descripcion", 100, "...") %>
+                                                                </span>
                                                             </li>
                                                       </ItemTemplate>
                                             </asp:TemplateField>
