@@ -37,6 +37,24 @@ public partial class Default : System.Web.UI.Page
         gridNoticias.DataBind();
     }
 
+    protected string evalWithMaxLength(string fieldName, int maxLength, string sufix)
+    {
+        object value = this.Eval(fieldName);
+        if (value == null)
+            return null;
+        
+        string str = value.ToString();
+        if (str.Length > maxLength)
+        {
+            str = str.Substring(0, maxLength + 1);
+            str = str = str.Substring(0, Math.Min(str.Length, str.LastIndexOf(" ") == -1 ? 0 : str.LastIndexOf(" ")));
+            str = str + sufix;
+            return str;
+        }
+        else
+            return str;
+    }
+
     private void cargarNoticiasLaterales()
     {
        /* List<Noticia> noticias = GestorNoticias.getNoticiasLaterales();
