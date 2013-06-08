@@ -66,7 +66,7 @@ public class CampeonatoDAL
     {
         List<FechaCampeonato> fechas = new List<FechaCampeonato>();
         String getFechas = "SELECT f.id, f.numero, f.descripcion FROM fecha_campeonato f" +
-                " WHERE f.idCampeonato = " + camp.IdCampeonato;
+                " WHERE f.idCampeonato = " + camp.IdCampeonato + " ORDER BY f.numero";
         OdbcDataReader dr = null;
 
         try
