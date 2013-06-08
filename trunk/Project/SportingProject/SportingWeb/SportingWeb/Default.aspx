@@ -1,11 +1,12 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" Inherits="Default" Title="Sporting Club" Codebehind="Default.aspx.cs" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="CPHBody" runat="server">
- <input id="currentPage" type="hidden" runat="Server"/>
+    <input id="currentPage" type="hidden" runat="Server"/>
  <div id="templatemo_content">
     
         <div id="main_column">
             <div class="main_column_section">
                 <h2>Noticias</h2>
+                <asp:Label ID="lblOutput" runat="server" ForeColor="Red"></asp:Label>
                 <form id="frmListaNoticias" runat="server">
                 <div id="slider">
                                     <ul id="sliderContent">

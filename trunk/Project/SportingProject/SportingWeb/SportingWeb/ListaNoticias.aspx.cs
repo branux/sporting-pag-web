@@ -26,8 +26,15 @@ public partial class ListaNoticias : System.Web.UI.Page
 
     private void cargarNoticias()
     {
-        listaNoticia = NoticiaDAL.getNoticias();
-        this.listaNoticias.Value = listaNoticias.ToString();
+        try
+        {
+            listaNoticia = NoticiaDAL.getNoticias();
+            this.listaNoticias.Value = listaNoticias.ToString();
+        }
+        catch (Exception ex)
+        {
+            lblOutput.Text = "Error al cargar las noticias. Detalles: " + ex.Message;
+        }   
     }
 
     [System.Web.Services.WebMethod]

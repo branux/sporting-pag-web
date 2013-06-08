@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System;
 using System.Data.SqlClient;
+using System.IO;
+using System.Web;
 
 public class NoticiaDAL
 {
@@ -27,7 +29,7 @@ public class NoticiaDAL
                 noticia.IdNoticia = dr.GetInt32(0);
                 noticia.Titulo = dr.GetString(1);
                 noticia.Descripcion = dr.GetString(2);
-                noticia.Imagenes = ImagenDAL.getImagenes(noticia);
+                noticia.Imagenes = ImagenDAL.getImagenes(noticia, con);
             }
         }
         catch (Exception e)
@@ -55,30 +57,29 @@ public class NoticiaDAL
         {
             using (OdbcCommand cmd = new OdbcCommand(selectNoticia, con))
             {
-                con.Open();
-                cmd.CommandType = CommandType.Text;
-                dr = cmd.ExecuteReader();
-            }
-        }
-
-        if (dr != null)
-        {
-            try
-            {
-                while (dr.Read())
+                try
                 {
-                    Noticia noticia = new Noticia();
-                    noticia.IdNoticia = dr.GetInt32(0);
-                    noticia.Titulo = dr.GetString(1);
-                    noticia.Descripcion = dr.GetString(2);
-                    noticia.Principal = dr.GetBoolean(3);
-                    noticia.Imagenes = ImagenDAL.getImagenes(noticia);
-                    listaNoticias.Add(noticia);
+                    con.Open();
+                    cmd.CommandType = CommandType.Text;
+                    dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        Noticia noticia = new Noticia();
+                        noticia.IdNoticia = dr.GetInt32(0);
+                        noticia.Titulo = dr.GetString(1);
+                        noticia.Descripcion = dr.GetString(2);
+                        noticia.Principal = dr.GetBoolean(3);
+                        noticia.Imagenes = ImagenDAL.getImagenes(noticia, con);
+                        listaNoticias.Add(noticia);
+                    }
                 }
-            }
-            catch (Exception e)
-            {
-                throw new SportingException("Ocurrio un problema al intentar obtener todas las noticias. " + e.Message);
+                catch (Exception e)
+                {
+                    throw new SportingException("Ocurrio un problema al intentar obtener todas las noticias. " + e.Message);
+                }
+
+
             }
         }
 
@@ -94,7 +95,7 @@ public class NoticiaDAL
     {
         DataTable dataTable = new DataTable();
         String query = "SELECT n.id, n.titulo, n.descripcion, n.principal, i.pathBig "+
-                "FROM noticia n, imagen_X_noticia ixn, imagen i "+
+                "FROM noticia n, imagen_x_noticia ixn, imagen i "+
                 "WHERE ixn.idImagen = i.id AND ixn.idNoticia = n.id AND i.portada = 1";
 
         using (OdbcConnection con = new OdbcConnection(Constantes.CONNECTION_STRING))
@@ -112,7 +113,12 @@ public class NoticiaDAL
                 }
                 catch (Exception e)
                 {
-                    throw new SportingException("Ocurrio un problema al intentar obtener todas las noticias. " + e.Message);
+                    //StreamWriter sw = new StreamWriter(HttpContext.Current.Server.MapPath("~") + "log.txt", true);
+                    //sw.WriteLine(e.Message);
+                    //sw.Flush();
+                    //sw.Close();
+                    //throw new SportingException("Ocurrio un problema al intentar obtener todas las noticias. " + e.Message);
+                    throw e;
                 }
             }
         }
@@ -138,7 +144,7 @@ public class NoticiaDAL
                 noticia.Titulo = dr.GetString(1);
                 noticia.Descripcion = dr.GetString(2);
                 noticia.Principal = dr.GetBoolean(3);
-                noticia.Imagenes = ImagenDAL.getImagenes(noticia);
+                noticia.Imagenes = ImagenDAL.getImagenes(noticia, con);
                 listaNoticias.Add(noticia);
             }
         }

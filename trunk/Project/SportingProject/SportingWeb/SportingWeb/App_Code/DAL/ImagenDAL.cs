@@ -10,43 +10,33 @@ public class ImagenDAL
     /// Setea la lista de imagenes de una noticia
     /// </summary>
     /// <returns></returns>
-    public static List<Imagen> getImagenes(Noticia noticia)
+    public static List<Imagen> getImagenes(Noticia noticia, OdbcConnection con)
     {
-        DataSet ds = new DataSet();
         List<Imagen> listaImagenes = new List<Imagen>();
         OdbcDataReader dr = null;
 
         String query = "SELECT i.id, i.pathBig, i.pathSmall, i.portada, i.pathMedium FROM imagen i, imagen_x_noticia n WHERE i.id=n.idImagen AND n.idNoticia=" + noticia.IdNoticia;
-        
-        using (OdbcConnection con = new OdbcConnection(Constantes.CONNECTION_STRING))
+
+        try
         {
-            using (OdbcCommand cmd = new OdbcCommand(query, con))
+            OdbcCommand cmd = new OdbcCommand(query, con);
+            cmd.CommandType = CommandType.Text;
+            dr = cmd.ExecuteReader();
+
+            while (dr.Read())
             {
-                con.Open();
-                cmd.CommandType = CommandType.Text;
-                dr = cmd.ExecuteReader();
+                Imagen imagen = new Imagen();
+                imagen.IdImagen = dr.GetInt32(0);
+                imagen.PathBig = dr.GetString(1);
+                imagen.PathSmall = dr.GetString(2);
+                imagen.Portada = dr.GetBoolean(3);
+                imagen.PathMedium = dr.GetString(4);
+                listaImagenes.Add(imagen);
             }
         }
-
-        if (dr != null)
+        catch (Exception e)
         {
-            try
-            {
-                while (dr.Read())
-                {
-                    Imagen imagen = new Imagen();
-                    imagen.IdImagen = dr.GetInt32(0);
-                    imagen.PathBig = dr.GetString(1);
-                    imagen.PathSmall = dr.GetString(2);
-                    imagen.Portada = dr.GetBoolean(3);
-                    imagen.PathMedium = dr.GetString(4);
-                    listaImagenes.Add(imagen);
-                }
-            }
-            catch (Exception e)
-            {
-                throw new SportingException("Ocurrio un problema al intentar obtener las imagenes de las noticias. " + e.Message);
-            }
+            throw new SportingException("Ocurrio un problema al intentar obtener las imagenes de las noticias. " + e.Message);
         }
         
         return listaImagenes;
