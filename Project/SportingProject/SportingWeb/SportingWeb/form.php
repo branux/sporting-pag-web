@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
+<title>Consultas/Sugerencias</title>
 </head>
 
 <body>
@@ -13,7 +13,7 @@
     $cuerpo .= "Email: " . $HTTP_POST_VARS["mail"] . "\n";
     $cuerpo .= "Mensaje: " . $HTTP_POST_VARS["mensaje"] . "\n"; 
 	
-	mail("nicofetter@gmail.com", "Mensaje WEB", $cuerpo,"From: Contacto web <web@sporting.com.ar>");
+	mail("ponermail@algunserver.com", "Mensaje WEB Sporting", $cuerpo,"From: Pagina Web Sporting<consultas@sportingsampacho.com.ar>");
 	echo "respuesta= Mensaje enviado";
 ?>
 </body>

@@ -10,9 +10,8 @@
         
         <div id="main_column">
             <div class="main_column_section"> 
-               
+               <p>PAGINA EN CONSTRUCCION</p>
 			</div>
-            </div>
         </div>
     </div>
 </asp:Content>
