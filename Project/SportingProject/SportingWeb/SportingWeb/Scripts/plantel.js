@@ -7,7 +7,7 @@
 	for (var i=0; i<arrayPlantel.length - 1; i++) {
         var arrayJugador=arrayPlantel[i].split(",");
         $("#plantelActual").append( '<div class="jugador"><p class="caption"><img  width="150px" height="250px" src ='+
-        arrayJugador[2]+'/><span>'+arrayJugador[0]+'<br/>'+arrayJugador[1]+'</span></p></jugador>' ) ;
+        arrayJugador[2]+'><span>'+arrayJugador[0]+'<br/>'+arrayJugador[1]+'</span></p></jugador>' ) ;
     }    
 	// For each instance of p.caption
 	$("p.caption").each(function(){

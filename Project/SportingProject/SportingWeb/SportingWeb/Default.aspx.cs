@@ -33,8 +33,21 @@ public partial class Default : System.Web.UI.Page
 
     private void cargarNoticiasPrincipales()
     {
-        gridNoticias.DataSource = GestorNoticias.getTableNoticias();
-        gridNoticias.DataBind();
+        try
+        {
+            gridNoticias.DataSource = GestorNoticias.getTableNoticias();
+            gridNoticias.DataBind();
+        }
+        catch (Exception ex)
+        {
+            if (ex.InnerException is SportingException)
+            {
+                SportingException spex = (SportingException)ex.InnerException;
+                lblOutput.Text = "Error al cargar las noticias. Detalles: " + spex.Message;
+            }
+            lblOutput.Text = "Error al cargar las noticias. Detalles: " + ex.Message;
+        }
+        
     }
 
     protected string evalWithMaxLength(string fieldName, int maxLength, string sufix)

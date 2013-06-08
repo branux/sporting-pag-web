@@ -15,6 +15,7 @@
         <div id="main_column">
             <div class="main_column_section"> 
                     <h2>Noticias</h2>
+                    <asp:Label ID="lblOutput" runat="server" ForeColor="Red"></asp:Label>
                     <div id="grillaNoticias"  class="overview">
                         <div id="paging_container" class="container">
                             <ul id="pageNoticias">
