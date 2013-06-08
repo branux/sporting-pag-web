@@ -1,0 +1,666 @@
+﻿body {
+	margin: 0;
+	padding: 0;
+	line-height: 1.5em;
+	font-family:Arial,Helvetica,sans-serif;
+	font-size: 12px;
+	color: #AAAAAA;
+	background: #080808;
+}
+		
+a:link, a:visited { color: #DB550C; text-decoration: none; font-weight: normal; } 
+a:active, a:hover { color: #DB850D;  }
+
+p { margin: 0px; padding: 0px; }
+
+img { margin: 0px; padding: 0px; border: none; }
+
+.cleaner { clear: both; width: 100%; height: 0px; font-size: 0px;  }
+
+.cleaner_h10 { clear: both; width:100%; height: 10px; }
+.cleaner_h20 { clear: both; width:100%; height: 20px; }
+.cleaner_h30 { clear: both; width:100%; height: 30px; }
+.cleaner_h40 { clear: both; width:100%; height: 40px; }
+.cleaner_h50 { clear: both; width:100%; height: 50px; }
+.cleaner_h60 { clear: both; width:100%; height: 60px; }
+
+.fl { float: left; }
+.fr { float: right; }
+
+.m_right { margin-right: 30px; }
+
+.botonVerMas a{
+	display: block;
+	width: 90px;
+	height: 24px;
+	padding: 6px 0 0 30px;
+    background: url(../Images/templatemo_button_01.jpg) no-repeat;
+	
+	color: #000000;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+}
+
+.botonVerMas{
+	clear: left;
+}
+
+h1 {
+	padding: 2px 0;
+	color:#F9F6F6;
+	text-align: center;
+}
+
+h2 {
+	position: relative;
+	height: 25px;
+	margin: 0px;
+	padding: 10px 0 0 0;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	color: #000000;
+}
+
+h2 span {
+	position: absolute;
+	width:100%;
+	height: 35px;
+	left: 0px;
+	top: 0px;
+}
+
+h3 {
+	margin: 0 0 5px 0;
+	padding: 2px 0 3px 0;
+	font-size: 14px;
+	font-weight: normal;
+	color: #DB550C;	
+	border-bottom: 1px dotted #DB550C;
+}
+
+h4 {
+	margin: 0px;
+	padding: 0px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.image_wrapper {
+	border: 1px solid #ffffff;
+	margin-top: 3px;
+	margin-bottom: 5px;
+}
+
+.fl_image {
+	float: left;
+	margin-right: 15px 
+}
+
+.fr_image {
+	float: right;
+	margin-left: 15px 
+}
+
+.list_01 {
+	margin: 0 0 20px 40px;
+	padding: 0px;
+}
+
+.list_01 li {
+	margin: 0px;
+	padding: 0 0 10px 0;
+}
+
+.list_01 li a {
+	color: #ffffff;
+}
+
+#templatemo_container_wrapper {
+	width:100%;
+	margin: 0 auto;
+	background: url(../Images/fondoPelotas.png) no-repeat scroll center top transparent;
+}
+
+#templatemo_container {
+	width: 950px;
+	padding: 0 5px;
+	margin: 0 auto;
+	background: url(../Images/fondoContent.png) center repeat-y;
+}
+
+#lateralIzq
+{
+	width: 399px;
+	height:392px;
+	padding: 0 5px;
+	margin: 0 auto;
+	float:left;
+	background: url(../Images/cabecera_01.jpg) center repeat-y;
+	position:absolute;
+}
+
+#lateralDer
+{
+	width: 402px;
+	height:392px;
+	padding: 0 5px;
+	float:right;
+	margin: 0 auto;
+	background: url(../Images/cabecera_03.jpg) center repeat-y;
+	position:absolute;
+}
+	
+/* bannner */
+
+#templatemo_banner {
+	width: 950px;
+	height: 200px;
+	background: url(../Images/cabecera_menu_01.png) center top no-repeat;
+}
+
+#templatemo_banner #site_title {
+	float: left;
+	width: 200px;
+	height: 200px;
+	background: url("../Images/escudo.png") no-repeat scroll center top transparent;
+}
+
+#site_title h1 a {
+	margin: 0px;
+	padding: 0px;
+	font-size: 30px;
+	color: #C0C0C0;
+	font-weight: bold;
+	text-decoration: none;
+	text-align: right;
+}
+
+#site_title h1 a:hover {
+	font-weight: bold;	
+	text-decoration: none;
+}
+
+#site_title h1 a span {
+	display: block;
+	margin-top: 10px;
+	font-size: 14px;
+	font-weight: normal;
+	color: #C0C0C0;
+}
+
+#pageTitle
+{
+	color:White;
+	font-size:40px;
+	font-weight:bold;
+	position:absolute;
+	padding-left:250px;
+	padding-top:70px;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+/* end of bannner */
+
+/* menu */
+
+#templatemo_menu {
+	float: left;
+	width: 750px;
+	height: 50px;
+	padding-top: 10px;
+}
+
+#templatemo_menu ul {
+	overflow: hidden;
+	padding: 35px 0 0 0;
+	margin: 133px 0;
+	list-style: none;
+}
+
+#templatemo_menu ul li {
+	/*padding: 0px;*/
+	/*margin: 0px;*/
+	/*display: inline;*/
+}
+
+#templatemo_menu ul li a {
+	float: left;
+	display: block;
+	font-size: 16px;
+	text-align: center;
+	font-weight: bold;
+	text-decoration: none;
+	color: #f9f6f6;		
+	outline: none;
+}
+
+.btnInicio
+{
+	padding-left:34px;
+	padding-right:1px;
+}
+
+.btnEquipo
+{
+	padding-left:151px;
+	padding-right:1px;
+}
+
+.btnNoticias
+{
+	padding-left:275px;
+	padding-right:1px;
+}
+
+.btnCampeonato
+{
+	padding-left:380px;
+	padding-right:1px;
+}
+
+.btnHistoria
+{
+	padding-left:524px;
+	padding-right:1px;
+}
+
+.btnContacto
+{
+	padding-left:645px;
+	padding-right:1px;
+}
+
+
+#templatemo_menu li a:hover, #templatemo_menu li .current {
+	color: #DB550C;
+}
+
+/* end of menu */
+
+/* content */
+
+#templatemo_content {
+	clear: both;
+	width: 950px;
+	padding-left: 260px;
+	float:left;
+	/*background: url(../Images/fondoContent.png) center repeat-y;*/
+}
+
+#side_column {
+	float: left;
+	padding-top:13px;
+	position:absolute;
+}
+
+#main_column {
+	padding-top:13px;
+	width: 600px;
+}
+
+main_column_lista_noticias
+{
+	float: right;
+	width: 900px;
+}
+
+.side_column_box {
+	position: relative;
+	margin-bottom: 30px;
+	width:250px;
+}
+
+.side_column_box .bottom {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 250px;
+	height: 10px;
+}
+
+.side_column_box h2 {
+	background: url(../Images/h2chico.png) right top no-repeat;
+}
+
+/*.side_column_box h2 span {
+	background: url(../Images/templatemo_h2_left.jpg) no-repeat;
+}*/
+
+.side_column_box .side_column_box_content {
+	padding: 30px;
+}
+
+.news_section {
+	clear: both;
+	margin-bottom: 20px;
+}
+
+.side_column_box form {
+	margin: 0px;
+	padding: 0px;
+}
+
+.inputfield {
+	height: 16px;
+	width: 180px;
+	padding: 2px 5px;
+	margin: 0 0 10px 0;
+	font-size: 12px;
+	font-variant: normal;
+	line-height: normal;
+}
+
+.submit_button {
+	float: right;
+	margin: 0px;
+	padding: 0 6px 3px 6px;
+	cursor: pointer;
+	font-size: 12px;
+	text-align: center;
+	vertical-align: bottom;
+	white-space: pre;
+}
+
+.main_column_section {
+	position: relative;
+	margin-bottom: 30px;
+	/*background: #000000;*/
+	margin-left: 45px;
+	width: 600px;
+}
+
+.main_column_section_noticia {
+	position: relative;
+	margin-bottom: 30px;
+	/*background: #000000;*/
+	margin-left: 220px;
+	width: 600px;
+}
+
+.tituloNoticia
+{
+	position: relative;
+	height: 25px;
+	margin: 0px;
+	padding: 10px 0 0 0;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	color: #000000;
+}
+
+.main_column_section .bottom {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 600px;
+	height: 10px;
+	background: url(../Images/templatemo_main_column_section_bottom.jpg);
+}
+
+.descripcionTemplateNoticia
+{
+	padding-left:150px;
+	width:420px;
+	text-align:justify;
+}
+
+.itemNoticia h3,
+.itemNoticia p
+{
+	margin-left:215px;
+}
+
+.main_column_section_noticia h2,
+.main_column_section h2 
+{
+	background: url(../Images/h2grande.png) right top no-repeat;
+}
+
+/*.main_column_section h2 span {
+	background: url(../Images/templatemo_h2_left_02.jpg) no-repeat;
+}*/
+
+.main_column_section .main_column_section_content {
+	padding: 30px;
+}
+
+.main_column_section_content p {
+	margin-bottom: 10px;
+}
+
+.tituloNoticia 
+{
+	background:transparent !important;
+	position: relative;
+}
+
+#grillaNoticias
+{
+	/*padding-left:300px;*/
+}
+
+.itemNoticia
+{
+	-bottom: 1px dotted #CCCCCC;
+	clear: both;
+	margin-bottom: 10px;
+	overflow: hidden;
+	padding-bottom: 10px;
+	text-align: left !important;
+}
+
+.itemNoticia img
+{
+	clear: both;
+	float:left;
+	overflow: hidden;
+	padding-right: 1%;
+}
+
+#tituloNoticiaPortada
+{
+	font-weight:bold;
+	font-size:18px;
+}
+
+/*#publicidad
+{
+	float:left;
+}*/
+
+/* end of content */
+
+/* footer */
+
+#templatemo_footer {
+	clear: both;
+	width: 950px;
+	height: 75px;
+	padding: 30px 0 0 ;
+	text-align: center;
+	color: #3b3838;
+	background: url(../Images/templatemo_footer2.png) no-repeat;
+}
+
+#templatemo_footer a {
+	font-weight: bold;
+	color: #000000;
+}
+
+#templatemo_footer .footer_menu {
+	margin: 0 0 5px 0;
+	padding: 0px;
+	list-style: none;
+}
+
+.footer_menu li {
+	margin: 0px;
+	padding: 0 20px;
+	display: inline;
+	border-right: 1px solid #000000;
+}
+
+.footer_menu .last_menu {
+	border: none;
+}
+
+/* end of footer */
+
+/* equipo */
+#fotoPlantel
+{
+	width:600px;
+	height: 400px;
+	padding-top:10px;
+}
+
+.tituloPlantel
+{
+	text-align: center;
+}
+
+p.caption { 
+	display: block !important; 
+	position: relative !important;
+}
+p.caption img { 
+	position: absolute !important
+}
+p.caption span { 
+	background: #000; 
+	background: rgba(0,0,0,0.8); 
+	color: white !important; 
+	display: none; 
+	padding: 5px 10px !important; 
+	text-align: center; 
+	position: absolute !important;
+	bottom: 0 !important; 
+}
+p.caption span big {
+	font-weight: bold; 
+}
+
+.jugador
+{
+	float:left;
+	padding:5px;
+}
+
+#plantelActual
+{
+	text-align:center;
+}
+
+#tituloJugadores
+{
+	margin-top:25px;
+}
+
+/* end of equipo */
+
+/** multimedia */
+.multimedia
+{
+	border-bottom: 1px dotted #CCCCCC;
+	overflow: hidden;
+	padding-bottom: 10px;
+	text-align: left !important; 
+}
+
+
+/* end of multimedia */ 
+
+/** campeonato **/ 
+#ctl00_CPHBody_gridTablaPosiciones
+{
+	font-size:14px;
+	width: 100%;
+	border-collapse:collapse;
+}
+
+.fechaCampeonato
+{
+	font-size:14px;
+	margin-bottom:80px;
+	width:280px;	
+	margin-bottom:20px;
+	clear:both;
+}
+
+.fechaCampeonato div
+{
+	border-bottom: 1px dotted #fff;
+	width:280px;
+	text-align:center;
+	/*background: url(../Images/campeonato/fondoFixture.png);*/
+	padding-bottom:10px;
+	padding-top:10px;
+}
+
+.fechaCampeonato .fixtEquipo 
+{
+	width:130px;
+	text-align:center;
+	float:left;
+	border-bottom: 1px dotted #fff;
+	/*background: url(../Images/campeonato/fondoFixture.png);*/
+}
+
+.fixtEquipo  .fixtPtsLocal
+{
+	text-align: right;
+	float: right;
+}
+
+.fixtEquipo  .fixtPtsVisitante
+{
+	text-align: right;
+	float: left;
+}
+
+.fechaCampeonato .fixtCenter
+{
+	width:20px;
+	text-align:center;
+	float:left;
+	border-bottom: 1px dotted #fff;
+	/*background: url(../Images/campeonato/fondoFixture.png);*/
+}
+
+#fixture
+{
+	clear:both;
+	float:left;
+	margin-left:150px;
+	background: url(../Images/campeonato/fondoFixture.png);
+}
+#tablaPosiciones
+{
+	background: url(../Images/campeonato/fondoFixture.png);
+	text-align:center;
+	width:50%;
+	margin-left:150px;
+	padding-top:10px;
+}
+/* end campeonato*/
+
+.auspiciante
+{
+	width:100px;
+}
+
+#main_without_foot
+{
+	position:relative;
+	float:left;
+}
+
+#side_without_food
+{
+	position:relative;
+	height: 600px;
+	float:left;
+}

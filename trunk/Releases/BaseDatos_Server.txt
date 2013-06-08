@@ -1,0 +1,21 @@
+Sporting Datos BD en Server
+
+Server (control panel): http://cp.datawebhosting.org
+Consola Administrativa de MySQL del server: http://mysql3.gohsphere.com/phpMyAdmin/index.php (aca se crea la BD tirando el script del backup de MySQL)
+
+Datos BD
+nombre: covaweb_sporting
+
+usuario: covaweb_sporting
+pass: scdpadmin
+
+usuario dba: covaweb_admin
+pass: laraadmin
+
+Administracion de Base de Datos MySQL
+Nombre Host 	mysql3.gohsphere.com (173.0.137.3) 
+Puerto Numero 	3306 
+Nombre de Base de datos. 	covaweb_sporting
+phpMyAdmin 	Panel de control incorporado phpMyAdmin
+Cuota 	Usados 0.32 MB mas alla de los 10 MB 
+Usuarios de la base de datos  	covaweb_admin covaweb_sporting
