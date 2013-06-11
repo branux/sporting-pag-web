@@ -1,0 +1,5 @@
+Principal.css:
+-Se corrigio ancho en div de resultados (pagina Campeonato)
+
+Fixture_consola.aspx.cs:
+-Cuando se agrega o se modifica un partido del fixture se controla que la fecha tenga el formato correcto (fecha tomada del date picker)

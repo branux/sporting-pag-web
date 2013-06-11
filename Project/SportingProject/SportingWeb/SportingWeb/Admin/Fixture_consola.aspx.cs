@@ -12,6 +12,7 @@ using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 using System.Drawing;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace SportingWeb.Admin
 {
@@ -192,7 +193,15 @@ namespace SportingWeb.Admin
                 }
                 catch (Exception ex)
                 {
-                    throw new SportingException("Fecha incorrecta. Ingrese una fecha válida.");
+                    //trying to parse the date with other technique
+                    try
+                    {
+                        resultadoPartido.FechaPartido = DateTime.ParseExact(((TextBox)grillaCampeonato.FooterRow.FindControl("txtFechaPartidoFooter")).Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    }
+                    catch (Exception)
+                    {
+                        throw new SportingException("Fecha incorrecta. Ingrese una fecha válida.");
+                    }
                 }
                 if (((DropDownList)grillaCampeonato.FooterRow.FindControl("ddlLocalGrilla")).SelectedValue == "")
                 {
@@ -304,7 +313,15 @@ namespace SportingWeb.Admin
                 }
                 catch (Exception ex)
                 {
-                    throw new SportingException("Fecha incorrecta. Ingrese una fecha válida.");
+                    //trying to parse the date with other technique
+                    try
+                    {
+                        resultadoPartido.FechaPartido = DateTime.ParseExact(((TextBox)grillaCampeonato.Rows[e.RowIndex].FindControl("txtFechaPartido")).Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    }
+                    catch (Exception)
+                    {
+                        throw new SportingException("Fecha incorrecta. Ingrese una fecha válida.");
+                    }
                 }
                 if (((DropDownList)grillaCampeonato.Rows[e.RowIndex].FindControl("ddlLocalGrilla_edit")).SelectedValue == "")
                 {
