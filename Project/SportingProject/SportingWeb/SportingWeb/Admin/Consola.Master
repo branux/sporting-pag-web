@@ -19,6 +19,7 @@
     <script type="text/javascript" src="../Scripts/s3Slider.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.tinyscrollbar.min.js"></script>
     <script type="text/javascript" src="../Scripts/noticia.js"></script>
+    <script type="text/javascript" src="../Scripts/currentPage_consola.js"></script>
     
     <link rel="stylesheet" type="text/css" href="../Styles/jquery.lightbox-0.5.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="../Styles/GaleriaImagenes.css"/>
@@ -27,6 +28,7 @@
     <asp:ContentPlaceHolder ID="CPHHead_consola" runat="server"></asp:ContentPlaceHolder> 
 </head>
 <body>
+<form id="form1" runat="server" enctype="multipart/form-data">
     <div id="templatemo_container_wrapper">
         <div id="templatemo_container">
 	        <div id="templatemo_banner">
@@ -36,13 +38,19 @@
                   </div>
                 <div id="templatemo_menu">
                     <ul>
-                        <li class="btnInicio"><a href="Equipo_consola.aspx" class="current">Equipo</a></li>
-                        <li class="btnEquipo"><a href="Fixture_consola.aspx">Fixture</a></li>
+                        <li class="btnEquipo"><a href="Equipo_consola.aspx" class="current">Equipo</a></li>
+                        <li class="btnFixture"><a href="Fixture_consola.aspx">Fixture</a></li>
                         <li class="btnNoticias"><a href="Noticias_consola.aspx">Noticias</a></li>
                         <li class="btnCampeonato"><a href="Campeonato_consola.aspx">Campeonato</a></li>
                     </ul>
                 </div> <!-- end of menu -->               
-            </div> <!-- end of banner -->              
+            </div> <!-- end of banner -->
+            <div id="loginInfo">
+                <asp:Label ID="lblBienvenido" runat="server" Text="Bienvenido" Font-Bold="True"></asp:Label>
+                <asp:Label ID="lblUsrLogueado" runat="server" Text="Usuario"></asp:Label>
+                <asp:Button ID="btnCerrarSesion" runat="server" 
+                    Text="Cerrar Sesion" CausesValidation="False" onclick="btnCerrarSesion_Click"/>
+            </div>
             <asp:ContentPlaceHolder ID="CPHBody_consola" runat="server">
             </asp:ContentPlaceHolder>                
             <div id="templatemo_footer">              
@@ -60,5 +68,6 @@
             </div> <!-- end of footer -->
         </div> <!-- end of container -->
     </div> <!-- end of container wrapper -->
+</form>
 </body>
 </html>

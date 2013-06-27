@@ -7,6 +7,7 @@
     rel="stylesheet" type="text/css" />
 <script type="text/javascript">
     $(document).ready(function () {
+        highlightCurrent();
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(bindPicker);
         bindPicker();
     });
@@ -16,15 +17,13 @@
     });
     function bindPicker() {
         $("input[type=text][id*=txtFechaPartido]").datepicker({ "dateFormat":"dd/mm/yy"});
-    }
+    };
     
 </script>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPHBody_consola" runat="server">
-
-    <form id="form1" runat="server">
-
+    <input id="currentPage" type="hidden" runat="Server"/>
     <div style="padding:10px">
         <h2>Fixture de Primera División</h2>
         <br/>
@@ -183,5 +182,4 @@
         </Triggers>
     </asp:UpdatePanel>
 </div>
-    </form>
 </asp:Content>

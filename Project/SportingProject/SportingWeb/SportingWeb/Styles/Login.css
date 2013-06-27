@@ -1,0 +1,35 @@
+*{
+	padding:0px;
+	margin:0 auto;
+}
+
+body {
+    background-color: #FFFFFF;
+    width: 450px;
+}
+
+h1
+{
+	text-align: center;
+	color:#000000;
+}
+
+h3{
+	text-align: left;
+}
+
+#login_container
+{
+	text-align:center;
+	width: 450px;
+	border:1px solid #c0c0c0;
+	margin-top:60px;
+}
+
+#login_table{
+	background-color: #FFFFFF;
+	text-align:left;
+}
+
+
+

@@ -13,7 +13,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="CPHBody_consola" runat="server">
-    <form id="form1" runat="server">
+    <input id="currentPage" type="hidden" runat="Server"/>
     <div style="padding:10px">
         <h2>Equipo de Primera División</h2>
         <br/>
@@ -96,5 +96,4 @@
             <HeaderStyle/>
         </asp:GridView>
     </div>
-    </form>
 </asp:Content>

@@ -22,14 +22,18 @@ namespace SportingWeb.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (Page.User.Identity.IsAuthenticated)
             {
-                cargarJugadores();
-                limpiarCampos();
-            }
-            else
-            {
-                setSuccessColorOutput(false);
+                if (!Page.IsPostBack)
+                {
+                    currentPage.Value = "Equipo";
+                    cargarJugadores();
+                    limpiarCampos();
+                }
+                else
+                {
+                    setSuccessColorOutput(false);
+                }
             }
         }
 
@@ -119,36 +123,47 @@ namespace SportingWeb.Admin
                     }
 
                     sSavePath = "../" + sSavePath;
+
+                    System.IO.FileStream newFile = null;
                     try
                     {
                         // Changing the image size before saving image to disk
                         using (System.Drawing.Image image = System.Drawing.Image.FromStream(myFile.InputStream))
                         {
+                            lblOutput.Text = lblOutput.Text + "Inside using Image. ";
                             // can given width of image as we want
                             double scaleFactor = 0.5;
                             int newWidth = (int)(image.Width * scaleFactor);
                             // can given height of image as we want
                             int newHeight = (int)(image.Height * scaleFactor);
-                            Bitmap thumbnailImg = new Bitmap(newWidth, newHeight);
-                            Graphics thumbGraph = Graphics.FromImage(thumbnailImg);
-                            thumbGraph.CompositingQuality = CompositingQuality.HighQuality;
-                            thumbGraph.SmoothingMode = SmoothingMode.HighQuality;
-                            thumbGraph.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                            Rectangle imageRectangle = new Rectangle(0, 0, newWidth, newHeight);
-                            thumbGraph.DrawImage(image, imageRectangle);
-                            // Save the image to disk
-                            thumbnailImg.Save(Server.MapPath(sSavePath + sFilename), image.RawFormat);
-
+                            using (Bitmap thumbnailImg = new Bitmap(newWidth, newHeight))
+                            {
+                                lblOutput.Text = lblOutput.Text + "Inside using Bitmap. ";
+                                using (Graphics thumbGraph = Graphics.FromImage(thumbnailImg))
+                                {
+                                    lblOutput.Text = lblOutput.Text + "Inside using Graphics. ";
+                                    thumbGraph.CompositingQuality = CompositingQuality.HighQuality;
+                                    thumbGraph.SmoothingMode = SmoothingMode.HighQuality;
+                                    thumbGraph.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                                    Rectangle imageRectangle = new Rectangle(0, 0, newWidth, newHeight);
+                                    lblOutput.Text = lblOutput.Text + "Before DrawImage. ";
+                                    thumbGraph.DrawImage(image, imageRectangle);
+                                }
+                                // Save the image to disk
+                                lblOutput.Text = lblOutput.Text + "Before Save.3 ";
+                                thumbnailImg.Save(Server.MapPath(sSavePath + sFilename), System.Drawing.Imaging.ImageFormat.Jpeg);
+                            }
                             // Closing resources
-                            thumbGraph.Dispose();
-                            thumbnailImg.Dispose();
-                            image.Dispose();
+                            //thumbGraph.Dispose();
+                            //thumbnailImg.Dispose();
+                            //image.Dispose();
                         }
                     }
                     catch (Exception exe)
                     {
                         setSuccessColorOutput(false);
-                        lblOutput.Text = lblOutput.Text + "\nPath: " + sSavePath + "\n Error del sistema: " + exe.Message;
+                        lblOutput.Text = lblOutput.Text + "\nPath: " + sSavePath + sFilename + "\n Error del sistema: " + exe.Message;
+                        return;
                     }
 
                     // Check whether the file is really a JPEG by opening it
