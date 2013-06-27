@@ -236,13 +236,13 @@ h4 {
 	outline: none;
 }
 
-.btnInicio
+.btnEquipo
 {
 	padding-left:34px;
 	padding-right:1px;
 }
 
-.btnEquipo
+.btnFixture
 {
 	padding-left:151px;
 	padding-right:1px;
@@ -663,4 +663,9 @@ p.caption span big {
 	position:relative;
 	height: 600px;
 	float:left;
+}
+
+#loginInfo
+{
+	text-align: right;
 }

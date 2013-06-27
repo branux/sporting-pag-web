@@ -23,14 +23,18 @@ namespace SportingWeb.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (Page.User.Identity.IsAuthenticated)
             {
-                cargarNoticias();
-                limpiarCampos();
-            }
-            else
-            {
-                setSuccessColorOutput(false);
+                if (!Page.IsPostBack)
+                {
+                    currentPage.Value = "Noticias";
+                    cargarNoticias();
+                    limpiarCampos();
+                }
+                else
+                {
+                    setSuccessColorOutput(false);
+                }
             }
         }
 

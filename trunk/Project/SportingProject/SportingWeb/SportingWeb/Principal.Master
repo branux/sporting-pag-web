@@ -77,10 +77,11 @@
                         <ul class="footer_menu">
                             <li><a href="Default.aspx">Inicio</a></li>
                             <li><a href="Equipo.aspx">Equipo</a></li>
-                          <li><a href="ListaNoticias.aspx">Noticias</a></li>
+                            <li><a href="ListaNoticias.aspx">Noticias</a></li>
                             <li><a href="Campeonato.aspx">Campeonato</a></li>
                             <li><a href="Historia.aspx">Historia</a></li>
-                            <li class="last_menu"><a href="Contacto.aspx">Contacto</a></li>
+                            <li><a href="Contacto.aspx">Contacto</a></li>
+                            <li class="last_menu"><a href="./Admin/Equipo_consola.aspx">Admin</a></li>
                         </ul>
                         Copyright © 2013 <a> COVA Diseño Web</a>                        
                     </div>

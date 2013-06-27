@@ -124,6 +124,7 @@
     <Compile Include="App_Code\Gestores\GestorMultimedia.cs" />
     <Compile Include="App_Code\Gestores\GestorNoticias.cs" />
     <Compile Include="App_Code\Gestores\GestorPlantel.cs" />
+    <Compile Include="App_Code\Seguridad.cs" />
     <Compile Include="Campeonato.aspx.cs">
       <DependentUpon>Campeonato.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -165,6 +166,13 @@
     </Compile>
     <Compile Include="ListaNoticias.aspx.designer.cs">
       <DependentUpon>ListaNoticias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Multimedia.aspx.cs">
       <DependentUpon>Multimedia.aspx</DependentUpon>
@@ -225,6 +233,7 @@
     <Content Include="Admin\Fixture_consola.aspx" />
     <Content Include="Admin\Campeonato_consola.aspx" />
     <Content Include="Admin\Noticias_consola.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="Historia.aspx" />
     <Content Include="Images\cabecera_menu.jpg" />
     <Content Include="Images\cabecera_menu_01.png" />
@@ -325,11 +334,14 @@
     <Content Include="Images\templatemo_h2_right_02.png" />
     <Content Include="Images\templatemo_main_column_section_bottom.jpg" />
     <Content Include="Images\templatemo_side_column_box_bottom.jpg" />
+    <Content Include="Login.aspx" />
     <Content Include="Recursos\contacto.swf" />
     <Content Include="Scripts\currentPage.js" />
+    <Content Include="Scripts\currentPage_consola.js" />
     <Content Include="Scripts\jquery.pajinate.min.js" />
     <Content Include="Scripts\responsiveSlides.js" />
     <Content Include="Styles\Consola.css" />
+    <Content Include="Styles\Login.css" />
     <Content Include="Styles\pajinate.css" />
     <Content Include="Styles\ResponsiveSlides.css" />
   </ItemGroup>

@@ -18,15 +18,19 @@ namespace SportingWeb.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (Page.User.Identity.IsAuthenticated)
             {
-                cargarCampeonatos();
-                cargarFechas();
-                cargarEquipos();
-            }
-            else
-            {
-                setSuccessColorOutput(false);
+                if (!Page.IsPostBack)
+                {
+                    currentPage.Value = "Campeonato";
+                    cargarCampeonatos();
+                    cargarFechas();
+                    cargarEquipos();
+                }
+                else
+                {
+                    setSuccessColorOutput(false);
+                }
             }
         }
 

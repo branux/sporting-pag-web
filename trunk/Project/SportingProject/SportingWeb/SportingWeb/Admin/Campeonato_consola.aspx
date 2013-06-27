@@ -2,8 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="CPHHead_consola" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPHBody_consola" runat="server">
-<form id="form1" runat="server">
-
+    <input id="currentPage" type="hidden" runat="Server"/>
     <h2>Campeonato - Fechas - Equipos</h2>
     <asp:ScriptManager ID="ScriptManager" runat="server" />
     
@@ -232,6 +231,4 @@
             </Triggers>
         </asp:UpdatePanel>
     </div>
-    
-</form>
 </asp:Content>

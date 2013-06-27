@@ -20,19 +20,23 @@ namespace SportingWeb.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (Page.User.Identity.IsAuthenticated)
             {
-                cargarCampeonatos();
-                cargarFechas(Convert.ToInt32(ddlCampeonato.SelectedValue));
-                limpiarCampos();
-                //Cargo el fixture
-                int idCamp = Convert.ToInt32(ddlCampeonato.SelectedValue);
-                int idFecha = Convert.ToInt32(ddlFecha.SelectedValue);
-                cargarFixture(idCamp, idFecha);
-            }
-            else
-            {
-                setSuccessColorOutput(false);
+                if (!Page.IsPostBack)
+                {
+                    currentPage.Value = "Fixture";
+                    cargarCampeonatos();
+                    cargarFechas(Convert.ToInt32(ddlCampeonato.SelectedValue));
+                    limpiarCampos();
+                    //Cargo el fixture
+                    int idCamp = Convert.ToInt32(ddlCampeonato.SelectedValue);
+                    int idFecha = Convert.ToInt32(ddlFecha.SelectedValue);
+                    cargarFixture(idCamp, idFecha);
+                }
+                else
+                {
+                    setSuccessColorOutput(false);
+                }
             }
         }
 
