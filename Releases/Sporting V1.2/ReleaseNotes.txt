@@ -1,0 +1,10 @@
+-Desde el server habilitaron los permisos de escritura sonbre el folder Images, entonces se puede registrar tanto un jugador como una noticia.
+
+-Se agrego Seguridad al sitio web. Para ello:
+--se agrego la tabla "usuario" (se adjunta script)
+--se creo el Login.aspx
+--se crearon y modificaron archivos de configuracion (como web.config y Global.asax)
+
+-Se corrigieron los estilos de la consola (.css y script) permitiendo marcar la pagina "current"
+
+-Tambien se modifico el master page "Principal.master" agregando un link a la consola administrativa
