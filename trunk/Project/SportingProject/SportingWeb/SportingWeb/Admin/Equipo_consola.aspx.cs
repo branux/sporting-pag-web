@@ -153,10 +153,6 @@ namespace SportingWeb.Admin
                                 lblOutput.Text = lblOutput.Text + "Before Save.3 ";
                                 thumbnailImg.Save(Server.MapPath(sSavePath + sFilename), System.Drawing.Imaging.ImageFormat.Jpeg);
                             }
-                            // Closing resources
-                            //thumbGraph.Dispose();
-                            //thumbnailImg.Dispose();
-                            //image.Dispose();
                         }
                     }
                     catch (Exception exe)
