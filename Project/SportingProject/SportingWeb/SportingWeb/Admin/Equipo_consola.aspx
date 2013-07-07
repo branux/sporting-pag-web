@@ -22,17 +22,17 @@
             <tr>
                 <td>
                     <p><asp:Label ID="lblNomApe" runat="server" ForeColor="#C0C0C0" Text="Nombre y Apellido" Width="100px"></asp:Label></p>
-                    <asp:TextBox ID="txtNomApe" runat="server" Width="222px"></asp:TextBox>
+                    <asp:TextBox ID="txtNomApe" CssClass="text" runat="server" Width="222px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="reqValidNomApe" runat="server" 
                         ControlToValidate="txtNomApe" Display="Dynamic" 
                         ErrorMessage="Campo obligatorio"></asp:RequiredFieldValidator>
-                    <asp:TextBox ID="txtId" runat="server" Visible="False" Width="10px"></asp:TextBox>
+                    <asp:TextBox ID="txtId" CssClass="text" runat="server" Visible="False" Width="10px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td>
                     <p><asp:Label ID="lblPosicion" runat="server" ForeColor="#C0C0C0" Text="Posición" Width="100px"></asp:Label></p>
-                    <asp:TextBox ID="txtPosicion" runat="server" Width="222px"></asp:TextBox>
+                    <asp:TextBox ID="txtPosicion" CssClass="text" runat="server" Width="222px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="reqValidPosicion" runat="server" 
                         ControlToValidate="txtPosicion" Display="Dynamic" 
                         ErrorMessage="Campo obligatorio"></asp:RequiredFieldValidator>

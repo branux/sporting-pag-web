@@ -59,24 +59,6 @@ namespace SportingWeb.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtIdNoticia;
         
         /// <summary>
-        /// Control lblImagenes.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblImagenes;
-        
-        /// <summary>
-        /// Control grillaImagenes.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grillaImagenes;
-        
-        /// <summary>
         /// Control lblDesc.
         /// </summary>
         /// <remarks>
@@ -131,13 +113,22 @@ namespace SportingWeb.Admin {
         protected global::System.Web.UI.WebControls.Button btnCargarImagen;
         
         /// <summary>
-        /// Control imgNoticia.
+        /// Control lblImagenes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgNoticia;
+        protected global::System.Web.UI.WebControls.Label lblImagenes;
+        
+        /// <summary>
+        /// Control grillaImagenes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grillaImagenes;
         
         /// <summary>
         /// Control lblOutput.
