@@ -97,7 +97,6 @@ namespace SportingWeb.Admin
                     {
                         setSuccessColorOutput(false);
                         lblOutput.Text = "Ninguna imagen fue cargada.";
-                        imgNoticia.ImageUrl = null;
                         return;
                     }
 
@@ -106,7 +105,6 @@ namespace SportingWeb.Admin
                     {
                         setSuccessColorOutput(false);
                         lblOutput.Text = "Error: La imagen debe tener una extension JPG.";
-                        imgNoticia.ImageUrl = null;
                         return;
                     }
 
@@ -177,12 +175,11 @@ namespace SportingWeb.Admin
                                            file_append.ToString() + sThumbExtension + ".jpg";
                         }
 
-                        // Save thumbnail and output it onto the webpage
+                        // Save thumbnail
                         System.Drawing.Image myThumbnail
                                 = myBitmap.GetThumbnailImage(intThumbWidth,
                                                              intThumbHeight, myCallBack, IntPtr.Zero);
                         myThumbnail.Save(Server.MapPath(sSavePath + sThumbFile));
-                        imgNoticia.ImageUrl = sSavePath + sThumbFile;
 
                         //Agrego los path de la imagen para registrarlos en la BD
                         imagesToSaveInDB = new List<Imagen>();
@@ -245,7 +242,6 @@ namespace SportingWeb.Admin
             txtIdNoticia.Text = "";
             txtTitulo.Text = "";
             txtDesc.Text = "";
-            imgNoticia.ImageUrl = null;
             grillaImagenes.DataSource = null;
             grillaImagenes.DataBind();
         }
