@@ -21,8 +21,8 @@ public class Seguridad : ConexionBD
     public static Int32 validarUsuario(String usr, String pass)
     {
         String query = "SELECT idUsuario FROM usuario " +
-            "WHERE user='" + usr.ToString() + "'" +
-            "AND   password='" + pass.ToString() + "'";
+            "WHERE user= binary '" + usr.ToString() + "'" +
+            "AND   password= binary '" + pass.ToString() + "'";
         try
         {
 
