@@ -1,0 +1,73 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Consola.Master.cs" Inherits="SportingWeb.Consola" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>Sporting - Sampacho</title>
+    <meta name="description" content="Sporting Club Deportivo y Cultural - Sampacho" />
+    <script language="javascript" type="text/javascript">
+        function clearText(field)
+        {
+            if (field.defaultValue == field.value) field.value = '';
+            else if (field.value == '') field.value = field.defaultValue;
+        }
+    </script>
+
+    <script type="text/javascript" src="../Scripts/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery.lightbox-0.5.min.js"></script>
+    <script type="text/javascript" src="../Scripts/s3Slider.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery.tinyscrollbar.min.js"></script>
+    <script type="text/javascript" src="../Scripts/noticia.js"></script>
+    <script type="text/javascript" src="../Scripts/currentPage_consola.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="../Styles/jquery.lightbox-0.5.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../Styles/GaleriaImagenes.css"/>
+    <link href="../Styles/Consola.css" rel="stylesheet" type="text/css" />
+    <link href="../Styles/S3Slider.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="CPHHead_consola" runat="server"></asp:ContentPlaceHolder> 
+</head>
+<body>
+<form id="form1" runat="server" enctype="multipart/form-data">
+    <div id="templatemo_container_wrapper">
+        <div id="templatemo_container">
+	        <div id="templatemo_banner">
+			    <div id="pageTitle">Consola Administrativa</div>
+				<div id="site_title">
+                        <h1><a href="http://www.templatemo.com" target="_parent"><span></span></a></h1>
+                  </div>
+                <div id="templatemo_menu">
+                    <ul>
+                        <li class="btnEquipo"><a href="Equipo_consola.aspx" class="current">Equipo</a></li>
+                        <li class="btnFixture"><a href="Fixture_consola.aspx">Fixture</a></li>
+                        <li class="btnNoticias"><a href="Noticias_consola.aspx">Noticias</a></li>
+                        <li class="btnCampeonato"><a href="Campeonato_consola.aspx">Campeonato</a></li>
+                    </ul>
+                </div> <!-- end of menu -->               
+            </div> <!-- end of banner -->
+            <div id="loginInfo">
+                <asp:Label ID="lblBienvenido" runat="server" Text="Bienvenido" Font-Bold="True"></asp:Label>
+                <asp:Label ID="lblUsrLogueado" runat="server" Text="Usuario"></asp:Label>
+                <asp:Button ID="btnCerrarSesion" runat="server" 
+                    Text="Cerrar Sesion" CausesValidation="False" onclick="btnCerrarSesion_Click"/>
+            </div>
+            <asp:ContentPlaceHolder ID="CPHBody_consola" runat="server">
+            </asp:ContentPlaceHolder>                
+            <div id="templatemo_footer">              
+                <div id="templatemo_footer_bar">                  
+                    <ul class="footer_menu">
+                        <li><a href="Default.aspx">Inicio</a></li>
+                        <li><a href="Equipo.aspx">Equipo</a></li>
+                      <li><a href="ListaNoticias.aspx">Noticias</a></li>
+                        <li><a href="Campeonato.aspx">Campeonato</a></li>
+                        <li><a href="Historia.aspx">Historia</a></li>
+                        <li class="last_menu"><a href="Contacto.aspx">Contacto</a></li>
+                    </ul>
+                    Copyright © 2013 <a> COVA Diseño Web</a>                        
+                </div>
+            </div> <!-- end of footer -->
+        </div> <!-- end of container -->
+    </div> <!-- end of container wrapper -->
+</form>
+</body>
+</html>
