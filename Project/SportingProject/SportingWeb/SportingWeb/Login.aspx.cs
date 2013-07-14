@@ -10,6 +10,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
+using System.Text.RegularExpressions;
 
 namespace SportingWeb
 {
@@ -24,8 +25,18 @@ namespace SportingWeb
         {
             try
             {
+                String password = txtPass.Text;
+                String usr = txtUsuario.Text;
+
+                //Validate if the usr or password are strong!
+                if (!IsTextStrong(usr) || !IsTextStrong(password))
+                {
+                    lblMensaje.Text = "Nombre de usuario o password incorrecto";
+                    return;
+                }
+
                 //usuario está autenticado?
-                int idUsuario = Seguridad.validarUsuario(txtUsuario.Text, txtPass.Text);
+                int idUsuario = Seguridad.validarUsuario(usr, password);
                 if (idUsuario != 0)
                 {
                     //Obtiene un string con el rol del usuario
@@ -43,13 +54,19 @@ namespace SportingWeb
                 }
                 else
                 {
-                    lblMensaje.Text = "Nombre de usuario o contraseña incorrecto";
+                    lblMensaje.Text = "Nombre de usuario o password incorrecto";
                 }
             }
             catch (Exception ex)
             {
                 lblMensaje.Text = "Ocurrio un error: " + "internal data base error";
             }
+        }
+
+        //Validate if the usr or password are strong!
+        public static bool IsTextStrong(string text)
+        {
+            return Regex.IsMatch(text, @"^[0-9a-zA-Z'.\s]{1,10}$");
         }
     }
 }

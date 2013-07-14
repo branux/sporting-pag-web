@@ -40,7 +40,7 @@
             </tr>
             <tr>
                 <td>
-                    <p><asp:Label ID="lblImagen" runat="server" ForeColor="#C0C0C0" Text="Imagen" Width="100px"></asp:Label></p>
+                    <p><asp:Label ID="lblImagen" runat="server" ForeColor="#C0C0C0" Text="Elegir imagen" Width="100px"></asp:Label></p>
                     <p><asp:FileUpload ID="fileUpload" runat="server" Text="Cargar imagen..." Width="230px" onchange="cargarImagenJugador()"/>
                         <asp:Button ID="btnCargarImagen" runat="server" Text="Cargar imagen" Width="100px" 
                             onclick="btnCargarImagen_Click" OnClientClick="return validarImagenNotEmpty()"/>

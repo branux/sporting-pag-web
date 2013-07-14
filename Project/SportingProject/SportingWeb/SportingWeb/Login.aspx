@@ -30,7 +30,10 @@
                 </td>
                 <td>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtUsuario"
-                        ErrorMessage="Ingrese nombre de usuario"></asp:RequiredFieldValidator>
+                        ErrorMessage="Ingrese usuario" Display="Dynamic"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
+                    ControlToValidate="txtUsuario" ValidationExpression="^[0-9a-zA-Z'.\s]{1,10}$" 
+                    ErrorMessage="Ingrese usuario" Display="Dynamic"></asp:RegularExpressionValidator>
                 </td>
             </tr>
             <tr>
@@ -42,7 +45,10 @@
                 </td>
                 <td>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPass"
-                        ErrorMessage="Ingrese password"></asp:RequiredFieldValidator>
+                        ErrorMessage="Ingrese password" Display="Dynamic"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="passCharValidator" runat="server" 
+                        ControlToValidate="txtPass" ValidationExpression="^[0-9a-zA-Z'.\s]{1,10}$" 
+                        ErrorMessage="Ingrese password" Display="Dynamic"></asp:RegularExpressionValidator>
                 </td>
             </tr>
             <tr>
