@@ -92,39 +92,84 @@
     <Compile Include="Admin\Noticias_consola.aspx.designer.cs">
       <DependentUpon>Noticias_consola.aspx</DependentUpon>
     </Compile>
-    <Compile Include="App_Code\ConexionBD.cs" />
-    <Compile Include="App_Code\Constantes.cs" />
-    <Compile Include="App_Code\DAL\CampeonatoDAL.cs" />
-    <Compile Include="App_Code\DAL\MultimediaDAL.cs" />
-    <Compile Include="App_Code\DAL\PlantelDAL.cs" />
-    <Compile Include="App_Code\DAL\ImagenDAL.cs" />
+    <Compile Include="App_Code\ConexionBD.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="App_Code\Constantes.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="App_Code\DAL\CampeonatoDAL.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="App_Code\DAL\ImagenDAL.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="App_Code\DAL\MultimediaDAL.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="App_Code\DAL\NoticiaDAL.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="App_Code\Dominio\Auspiciante.cs" />
+    <Compile Include="App_Code\DAL\PlantelDAL.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="App_Code\Dominio\Auspiciante.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="App_Code\Dominio\CampeonatoLiga.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="App_Code\Dominio\EquipoCampeonato.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="App_Code\Dominio\FechaCampeonato.cs" />
-    <Compile Include="App_Code\Dominio\Imagen.cs" />
-    <Compile Include="App_Code\Dominio\Jugador.cs" />
+    <Compile Include="App_Code\Dominio\FechaCampeonato.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="App_Code\Dominio\Imagen.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="App_Code\Dominio\Jugador.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="App_Code\Dominio\MultimediaVideo.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="App_Code\Dominio\Noticia.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="App_Code\Dominio\PathImgEmptyException.cs" />
-    <Compile Include="App_Code\Dominio\Plantel.cs" />
-    <Compile Include="App_Code\Dominio\PosicionTabla.cs" />
+    <Compile Include="App_Code\Dominio\PathImgEmptyException.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="App_Code\Dominio\Plantel.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="App_Code\Dominio\PosicionTabla.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="App_Code\Dominio\Resultado.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="App_Code\Dominio\SportingException.cs" />
-    <Compile Include="App_Code\Dominio\TablaPosiciones.cs" />
-    <Compile Include="App_Code\Gestores\GestorCampeonato.cs" />
-    <Compile Include="App_Code\Gestores\GestorMultimedia.cs" />
-    <Compile Include="App_Code\Gestores\GestorNoticias.cs" />
-    <Compile Include="App_Code\Gestores\GestorPlantel.cs" />
-    <Compile Include="App_Code\Seguridad.cs" />
+    <Compile Include="App_Code\Dominio\SportingException.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="App_Code\Dominio\TablaPosiciones.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="App_Code\Gestores\GestorCampeonato.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="App_Code\Gestores\GestorMultimedia.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="App_Code\Gestores\GestorNoticias.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="App_Code\Gestores\GestorPlantel.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="App_Code\Seguridad.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Campeonato.aspx.cs">
       <DependentUpon>Campeonato.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -19,3 +19,7 @@ Nombre de Base de datos. 	covaweb_sporting
 phpMyAdmin 	Panel de control incorporado phpMyAdmin
 Cuota 	Usados 0.32 MB mas alla de los 10 MB 
 Usuarios de la base de datos  	covaweb_admin covaweb_sporting
+
+Datos para probar SQL injection
+-hay q lograr poner esto: 'a' or '1'='1'
+entonces en el input del pass hay que poner a' or '1'='1 y listo.
