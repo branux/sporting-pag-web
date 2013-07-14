@@ -1,0 +1,27 @@
+
+General:
+-Se agrego css para campos de texto (txt and txt multiline)
+
+Noticias_consola:
+-Reubique los campos para mejorar el alta de una noticia, campos mas grandes.
+-se elimino el campo donde se mostraba la imagen thumb porque ya se muestran en la grilla
+
+Equipo_consola: 
+-corregido texto en ABM (Imagen -> Elegir imagen)
+
+Seguridad: 
+-se actualizo la query de validarUsuario para que sea case sensitive
+
+Login:
+-Se agregaron 2 RegularExpressionValidations para evitar slq injection y permitir los input sean sanitize
+-Se corrigieron mensajes de error tanto para los Validator como para la validacion del user en bd
+-La misma validacion que hacen los RegularExpressionValidations se agrego del lado del server
+
+Web.config:
+-Se actualizo password en string de conexion del server
+
+BaseDatos_Server.txt:
+-Se agrego codigo sql para probar injection en el Login.aspx
+
+SportingWeb.csproj:
+-Configurado proyecto para que compile y copie las classes de App_Code en el folder bin (y de esta forma queden disponibles when publishing)
